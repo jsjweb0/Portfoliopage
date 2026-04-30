@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router";
-import { Portfolio } from "./pages/portfolio";
-import { ProjectDetail } from "./pages/project-detail";
+import { PortfolioPage } from "../pages/portfolio/ui/PortfolioPage";
+import { ProjectDetailPage } from "../pages/project-detail/ui/ProjectDetailPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Portfolio,
+    Component: PortfolioPage,
   },
   {
     path: "/project/:id",
-    Component: ProjectDetail,
+    Component: ProjectDetailPage,
   },
 ],
   {
