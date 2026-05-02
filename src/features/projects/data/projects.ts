@@ -6,6 +6,11 @@ export interface ProjectSection {
   content: string;
 }
 
+export interface ProjectPreviewImage {
+  src: string;
+  alt: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -18,6 +23,7 @@ export interface Project {
   description: string;
   tags: string[];
   link: string;
+  previewImages?: ProjectPreviewImage[];
   sections: ProjectSection[];
 }
 
@@ -32,8 +38,19 @@ export const projects: Project[] = [
     stack: "HTML · CSS · JavaScript · amChart",
     duration: "2025.12 - 2026.02",
     description: "농넷 메인 개편 및 데이터 대시보드 상황판 UI 구현",
-    tags: ["Dashboard", "Conditional UI", "data-*", "Interaction"],
+    tags: ["Dashboard", "Conditional UI", "data-*", "Responsive"],
     link: "https://www.nongnet.or.kr",
+    previewImages: [
+      {
+        src: "images/projects/nongnet_pc.png",
+        alt: "농넷 메인 로그아웃 화면 - 로그아웃 상태에서 누구나 확인할 수 있는 기본 관심품목 가격 정보 화면입니다.",
+      },
+      {
+        src: "images/projects/nongnet_pc_login.jpg",
+        alt: "농넷 메인 로그인 후 화면 - 로그인 후 확인할 수 있는 맞춤형 관심품목 및 가격 정보 화면입니다.",
+      },
+      
+    ],
     sections: [
       {
         type: "overview",
@@ -77,8 +94,18 @@ export const projects: Project[] = [
     stack: "React · HTML · CSS · Responsive UI · Component Customizing",
     duration: "2025.11 - 2025-11",
     description: "FIS 식품산업통계정보 챗봇 솔루션 커스터마이징",
-    link: "https://www.atfis.or.kr/fis-everything/",
+    link: "https://www.atfis.or.kr/fis-everything",
     tags: ["React Analysis", "Responsive", "Chat UI", "Customization"],
+    previewImages: [
+        {
+          src: "images/screenshot_project2.png",
+          alt: "FIS Chat 챗봇 UI 화면(PC)",
+        },
+        {
+          src: "images/screenshot_project2.png",
+          alt: "FIS Chat 챗봇 UI 화면(Mobile)",
+        },
+    ],
     sections: [
       {
         type: "overview",
@@ -123,7 +150,7 @@ export const projects: Project[] = [
     duration: "2024.04 - 2024.11",
     description: "고흥관광 홈페이지 전면 개편 및 인터랙티브 관광 UI 구현",
     tags: ["Responsive", "Multilingual", "SVG", "BEM"],
-    link: "https://tour.goheung.go.kr/",
+    link: "https://tour.goheung.go.kr",
     sections: [
       {
         type: "overview",

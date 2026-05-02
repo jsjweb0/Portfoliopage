@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { ArrowLeft } from "lucide-react";
 
 type HeaderProps = {
@@ -35,7 +35,7 @@ export function Header({ variant = "home", meta }: HeaderProps) {
         transition: "backdrop-filter 0.25s ease-out, -webkit-backdrop-filter 0.25s ease-out",
       }}
     >
-      <div className="px-6 py-5 md:px-8 md:py-6">
+      <div className="max-w-7xl mx-auto px-6 py-5 md:px-8 md:py-6">
         <div className="mx-auto flex items-center justify-between gap-6">
           {isDetail ? (
             <>
@@ -59,17 +59,17 @@ export function Header({ variant = "home", meta }: HeaderProps) {
 
           {isDetail ? (
             <>
-              {meta && <div className="text-right text-sm text-white/50">{meta}</div>}
+              {meta && <div className="text-right text-sm">{meta}</div>}
             </>
             ) : (
             <>
               <nav className="flex gap-4 text-sm text-white/50 md:gap-8">
-                <a href="#work" className="hover:text-[#8df5c5] transition-colors">
+                <NavLink to="/" className="hover:text-[#8df5c5] transition-colors">
                   Work
-                </a>
-                <a href="#about" className="hover:text-[#8df5c5] transition-colors">
+                </NavLink>
+                <NavLink to="/about" className="hover:text-[#8df5c5] transition-colors">
                   About
-                </a>
+                </NavLink>
                 <a href="#contact" className="hover:text-[#8df5c5] transition-colors">
                   Contact
                 </a>

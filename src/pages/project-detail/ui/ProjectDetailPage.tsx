@@ -8,8 +8,10 @@ import {
   CheckCircle,
   ArrowLeft,
   type LucideIcon,
+  Paintbrush,
 } from "lucide-react";
 import { projectData, type ProjectSectionType } from "../../../features/projects/data/projects";
+import { assetPath } from "../../../shared/lib/assetPath";
 import { Header } from "../../../widgets/header/Header";
 
 const sectionIcons: Record<ProjectSectionType, LucideIcon> = {
@@ -44,22 +46,18 @@ export function ProjectDetailPage() {
       <Header variant="detail" meta={project.duration} />
 
       {/* Main Content */}
-      <main className="relative z-10 mx-auto max-w-6xl px-6 py-16 md:px-8 md:py-20">
-        {/* Project Header */}
+      <main className="relative z-10 mx-auto max-w-6xl px-6 py-10 md:px-8 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-20 md:mb-32"
         >
-          {/* Main Header Section */}
+ 
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-start md:gap-16">
-            {/* Large Project Number */}
-            <div className="text-[96px] font-bold leading-none tracking-tight md:text-[180px] text-white/80">
+            <div className="text-[76px] font-bold leading-none tracking-tight md:text-[180px] text-white/80">
               {project.id}
             </div>
-
-            {/* Title and Description */}
             <div className="flex-1 md:pt-8">
               <div className="mb-4 inline-flex rounded-full border border-white/20 px-3 py-1 font-mono text-xs uppercase tracking-wide text-white/60">
                 {project.category} · {project.year}
@@ -67,20 +65,17 @@ export function ProjectDetailPage() {
               <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight md:text-6xl">
                 {project.title}
               </h1>
-              <p className="text-lg leading-relaxed text-white/80 md:text-xl">
+              <p className="text-base leading-relaxed text-white/80 md:text-xl">
                 {project.description}
               </p>
             </div>
           </div>
 
-          {/* Divider Line */}
           <div className="h-px bg-white/10 mb-12" />
 
-          {/* Meta Information */}
           <div className="grid gap-8 md:grid-cols-4 md:gap-12">
-            {/* ROLE */}
             <div>
-              <div className="text-xs uppercase tracking-wider text-white/50 mb-3">
+              <div className="text-xs uppercase tracking-wider text-white/50 mb-1">
                 ROLE
               </div>
               <div className="text-base leading-7 text-white/90">
@@ -88,9 +83,8 @@ export function ProjectDetailPage() {
               </div>
             </div>
 
-            {/* CONTRIBUTION */}
             <div>
-              <div className="text-xs uppercase tracking-wider text-white/50 mb-3">
+              <div className="text-xs uppercase tracking-wider text-white/50 mb-1">
                 CONTRIBUTION
               </div>
               <div className="text-base leading-7 text-white/90">
@@ -98,9 +92,8 @@ export function ProjectDetailPage() {
               </div>
             </div>
 
-            {/* STACK */}
             <div>
-              <div className="text-xs uppercase tracking-wider text-white/50 mb-3">
+              <div className="text-xs uppercase tracking-wider text-white/50 mb-1">
                 STACK
               </div>
               <div className="text-base leading-7 text-white/90">
@@ -109,7 +102,7 @@ export function ProjectDetailPage() {
             </div>
 
             <div>
-              <div className="text-xs uppercase tracking-wider text-white/50 mb-3">
+              <div className="text-xs uppercase tracking-wider text-white/50 mb-1">
                 SITE
               </div>
               <div className="text-base leading-7 text-white/90">
@@ -122,8 +115,45 @@ export function ProjectDetailPage() {
           </div>
         </motion.div>
 
+        {project.previewImages && project.previewImages.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-20 md:mb-32"
+          >
+            <div className="flex items-start gap-3 md:gap-8">
+              <div className="shrink-0pt-1">
+                <Paintbrush className="h-6 w-6 stroke-[1.5]" />
+              </div>
+              <div className="flex-1">
+                <h2 className="mb-4 text-lg md:text-2xl font-bold">UI Preview</h2>
+                
+                <div className="grid gap-4">
+                  {project.previewImages.map((image) => (
+                    <figure
+                      key={image.src}
+                      className="overflow-hidden flex flex-col items-center bg-white/[0.03]"
+                    >
+                      <img
+                        src={assetPath(image.src)}
+                        alt={image.alt}
+                        className="aspect-[16/10] w-full border border-white/10 rounded-lg"
+                        loading="lazy"
+                      />
+                      <figcaption className="my-4 text-white/60 text-center">
+                        {image.alt}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.section>
+        )}
+
         {/* Sections */}
-        <div className="space-y-16">
+        <div className="space-y-8 md:space-y-16">
           {project.sections.map((section, index) => {
             const SectionIcon = sectionIcons[section.type];
             return (
@@ -133,16 +163,13 @@ export function ProjectDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="flex items-start gap-5 md:gap-8">
-                  {/* Icon */}
+                <div className="flex items-start gap-3 md:gap-8">
                   <div className="shrink-0pt-1">
                     <SectionIcon className="h-6 w-6 stroke-[1.5]" />
                   </div>
-
-                  {/* Content */}
                   <div className="flex-1">
-                    <h2 className="mb-4 text-2xl font-bold">{section.title}</h2>
-                    <p className="whitespace-pre-line text-lg leading-relaxed text-white/80 break-keep">
+                    <h2 className="mb-4 text-lg md:text-2xl font-bold">{section.title}</h2>
+                    <p className="whitespace-pre-line text-sm md:text-lg leading-relaxed text-white/80 break-keep">
                       {section.content}
                     </p>
                   </div>
@@ -150,14 +177,14 @@ export function ProjectDetailPage() {
 
                 {/* Divider */}
                 {index < project.sections.length - 1 && (
-                  <div className="mt-16 h-px bg-white/10" />
+                  <div className="mt-8 md:mt-16 h-px bg-white/10" />
                 )}
               </motion.div>
             );
           })}
         </div>
 
-        {/* Footer Navigation */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

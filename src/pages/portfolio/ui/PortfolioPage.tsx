@@ -7,7 +7,6 @@ export function PortfolioPage() {
     <div className="min-h-screen bg-black text-white">
       <Header />
 
-      {/* Main Content */}
       <main className="mx-auto max-w-7xl px-6 py-16 md:px-8 md:py-20">
         <section id="about" className="mb-16 md:mb-32">
           <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">WEB PUBLISHER TO FRONTEND</p>
@@ -33,9 +32,9 @@ export function PortfolioPage() {
       </main>
 
       {/* Footer */}
-      <footer id="contact" className="mt-0 border-t border-white/10 px-6 py-10 md:mt-24 md:px-8 md:py-12">
+      <footer id="contact" className="mt-0 border-t border-white/10 px-6 py-6 md:mt-24 md:px-8 md:py-10">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col gap-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-2 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
             <p>© 2026 All rights reserved</p>
             <div className="flex gap-6">
               <a href="https://github.com/jsjweb0" className="hover:text-[#8df5c5] transition-colors" target="_blank" title="새창">

@@ -34,7 +34,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         whileHover="hover"
         custom={index}
       >
-        <div className="relative flex flex-col gap-8 overflow-hidden px-0 py-10 md:flex-row md:items-center md:gap-12 md:px-8 md:py-12">
+        <div className="relative flex flex-col gap-8 overflow-hidden px-0 py-8 md:flex-row md:items-center md:gap-12 md:px-8 md:py-12">
           <motion.div
             className="absolute inset-0 bg-white/5"
             variants={{
@@ -45,9 +45,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             style={{ originX: 0 }}
           />
 
-          <div className="relative z-10 flex items-center justify-between md:block">
+          <div className="relative z-10 flex items-center md:block">
             <motion.span
-              className="block w-12 font-mono text-sm text-white/30"
+              className="block w-8 md:w-12 font-mono text-sm text-white/30"
               variants={{
                 initial: { x: 0 },
                 enter: { x: 0 },
@@ -63,7 +63,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
           <div className="relative z-10 flex-1">
             <motion.div
-              className="mb-4 flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-wide text-white/40"
+              className="mb-2 md:mb-4 flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-wide text-white/40"
               variants={itemVariants}
             >
               <span className="hidden rounded-full border border-[#8df5c5]/30 px-3 py-1 text-[#8df5c5] md:inline-flex">
@@ -74,7 +74,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               <span>{project.role}</span>
             </motion.div>
             <motion.h3
-              className="relative mb-4 inline-block text-4xl font-bold leading-tight md:text-6xl"
+              className="relative mb-4 inline-block text-3xl font-bold leading-tight md:text-6xl"
               variants={itemVariants}
             >
               {project.title}
@@ -89,7 +89,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </motion.h3>
 
             <motion.p
-              className="mb-6 max-w-2xl text-lg text-white/60"
+              className="mb-6 max-w-2xl text-sm md:text-lg text-white/60"
               variants={itemVariants}
               transition={{ duration: 0.3, delay: 0.05 }}
             >
@@ -104,7 +104,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-white/20 px-3 py-1.5 font-mono text-xs text-white/70"
+                  className="rounded-full border border-white/20 px-3 py-1.5 font-mono text-[0.625rem] md:text-xs text-white/70"
                 >
                   {tag}
                 </span>
