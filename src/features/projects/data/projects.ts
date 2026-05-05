@@ -9,6 +9,7 @@ export interface ProjectSection {
 export interface ProjectPreviewImage {
   src: string;
   alt: string;
+  caption: string;
 }
 
 export interface Project {
@@ -43,13 +44,19 @@ export const projects: Project[] = [
     previewImages: [
       {
         src: "images/projects/nongnet_pc.png",
-        alt: "농넷 메인 로그아웃 화면 - 로그아웃 상태에서 누구나 확인할 수 있는 기본 관심품목 가격 정보 화면입니다.",
+        alt: "농넷 메인 로그아웃 화면",
+        caption: "로그아웃 상태에서도 주요 가격 정보를 바로 확인할 수 있도록 구성한 메인 화면",
       },
       {
         src: "images/projects/nongnet_pc_login.jpg",
-        alt: "농넷 메인 로그인 후 화면 - 로그인 후 확인할 수 있는 맞춤형 관심품목 및 가격 정보 화면입니다.",
+        alt: "농넷 메인 로그인 후 화면",
+        caption: "로그인 후 관심품목과 사용자 맞춤 정보를 우선 노출하도록 분기한 화면",
       },
-      
+      {
+        src: "images/projects/nongnet_mo.jpg",
+        alt: "농넷 메인 모바일 화면",
+        caption: "모바일에서도 가격 정보와 주요 콘텐츠를 확인할 수 있도록 재배치한 반응형 화면",
+      },
     ],
     sections: [
       {
@@ -97,14 +104,21 @@ export const projects: Project[] = [
     link: "https://www.atfis.or.kr/fis-everything",
     tags: ["React Analysis", "Responsive", "Chat UI", "Customization"],
     previewImages: [
-        {
-          src: "images/screenshot_project2.png",
-          alt: "FIS Chat 챗봇 UI 화면(PC)",
-        },
-        {
-          src: "images/screenshot_project2.png",
-          alt: "FIS Chat 챗봇 UI 화면(Mobile)",
-        },
+      {
+        src: "images/projects/fis_pc_1.png",
+        alt: "FIS Chat PC 초기 화면",
+        caption: "서비스 톤에 맞춰 챗봇 진입 화면과 질문 유도 UI를 커스터마이징한 PC 화면",
+      },
+      {
+        src: "images/projects/fis_pc_2.png",
+        alt: "FIS Chat PC 답변 화면",
+        caption: "출처 문서, 답변 내용, 추천 질문 영역을 함께 확인할 수 있도록 구성한 PC 답변 화면",
+      },
+      {
+        src: "images/projects/fis_mo.jpg",
+        alt: "FIS Chat 모바일 화면",
+        caption: "모바일 환경에서 질문 선택과 답변 확인 흐름이 이어지도록 조정한 반응형 화면",
+      },
     ],
     sections: [
       {
@@ -151,6 +165,28 @@ export const projects: Project[] = [
     description: "고흥관광 홈페이지 전면 개편 및 인터랙티브 관광 UI 구현",
     tags: ["Responsive", "Multilingual", "SVG", "BEM"],
     link: "https://tour.goheung.go.kr",
+    previewImages: [
+      {
+        src: "images/projects/goheung_pc_1.jpg",
+        alt: "고흥관광 PC 메인 화면",
+        caption: "관광 콘텐츠 탐색 흐름을 고려해 메인 비주얼과 주요 메뉴를 구성한 PC 화면",
+      },
+      {
+        src: "images/projects/goheung_pc_2.jpg",
+        alt: "고흥관광 PC 콘텐츠 화면",
+        caption: "SVG 지도에서 각 행정 구역을 hover/click 독립 요소로 제어",
+      },
+      {
+        src: "images/projects/goheung_eng.jpg",
+        alt: "고흥관광 영문 화면",
+        caption: "다국어 텍스트 길이와 메뉴 구조 변화를 고려해 구현한 영문 화면",
+      },
+      {
+        src: "images/projects/goheung_mo.jpg",
+        alt: "고흥관광 모바일 화면",
+        caption: "모바일에서 관광 정보 탐색이 이어지도록 콘텐츠 우선순위를 재배치한 반응형 화면",
+      },
+    ],
     sections: [
       {
         type: "overview",

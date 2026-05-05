@@ -41,7 +41,7 @@ export function ProjectDetailPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-black text-white">
+    <div id="wrap" className="relative min-h-screen bg-black text-white">
 
       <Header variant="detail" meta={project.duration} />
 
@@ -117,32 +117,37 @@ export function ProjectDetailPage() {
 
         {project.previewImages && project.previewImages.length > 0 && (
           <motion.section
+            aria-labelledby="ui-preview-title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-20 md:mb-32"
           >
             <div className="flex items-start gap-3 md:gap-8">
-              <div className="shrink-0pt-1">
+              <div className="shrink-0 pt-1">
                 <Paintbrush className="h-6 w-6 stroke-[1.5]" />
               </div>
               <div className="flex-1">
-                <h2 className="mb-4 text-lg md:text-2xl font-bold">UI Preview</h2>
+                <h2 id="ui-preview-title" className="mb-4 text-lg md:text-2xl font-bold">
+                  UI Preview
+                </h2>
                 
                 <div className="grid gap-4">
-                  {project.previewImages.map((image) => (
+                  {project.previewImages.map((image, index) => (
                     <figure
-                      key={image.src}
-                      className="overflow-hidden flex flex-col items-center bg-white/[0.03]"
+                      key={`${image.src}-${index}`}
+                      className="rounded-lg bg-white/[0.03]"
                     >
-                      <img
-                        src={assetPath(image.src)}
-                        alt={image.alt}
-                        className="aspect-[16/10] w-full border border-white/10 rounded-lg"
-                        loading="lazy"
-                      />
-                      <figcaption className="my-4 text-white/60 text-center">
-                        {image.alt}
+                      <div className="overflow-hidden flex items-center justify-center bg-white rounded-lg border border-white/10">
+                        <img
+                          src={assetPath(image.src)}
+                          alt={image.alt}
+                          className="block h-auto max-h-[720px] w-auto max-w-full"
+                          loading="lazy"
+                        />
+                      </div>
+                      <figcaption className="px-4 py-4 text-center text-sm leading-relaxed text-white/60 md:text-base">
+                        {image.caption}
                       </figcaption>
                     </figure>
                   ))}
@@ -164,7 +169,7 @@ export function ProjectDetailPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <div className="flex items-start gap-3 md:gap-8">
-                  <div className="shrink-0pt-1">
+                  <div className="shrink-0 pt-1">
                     <SectionIcon className="h-6 w-6 stroke-[1.5]" />
                   </div>
                   <div className="flex-1">
