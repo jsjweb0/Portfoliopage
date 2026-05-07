@@ -55,11 +55,11 @@ const contactLinks = [
 
 export function PortfolioPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen">
       <Header />
 
       <main className="mx-auto max-w-7xl px-6 py-16 md:px-8 md:py-20 break-keep">
-        <section id="about" className="mb-16 md:mb-32">
+        <section className="mb-16 md:mb-32">
           <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">WEB PUBLISHER TO FRONTEND</p>
           <h2 className="max-w-5xl text-4xl font-bold leading-tight md:text-7xl">
             8년의 UI 구현 경험 위에 React와 TypeScript를 쌓고 있습니다.
@@ -71,7 +71,7 @@ export function PortfolioPage() {
         </section>
 
         {/* Projects List */}
-        <section id="work" className="space-y-px border-b border-white/10">
+        <section id="work" className="scroll-mt-24 space-y-px border-b border-white/10">
           {projects.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -81,7 +81,7 @@ export function PortfolioPage() {
           ))}
         </section>
 
-        <section id="about" className="pt-30 md:pt-52">
+        <section id="about" className="scroll-mt-24 mt-30 md:mt-52">
             <div className="mb-16 space-y-10 md:mb-30">
               <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">ABOUT</p>
               <h2 className="text-3xl font-bold leading-tight md:text-5xl">
@@ -98,7 +98,7 @@ export function PortfolioPage() {
                 {strengths.map((item) => (
                   <article key={item.title} className="border-t border-white/15 pt-5">
                     <h3 className="mb-3 text-base font-bold text-white">{item.title}</h3>
-                    <p className="text-sm leading-6 text-white/60 break-keep">{item.description}</p>
+                    <p className="text-sm leading-6 text-white/70 break-keep">{item.description}</p>
                   </article>
                 ))}
               </div>
@@ -126,7 +126,7 @@ export function PortfolioPage() {
                       href={href}
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="group flex min-h-28 flex-col justify-between border border-white/10 p-4 transition-colors hover:border-[#8df5c5]/50 hover:bg-white/[0.03]"
+                      className="group flex min-h-28 flex-col justify-between border border-white/30 p-4 transition-colors hover:border-[#8df5c5]/50 hover:bg-white/[0.05]"
                     >
                       <span className="flex items-center justify-between gap-3 text-sm text-white/50">
                         <span className="flex items-center gap-2">

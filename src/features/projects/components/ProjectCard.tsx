@@ -89,7 +89,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </motion.h3>
 
             <motion.p
-              className="mb-6 max-w-2xl text-sm md:text-lg text-white/60"
+              className="mb-6 max-w-2xl text-sm md:text-lg text-white/70"
               variants={itemVariants}
               transition={{ duration: 0.3, delay: 0.05 }}
             >
