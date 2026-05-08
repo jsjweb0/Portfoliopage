@@ -38,7 +38,7 @@ export const projects: Project[] = [
     contribution: "frontend 100%",
     stack: "React · Vite · Firebase Auth · SoundCloud API",
     duration: "2025.08 - 2026.05",
-    description: "SoundCloud API를 연동해 음악 검색, 랜덤 재생, 플레이리스트 기능을 구현한 개인 프로젝트",
+    description: "SoundCloud API를 연동해 음악 검색, 랜덤 재생, 플레이리스트 기능을 구현한 개인 프로젝트 입니다.",
     tags: ["React", "API Integration", "Responsive", "Firebase Auth", "Tailwind CSS"],
     link: "https://newtronome.netlify.app",
     previewImages: [
@@ -53,7 +53,7 @@ export const projects: Project[] = [
         type: "overview",
         title: "Overview",
         content:
-          "외부 음악 API를 활용해 실제 서비스에 가까운 오디오 플레이어 경험을 구현하고, 로그인/좋아요/게시판 기능까지 연결해 React 상태 관리와 Firebase 연동 흐름을 학습하기 위해 제작했습니다.",
+          "외부 음악 API를 활용해 실제 서비스에 가까운 오디오 플레이어 경험을 구현하고, 로그인/좋아요/게시판 기능까지 연결해 React 상태 관리와 Firebase 연동 흐름을 학습하기 위해 제작했습니다. 로그인/좋아요/게시판 기능까지 연결해 React 상태 관리와 Firebase 연동 흐름을 학습하기 위해 제작했습니다.s",
       },
       {
         type: "work",
