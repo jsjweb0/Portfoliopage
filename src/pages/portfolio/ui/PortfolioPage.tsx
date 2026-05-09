@@ -53,6 +53,10 @@ const contactLinks = [
   },
 ];
 
+const projectsByDescendingId = [...projects].sort(
+  (currentProject, nextProject) => Number(nextProject.id) - Number(currentProject.id),
+);
+
 export function PortfolioPage() {
   return (
     <div className="min-h-screen">
@@ -72,7 +76,7 @@ export function PortfolioPage() {
 
         {/* Projects List */}
         <section id="work" className="scroll-mt-24 space-y-px border-b border-white/10">
-          {projects.map((project, index) => (
+          {projectsByDescendingId.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}

@@ -54,7 +54,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 hover: { x: 4, transition: { duration: 0.3 } },
               }}
             >
-              {String(index + 1).padStart(2, "0")}
+              {project.id.toString().padStart(2, "0")}
             </motion.span>
             <span className="rounded-full border border-[#8df5c5]/30 px-3 py-1 font-mono text-xs text-[#8df5c5] md:hidden">
               {project.category}
