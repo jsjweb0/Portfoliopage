@@ -234,7 +234,7 @@ export const projects: Project[] = [
     link: "https://newtronome.netlify.app",
     previewImages: [
       {
-        src: "images/screenshot_project1_1.png",
+        src: "images/projects/newtronome.png",
         alt: "NEWTRONOME 메인 화면",
         caption: "SoundCloud API로 랜덤 음악 리스트와 재생이 가능한 PC 화면",
       },
@@ -256,13 +256,13 @@ export const projects: Project[] = [
         type: "problem",
         title: "Problem & Solution",
         content:
-          "1. SoundCloud API 키 노출 문제\n프론트엔드에서 SoundCloud API를 직접 호출하면 API 키가 브라우저에 노출될 수 있었습니다. Netlify Functions를 프록시 서버처럼 사용해 API 키를 서버 환경 변수로 관리했습니다. 프론트엔드는 /api/search, /api/resolve, /api/stream 엔드포인트만 호출하고, 실제 SoundCloud 요청은 서버리스 함수에서 처리하도록 분리했습니다. API 키를 클라이언트에 노출하지 않고 외부 API 연동 기능을 유지할 수 있었습니다.\n\n2. API 사용량 초과\n초기 화면에서 여러 플레이리스트와 트랙 정보를 한 번에 불러오면서 Netlify 무료 사용량이 빠르게 소모되는 문제가 있었습니다. 초기 로딩 플레이리스트 수를 줄이고, 검색 결과와 스트림 URL을 localStorage에 24시간 캐싱했습니다. Netlify Functions 응답에도 캐시 헤더를 추가해 반복 요청 부담을 줄였습니다. 사용자가 같은 검색어를 다시 검색하거나 페이지를 새로고침해도 불필요한 API 호출이 줄어들도록 개선했습니다.\n\n3. 재생 상태 동기화\n전역 플레이어, 플레이리스트, 검색 결과 프리뷰 등 여러 진입 경로에서 재생 상태가 충돌하는 문제가 있었습니다. 현재 트랙, 재생 여부, 재생 시간, 재생목록을 Context로 관리하고, 오디오 제어 로직을 커스텀 훅으로 분리했습니다. 여러 컴포넌트에서 동일한 재생 상태를 공유하도록 정리했고, PlayerBar와 PlaylistPanel의 상태 동기화가 안정적으로 동작하도록 개선했습니다.\n\n4. 외부 음악 데이터 연동 안정성\n외부 음악 데이터 응답 구조가 변경될 가능성을 고려해 API 호출 로직을 컴포넌트 내부에 직접 작성하지 않고, 커스텀 훅과 Netlify Functions로 분리했습니다. 응답 지연 시 화면이 비어 보이지 않도록 스켈레톤 UI를 적용했고, 호출 실패 상황에서도 사용자 흐름이 끊기지 않도록 로딩/에러 상태를 분리했습니다.",
+          "1. SoundCloud API 키 노출 문제\n프론트엔드에서 SoundCloud API를 직접 호출할 경우 API 키가 브라우저에 노출되는 문제가 있었습니다. Netlify Functions를 서버리스 프록시로 구성하고 API 키를 환경 변수로 관리해 클라이언트와 외부 API 요청을 분리했습니다. 프론트엔드는 /api/search, /api/resolve, /api/stream 엔드포인트만 호출하고, 실제 SoundCloud 요청은 서버리스 함수에서 처리하도록 구조를 변경했습니다.\n\n2. API 사용량 초과\n초기 화면에서 여러 플레이리스트와 트랙 정보를 동시에 요청하면서 Netlify 무료 사용량이 빠르게 증가하는 문제가 있었습니다. 초기 로딩 시 불러오는 플레이리스트 수를 줄이고, 검색 결과와 스트림 URL을 localStorage에 24시간 캐싱했습니다. 또한 Netlify Functions 응답에 캐시 헤더를 적용해 동일 요청의 반복 호출을 최소화했습니다.\n\n3. 재생 상태 동기화\n전역 플레이어와 검색 결과 프리뷰가 동시에 재생되면서 오디오 상태 충돌이 발생하는 문제가 있었습니다. 메인 플레이어는 현재 트랙, 재생 상태, 재생목록을 Context 기반으로 관리하고, 검색 결과 프리뷰는 독립적인 재생 흐름으로 분리했습니다. 검색 결과에서 미리듣기 재생 시 기존 플레이어를 정지하도록 처리해 중복 재생과 상태 충돌을 방지했습니다.\n\n4. 외부 음악 데이터 연동 안정성\n외부 API 응답 구조 변경과 요청 실패 상황에 대응할 수 있도록 API 호출 로직을 컴포넌트 내부에서 분리하고, 커스텀 훅과 Netlify Functions 기반으로 구성했습니다. 응답 지연 시에는 스켈레톤 UI를 적용해 빈 화면 노출을 줄였고, 로딩 상태와 에러 상태를 분리해 호출 실패 상황에서도 사용자 흐름이 끊기지 않도록 처리했습니다.",
       },
       {
         type: "tech",
         title: "Technical Points",
         content:
-          "• 음악 검색 및 SoundCloud 트랙 재생\n• 랜덤 플레이리스트 로딩 및 재생 / 일시정지 / 이전 곡 / 다음 곡 / 시크바 / 볼륨 제어\n• 플레이리스트 Drag & Drop 순서 편집\n• Firebase 이메일 로그인, 로그인 사용자 기준 트랙 좋아요 저장\n• 현재 트랙, 재생 여부, 재생 시간, 재생목록을 Context로 전역 관리\n• 모바일 하단 플레이어 및 플레이리스트 패널 지원\n• 다크모드 지원\n• 공지 게시판 CRUD, 댓글, 페이지네이션 구현",
+          "• 음악 검색 및 SoundCloud 트랙 재생\n• 랜덤 플레이리스트 로딩 및 플레이어 바 제어\n• 플레이리스트 Drag & Drop 순서 편집\n• Firebase 이메일 로그인, 로그인 사용자 기준 트랙 좋아요 저장\n• 현재 트랙, 재생 여부, 재생 시간, 재생목록을 Context로 전역 관리\n• 모바일 하단 플레이어 및 플레이리스트 패널 지원\n• 다크모드 지원\n• Firebase 기반 공지 게시판 및 댓글 기능 구현",
       },
       {
         type: "result",
