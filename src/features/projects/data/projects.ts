@@ -242,7 +242,7 @@ export const projects: Project[] = [
     role: 'Frontend Developer',
     contribution: 'frontend 100%',
     stack:
-      'React · Vite · Firebase Auth · Firestore · SoundCloud API · Netlify Functions',
+      'React · Vite · Firebase Auth · Firestore · SoundCloud API · Cloudflare Workers',
     duration: '2025.08 - 2026.05',
     description:
       'SoundCloud 데이터를 활용해 음악 검색, 랜덤 재생, 플레이리스트 관리, 로그인 사용자별 좋아요 기능을 구현한 React 개인 프로젝트입니다.',
@@ -253,7 +253,7 @@ export const projects: Project[] = [
       'Firebase Auth',
       'Tailwind CSS',
     ],
-    link: 'https://newtronome.netlify.app',
+    link: 'https://newtronome.jsjweb0.workers.dev',
     previewImages: [
       {
         src: 'images/projects/newtronome_pc.png',
@@ -272,13 +272,13 @@ export const projects: Project[] = [
         type: 'work',
         title: 'Key Work',
         content:
-          '• React 컴포넌트 구조 설계 및 UI 구현\n• 전역 오디오 상태 관리 구현\n• Firebase Auth / Firestore 연동\n• SoundCloud API 연동 및 Netlify Functions 프록시 구성\n• 반응형 플레이어 UI, 다크모드, 스켈레톤 로딩 구현\n• API 호출량 절감을 위한 캐싱 및 초기 로딩 최적화',
+          '• React 컴포넌트 구조 설계 및 UI 구현\n• 전역 오디오 상태 관리 구현\n• Firebase Auth / Firestore 연동\n• SoundCloud API 연동 및 Cloudflare Workers 프록시 구성\n• 반응형 플레이어 UI, 다크모드, 스켈레톤 로딩 구현\n• API 호출량 절감을 위한 캐싱 및 초기 로딩 최적화',
       },
       {
         type: 'problem',
         title: 'Problem & Solution',
         content:
-          '1. SoundCloud API 키 노출 문제\n프론트엔드에서 SoundCloud API를 직접 호출할 경우 API 키가 브라우저에 노출되는 문제가 있었습니다. Netlify Functions를 서버리스 프록시로 구성하고 API 키를 환경 변수로 관리해 클라이언트와 외부 API 요청을 분리했습니다. 프론트엔드는 /api/search, /api/resolve, /api/stream 엔드포인트만 호출하고, 실제 SoundCloud 요청은 서버리스 함수에서 처리하도록 구조를 변경했습니다.\n\n2. API 사용량 초과\n초기 화면에서 여러 플레이리스트와 트랙 정보를 동시에 요청하면서 Netlify 무료 사용량이 빠르게 증가하는 문제가 있었습니다. 초기 로딩 시 불러오는 플레이리스트 수를 줄이고, 검색 결과와 스트림 URL을 localStorage에 24시간 캐싱했습니다. 또한 Netlify Functions 응답에 캐시 헤더를 적용해 동일 요청의 반복 호출을 최소화했습니다.\n\n3. 재생 상태 동기화\n전역 플레이어와 검색 결과 프리뷰가 동시에 재생되면서 오디오 상태 충돌이 발생하는 문제가 있었습니다. 메인 플레이어는 현재 트랙, 재생 상태, 재생목록을 Context 기반으로 관리하고, 검색 결과 프리뷰는 독립적인 재생 흐름으로 분리했습니다. 검색 결과에서 미리듣기 재생 시 기존 플레이어를 정지하도록 처리해 중복 재생과 상태 충돌을 방지했습니다.\n\n4. 외부 음악 데이터 연동 안정성\n외부 API 응답 구조 변경과 요청 실패 상황에 대응할 수 있도록 API 호출 로직을 컴포넌트 내부에서 분리하고, 커스텀 훅과 Netlify Functions 기반으로 구성했습니다. 응답 지연 시에는 스켈레톤 UI를 적용해 빈 화면 노출을 줄였고, 로딩 상태와 에러 상태를 분리해 호출 실패 상황에서도 사용자 흐름이 끊기지 않도록 처리했습니다.',
+          '1. SoundCloud API 키 노출 문제\n프론트엔드에서 SoundCloud API를 직접 호출할 경우 API 키가 브라우저에 노출되는 문제가 있었습니다. Cloudflare Workers를 서버리스 프록시로 구성하고 API 키를 Worker Secret으로 관리해 클라이언트와 외부 API 요청을 분리했습니다. 프론트엔드는 /api/search, /api/resolve, /api/stream 엔드포인트만 호출하고, 실제 SoundCloud 요청은 Worker에서 처리하도록 구조를 변경했습니다.\n\n2. API 사용량 초과\n초기에는 Netlify Functions로 API 프록시를 구성했지만, 외부 음악 데이터 요청이 반복되면서 무료 사용량 관리가 어려웠습니다. 이후 Cloudflare Workers로 프록시를 이전하고, 초기 로딩 시 불러오는 플레이리스트 수를 줄였으며, 검색 결과와 스트림 URL을 localStorage에 24시간 캐싱했습니다. 또한 Worker 응답에 캐시 헤더를 적용해 동일 요청의 반복 호출을 최소화했습니다.\n\n3. 재생 상태 동기화\n전역 플레이어와 검색 결과 프리뷰가 동시에 재생되면서 오디오 상태 충돌이 발생하는 문제가 있었습니다. 메인 플레이어는 현재 트랙, 재생 상태, 재생목록을 Context 기반으로 관리하고, 검색 결과 프리뷰는 독립적인 재생 흐름으로 분리했습니다. 검색 결과에서 미리듣기 재생 시 기존 플레이어를 정지하도록 처리해 중복 재생과 상태 충돌을 방지했습니다.\n\n4. 외부 음악 데이터 연동 안정성\n외부 API 응답 구조 변경과 요청 실패 상황에 대응할 수 있도록 API 호출 로직을 컴포넌트 내부에서 분리하고, 커스텀 훅과 Cloudflare Workers 기반으로 구성했습니다. 응답 지연 시에는 스켈레톤 UI를 적용해 빈 화면 노출을 줄였고, 로딩 상태와 에러 상태를 분리해 호출 실패 상황에서도 사용자 흐름이 끊기지 않도록 처리했습니다.',
       },
       {
         type: 'tech',
