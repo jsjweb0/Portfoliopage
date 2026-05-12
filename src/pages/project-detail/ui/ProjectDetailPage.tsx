@@ -1,5 +1,6 @@
-import { useParams, Link } from "react-router";
-import { motion } from "motion/react";
+import { useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router';
+import { motion } from 'motion/react';
 import {
   Eye,
   Lightbulb,
@@ -10,10 +11,13 @@ import {
   type LucideIcon,
   Paintbrush,
   Link2,
-} from "lucide-react";
-import { projectData, type ProjectSectionType } from "../../../features/projects/data/projects";
-import { assetPath } from "../../../shared/lib/assetPath";
-import { Header } from "../../../widgets/header/Header";
+} from 'lucide-react';
+import {
+  projectData,
+  type ProjectSectionType,
+} from '../../../features/projects/data/projects';
+import { assetPath } from '../../../shared/lib/assetPath';
+import { Header } from '../../../widgets/header/Header';
 
 const sectionIcons: Record<ProjectSectionType, LucideIcon> = {
   overview: Eye,
@@ -24,15 +28,23 @@ const sectionIcons: Record<ProjectSectionType, LucideIcon> = {
 };
 
 export function ProjectDetailPage() {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const project = id ? projectData[id] : null;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!project) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
           <h1 className="text-4 xl mb-4 font-black">Project not found</h1>
-          <Link to="/" className="inline-flex items-center gap-1 text-sm underline">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm underline"
+          >
             <ArrowLeft className="h-4 w-4" />
             Return to portfolio
           </Link>
@@ -43,7 +55,6 @@ export function ProjectDetailPage() {
 
   return (
     <div id="wrap" className="relative min-h-screen bg-black text-white">
-
       <Header variant="detail" meta={project.duration} />
 
       {/* Main Content */}
@@ -54,7 +65,6 @@ export function ProjectDetailPage() {
           transition={{ duration: 0.6 }}
           className="mb-20 md:mb-32"
         >
- 
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-start md:gap-16">
             <div className="text-[76px] font-bold leading-none tracking-tight md:text-[180px] text-white/80">
               {project.id}
@@ -107,12 +117,17 @@ export function ProjectDetailPage() {
                 SITE <Link2 className="size-4" />
               </div>
               <div className="text-base leading-7 text-white/90">
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-white/50" title="새창">
-                  {project.link.replace(/^https?:\/\//, "")}
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white/50"
+                  title="새창"
+                >
+                  {project.link.replace(/^https?:\/\//, '')}
                 </a>
               </div>
             </div>
-
           </div>
         </motion.div>
 
@@ -129,10 +144,13 @@ export function ProjectDetailPage() {
                 <Paintbrush className="h-6 w-6 stroke-[1.5]" />
               </div>
               <div className="flex-1">
-                <h2 id="ui-preview-title" className="mb-4 text-lg md:text-2xl font-bold">
+                <h2
+                  id="ui-preview-title"
+                  className="mb-4 text-lg md:text-2xl font-bold"
+                >
                   UI Preview
                 </h2>
-                
+
                 <div className="grid gap-4">
                   {project.previewImages.map((image, index) => (
                     <figure
@@ -174,7 +192,9 @@ export function ProjectDetailPage() {
                     <SectionIcon className="h-6 w-6 stroke-[1.5]" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="mb-4 text-lg md:text-2xl font-bold">{section.title}</h2>
+                    <h2 className="mb-4 text-lg md:text-2xl font-bold">
+                      {section.title}
+                    </h2>
                     <p className="whitespace-pre-line text-sm md:text-lg leading-relaxed text-white/80 break-keep">
                       {section.content}
                     </p>
@@ -197,13 +217,14 @@ export function ProjectDetailPage() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-32 border-t border-white/10 pt-12"
         >
-          <Link
-            to="/"
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
             className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3"
           >
             <ArrowLeft className="h-4 w-4" />
             View all projects
-          </Link>
+          </button>
         </motion.div>
       </main>
     </div>
