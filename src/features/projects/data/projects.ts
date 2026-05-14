@@ -264,6 +264,12 @@ export const projects: Project[] = [
         alt: 'NEWTRONOME 메인 화면',
         caption: 'SoundCloud API로 랜덤 음악 리스트와 재생이 가능한 PC 화면',
       },
+      {
+        src: 'images/projects/newtronome_mobile.jpg',
+        alt: 'NEWTRONOME 모바일 화면',
+        caption:
+          'SoundCloud API로 랜덤 음악 리스트와 검색이 가능한 모바일 화면',
+      },
     ],
     sections: [
       {

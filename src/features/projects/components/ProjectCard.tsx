@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
-import { Link } from "react-router";
-import type { Project } from "../data/projects";
+import { motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router';
+import type { Project } from '../data/projects';
 
 const cardVariants = {
   initial: { opacity: 0, y: 20 },
@@ -40,7 +40,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             variants={{
               initial: { scaleX: 0 },
               enter: { scaleX: 0 },
-              hover: { scaleX: 1, transition: { duration: 0.4, ease: "easeOut" } },
+              hover: {
+                scaleX: 1,
+                transition: { duration: 0.4, ease: 'easeOut' },
+              },
             }}
             style={{ originX: 0 }}
           />
@@ -54,7 +57,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 hover: { x: 4, transition: { duration: 0.3 } },
               }}
             >
-              {project.id.toString().padStart(2, "0")}
+              {project.id.toString().padStart(2, '0')}
             </motion.span>
             <span className="rounded-full border border-[#8df5c5]/30 px-3 py-1 font-mono text-xs text-[#8df5c5] md:hidden">
               {project.category}
@@ -83,13 +86,16 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 variants={{
                   initial: { width: 0 },
                   enter: { width: 0 },
-                  hover: { width: "100%", transition: { duration: 0.4, ease: "easeOut" } },
+                  hover: {
+                    width: '100%',
+                    transition: { duration: 0.4, ease: 'easeOut' },
+                  },
                 }}
               />
             </motion.h3>
 
             <motion.p
-              className="mb-6 max-w-2xl text-sm md:text-lg text-white/70"
+              className="mb-6 text-sm md:text-lg text-white/70 line-clamp-2"
               variants={itemVariants}
               transition={{ duration: 0.3, delay: 0.05 }}
             >
@@ -119,26 +125,26 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 initial: {
                   x: 0,
                   y: 0,
-                  borderColor: "rgba(255,255,255,0.2)",
+                  borderColor: 'rgba(255,255,255,0.2)',
                 },
                 enter: {
                   x: 0,
                   y: 0,
-                  borderColor: "rgba(255,255,255,0.2)",
+                  borderColor: 'rgba(255,255,255,0.2)',
                 },
                 hover: {
                   x: 8,
                   y: -8,
-                  borderColor: "rgba(141,245,197,0.5)",
+                  borderColor: 'rgba(141,245,197,0.5)',
                   transition: { duration: 0.3 },
                 },
               }}
             >
               <motion.div
                 variants={{
-                  initial: { color: "rgba(255,255,255,0.5)" },
-                  enter: { color: "rgba(255,255,255,0.5)" },
-                  hover: { color: "#8df5c5", transition: { duration: 0.3 } },
+                  initial: { color: 'rgba(255,255,255,0.5)' },
+                  enter: { color: 'rgba(255,255,255,0.5)' },
+                  hover: { color: '#8df5c5', transition: { duration: 0.3 } },
                 }}
               >
                 <ArrowUpRight className="h-6 w-6" />
