@@ -29,6 +29,7 @@ export interface Project {
   description: string;
   tags: string[];
   link: string;
+  github?: string;
   previewImages?: ProjectPreviewImage[];
   sections: ProjectSection[];
 }
@@ -258,6 +259,7 @@ export const projects: Project[] = [
       'Tailwind CSS',
     ],
     link: 'https://newtronome.jsjweb0.workers.dev',
+    github: 'https://github.com/jsjweb0/newtronome',
     previewImages: [
       {
         src: 'images/projects/newtronome_pc.png',

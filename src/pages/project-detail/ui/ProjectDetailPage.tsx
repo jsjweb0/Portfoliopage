@@ -11,6 +11,7 @@ import {
   type LucideIcon,
   Paintbrush,
   Link2,
+  Github,
 } from 'lucide-react';
 import {
   projectData,
@@ -114,18 +115,31 @@ export function ProjectDetailPage() {
 
             <div>
               <div className="flex gap-1 text-xs uppercase tracking-wider text-white/50 mb-1">
-                SITE <Link2 className="size-4" />
+                LINKS
               </div>
               <div className="text-base leading-7 text-white/90">
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white/50"
-                  title="새창"
+                  aria-label="사이트 바로가기 (새 창)"
+                  className="flex gap-2 items-center hover:text-white/50"
                 >
+                  <Link2 className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {project.link.replace(/^https?:\/\//, '')}
                 </a>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub 저장소 바로가기 (새 창)"
+                    className="flex gap-2 items-center hover:text-white/50"
+                  >
+                    <Github className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    {project.github.replace('https://github.com/', '')}
+                  </a>
+                )}
               </div>
             </div>
           </div>
