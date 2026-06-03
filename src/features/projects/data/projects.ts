@@ -306,6 +306,77 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    id: '05',
+    title: 'Dockit',
+    category: 'React',
+    year: '2026 ~ In Progress',
+    role: 'Frontend Developer',
+    contribution: 'frontend 100%',
+    stack:
+      'React · TypeScript · Vite · Tailwind CSS · React Router · Radix UI · localStorage · Cloudflare Workers',
+    duration: '2026.04 - 기능 확장 중',
+    description:
+      'React + TypeScript 기반 국문 이력서 작성 도구. 입력 폼과 A4 미리보기를 분리하고, localStorage 저장, 샘플 데이터, 반응형 UI, 접근성 포커스 개선을 구현했습니다.',
+    tags: [
+      'React',
+      'TypeScript',
+      'Responsive',
+      'Accessibility',
+      'localStorage',
+    ],
+    link: 'https://dockit.jsjweb0.workers.dev/',
+    github: 'https://github.com/jsjweb0/dockit',
+    previewImages: [
+      {
+        src: 'images/projects/dockit_pc_1.jpg',
+        alt: 'Dockit 이력서 작성 도구 PC 화면',
+        caption: '입력 폼과 A4 미리보기를 나란히 배치한 데스크톱 화면',
+      },
+      {
+        src: 'images/projects/dockit_pc_2.jpg',
+        alt: 'Dockit 이력서 작성 도구 PC 화면',
+        caption: '입력 폼과 A4 미리보기를 나란히 배치한 데스크톱 화면',
+      },
+      {
+        src: 'images/projects/dockit_mobile.jpg',
+        alt: 'Dockit 이력서 작성 도구 모바일 화면',
+        caption: '모바일에서 입력 흐름을 유지하도록 정리한 이력서 작성 화면',
+      },
+    ],
+    sections: [
+      {
+        type: 'overview',
+        title: 'Overview',
+        content:
+          'Dockit은 국문 이력서를 입력 폼으로 작성하고, 제출용 문서 형태를 실시간으로 확인할 수 있는 React 문서 작성 도구입니다. 현재는 기본 정보, 학력, 자격증, 경력, 프로젝트, 링크, 스킬 입력과 샘플 데이터 불러오기, 최근 작성중 저장, 반응형 미리보기, 이미지 저장 기능을 구현했으며 PDF 저장 기능과 문서 양식 확장을 개선 중입니다.',
+      },
+      {
+        type: 'work',
+        title: 'Key Work',
+        content:
+          '• React + TypeScript 기반으로 이력서 데이터 타입, 기본값, 샘플 데이터 구조 설계\n• 기본 정보, 학력, 자격증, 경력, 프로젝트, 링크, 스킬을 섹션별 입력 컴포넌트로 구성\n• 입력 폼과 A4 문서 미리보기를 같은 상태에 연결해 작성 결과를 실시간으로 확인 가능하게 구현\n• 반복 섹션의 추가/삭제 흐름과 필드별 유효성 검사, 오류 탭 표시, 오류 필드 포커스 이동 구현\n• localStorage를 활용해 작성 중인 이력서를 저장하고 최근 작성중 목록에서 다시 열 수 있도록 구성\n• 샘플 데이터 불러오기와 이미지 저장 기능을 제공해 사용자가 결과물을 빠르게 확인할 수 있도록 개선\n• 모바일/태블릿/데스크톱 화면에서 입력과 미리보기 흐름이 무너지지 않도록 반응형 레이아웃 정리\n• label 연결, 버튼 상태, 다이얼로그 포커스 복귀, table caption/scope 적용으로 접근성 품질 개선\n• Vite 빌드 결과물을 Cloudflare Workers Assets로 배포하고 SPA 새로고침 대응 설정 적용',
+      },
+      {
+        type: 'problem',
+        title: 'Problem & Solution',
+        content:
+          '문제 1: 입력 폼과 미리보기 데이터 불일치 가능성\n이력서 작성 도구는 사용자가 입력한 값이 문서 미리보기에 즉시 반영되어야 합니다. 폼과 미리보기가 각각 다른 데이터를 관리하면 수정 사항이 누락되거나 화면마다 결과가 달라질 수 있었습니다.\n해결: Resume 타입을 기준으로 하나의 상태 구조를 만들고, 폼 입력 컴포넌트와 미리보기 컴포넌트가 같은 데이터를 사용하도록 연결했습니다. 기본값과 샘플 데이터도 별도 모델 파일로 분리해 유지보수하기 쉽게 정리했습니다.\n\n문제 2: 반복 입력 섹션의 유지보수 부담\n경력, 프로젝트, 링크처럼 항목을 추가/삭제하는 섹션은 필드 구조가 반복되어 코드가 길어지고 오류 처리도 흩어질 수 있었습니다.\n해결: 섹션별 컴포넌트로 역할을 나누고, 각 항목에 id를 부여해 추가/삭제와 필드 업데이트를 명확하게 처리했습니다. 유효성 검사 결과를 섹션 단위로 관리해 오류가 있는 탭과 입력 필드로 이동할 수 있도록 했습니다.\n\n문제 3: 작성 중 데이터가 사라지는 불편함\n사용자가 페이지를 나가거나 다시 접속했을 때 작성하던 이력서를 잃으면 실제 도구로 사용하기 어렵습니다.\n해결: localStorage 저장/복원 흐름을 추가해 작성 중인 이력서를 최근 작성중 목록에서 다시 열 수 있도록 구성했습니다. 작성 중인 내용이 있을 때 이탈 방지 안내를 제공해 실수로 데이터를 잃는 상황을 줄였습니다.\n\n문제 4: 키보드 사용성과 문서형 UI 접근성\n이력서 작성 화면은 입력 필드, 탭, 다이얼로그, 미리보기 표가 함께 있어 키보드 포커스가 사라지거나 문서 구조가 불명확해질 수 있었습니다.\n해결: 오류 탭 선택 시 첫 번째 오류 필드로 포커스를 이동시키고, AlertDialog 닫힘 후 포커스 복귀 흐름을 정리했습니다. 미리보기 표에는 caption과 scope를 적용해 문서 구조를 더 명확하게 만들었습니다.',
+      },
+      {
+        type: 'tech',
+        title: 'Technical Points',
+        content:
+          '• TypeScript 데이터 모델: Resume, Education, Experience, Project 등 문서 데이터를 타입으로 정의해 폼과 미리보기의 데이터 기준을 통일\n• 섹션 기반 React 구조: 기본 정보, 학력, 자격증, 경력, 프로젝트, 링크, 스킬 입력을 기능 단위 컴포넌트로 분리\n• localStorage 저장 구조: 작성 중 문서를 브라우저에 저장하고 최근 작성중 목록에서 복원할 수 있도록 구성\n• 유효성 검사와 포커스 이동: 오류가 있는 탭과 필드를 사용자가 바로 찾을 수 있도록 상태와 포커스 흐름 정리\n• 반응형 레이아웃: 데스크톱에서는 입력 폼과 미리보기를 함께 보여주고, 좁은 화면에서는 작성 흐름이 유지되도록 배치 조정\n• 접근성 개선: label/input 연결, button 상태, dialog focus return, table caption/scope 등 기본 접근성 요소 점검\n• 배포 설정: Cloudflare Workers Assets와 SPA fallback 설정으로 Vite 정적 앱 배포 흐름 구성',
+      },
+      {
+        type: 'result',
+        title: 'Result & Next Steps',
+        content:
+          '입력값을 실시간 문서 미리보기로 확인할 수 있는 국문 이력서 작성 MVP를 완성했습니다. 다음 단계에서는 PDF 저장 품질 개선, 자기소개서/경력기술서/프로젝트 보고서 양식 추가, 모바일 입력/미리보기 전환 UX 개선을 진행할 예정입니다.',
+      },
+    ],
+  },
 ];
 
 export const projectData = projects.reduce<Record<string, Project>>(
