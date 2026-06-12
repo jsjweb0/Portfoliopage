@@ -331,7 +331,7 @@ export const projects: Project[] = [
       {
         src: 'images/projects/dockit_pc_1.jpg',
         alt: 'Dockit 이력서 작성 도구 PC 화면',
-        caption: '입력 폼과 A4 미리보기를 나란히 배치한 데스크톱 화면',
+        caption: '최근 작성중 목록과 문서 양식 목록 메인 데스크톱 화면',
       },
       {
         src: 'images/projects/dockit_pc_2.jpg',
