@@ -7,3 +7,6 @@ dist
 ## about 별도 페이지
 src/features/about/
 src/pages/about/ui/AboutPage.tsx
+
+data/
+scripts/
