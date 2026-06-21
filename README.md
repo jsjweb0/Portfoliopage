@@ -29,7 +29,7 @@
 
 **Frontend:** React 18, TypeScript, Vite, Tailwind CSS  
 **라이브러리:** React Router v7, Motion, Lucide React  
-**도구:** Firebase Auth/Firestore, Cloudflare Workers, GitHub Pages
+**도구:** Firebase Auth/Firestore, Cloudflare Workers, GitHub Pages, GitHub Actions
 
 ## 기술 선택 이유
 
@@ -78,6 +78,11 @@ npm run dev
 npm run typecheck
 npm run build
 ```
+
+## 품질 검증 자동화
+
+GitHub Actions를 사용해 `main` 브랜치로 push하거나 pull request를 열 때마다 타입 체크와 프로덕션 빌드를 자동으로 검증합니다.  
+이를 통해 배포 전 TypeScript 오류와 빌드 실패를 먼저 확인할 수 있도록 구성했습니다.
 
 ## 배운 것 / 앞으로 할 것
 

@@ -145,7 +145,12 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-family:
+      'Pretendard',
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      sans-serif;
   }
 
   h1 {
@@ -192,7 +197,10 @@
 }
 
 @layer utilities {
-  header { padding-top:var(--safe-top); }
+  header {
+    padding-top: var(--safe-top);
+  }
+
   .safe-x {
     padding-left: max(1.5rem, var(--safe-left));
     padding-right: max(1.5rem, var(--safe-right));
@@ -204,5 +212,35 @@
 
   .safe-bottom {
     padding-bottom: max(1.5rem, var(--safe-bottom));
+  }
+
+  .skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 9999;
+    transform: translateY(-120%);
+    padding: 8px 12px;
+    background: #000;
+    color: #fff;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
   }
 }

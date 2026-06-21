@@ -18,7 +18,7 @@ export function PortfolioPage() {
     <div className="min-h-screen">
       <Header />
 
-      <main className="mx-auto max-w-7xl px-6 py-16 md:px-8 md:py-20 break-keep">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-16 md:px-8 md:py-20 break-keep">
         <section className="mb-16 md:mb-32">
           <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">
             WEB PUBLISHER TO FRONTEND
@@ -107,7 +107,7 @@ export function PortfolioPage() {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="group flex min-h-28 flex-col justify-between border border-white/30 p-4 transition-colors hover:border-[#8df5c5]/50 hover:bg-white/[0.05]"
+                    className="group flex min-h-28 flex-col justify-between border border-white/30 p-4 transition-colors hover:border-[#8df5c5]/50 hover:bg-white/[0.05] focus-visible::border-[#8df5c5]/50 focus-visible:bg-white/[0.05]"
                   >
                     <span className="flex items-center justify-between gap-3 text-sm text-white/50">
                       <span className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export function PortfolioPage() {
                         {label}
                       </span>
                       <ArrowUpRight
-                        className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5 group-hover:translate-x-0.5"
                         aria-hidden="true"
                       />
                     </span>
@@ -138,23 +138,25 @@ export function PortfolioPage() {
             <div className="flex gap-6">
               <a
                 href="https://github.com/jsjweb0"
-                className="hover:text-[#8df5c5] transition-colors"
+                className="hover:text-[#8df5c5] focus-visible:text-[#8df5c5] transition-colors"
                 target="_blank"
-                title="새창"
+                rel="noopener noreferrer"
+                aria-label="GitHub 저장소 바로가기 (새 창)"
               >
                 GitHub
               </a>
               <a
                 href="https://www.linkedin.com/in/sujin-jeong-619a80391/"
-                className="hover:text-[#8df5c5] transition-colors"
+                className="hover:text-[#8df5c5] focus-visible:text-[#8df5c5] transition-colors"
                 target="_blank"
-                title="새창"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn 프로필 바로가기 (새 창)"
               >
                 LinkedIn
               </a>
               <a
                 href="mailto:jsjweb0@gmail.com"
-                className="hover:text-[#8df5c5] transition-colors"
+                className="hover:text-[#8df5c5] focus-visible:text-[#8df5c5] transition-colors"
               >
                 Email
               </a>

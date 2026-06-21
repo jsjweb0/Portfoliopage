@@ -5,10 +5,12 @@ export type ProjectSectionType =
   | 'tech'
   | 'result';
 
+type ProjectSectionContent = string | string[];
+
 export interface ProjectSection {
   type: ProjectSectionType;
   title: string;
-  content: string;
+  content: ProjectSectionContent;
 }
 
 export interface ProjectPreviewImage {
@@ -84,8 +86,13 @@ export const projects: Project[] = [
       {
         type: 'work',
         title: 'Key Work',
-        content:
-          '• 전체 100여 개 페이지 반응형 UI 구현\n• 한/영/중 다국어 환경을 고려한 유연한 레이아웃 구성\n• BEM 네이밍 기반 템플릿 구조 설계로 반복 화면 작업 효율 개선\n• SVG 파일을 코드로 전환해 각 행정구역을 독립 DOM 요소로 분리\n• 지역 선택 시 색상, 툴팁, 정보 연결 등 즉각적인 시각 피드백 제공',
+        content: [
+          '전체 100여 개 페이지 반응형 UI 구현',
+          '한/영/중 다국어 환경을 고려한 유연한 레이아웃 구성',
+          'BEM 네이밍 기반 템플릿 구조 설계로 반복 화면 작업 효율 개선',
+          'SVG 파일을 코드로 전환해 각 행정구역을 독립 DOM 요소로 분리',
+          '지역 선택 시 색상, 툴팁, 정보 연결 등 즉각적인 시각 피드백 제공',
+        ],
       },
       {
         type: 'problem',
@@ -96,8 +103,13 @@ export const projects: Project[] = [
       {
         type: 'tech',
         title: 'Technical Points',
-        content:
-          '• BEM + 템플릿 전략: 대규모 페이지를 공통 구조로 묶어 수정 범위를 줄이는 마크업 아키텍처 설계\n• SVG Manipulation: 이미지가 아닌 코드 기반 벡터 그래픽으로 전환해 각 지역 상태를 직접 제어\n• Global Layout: 상대 단위와 Flexbox/Grid를 활용해 다국어 텍스트 길이 변화를 흡수\n• Responsive Strategy: 디바이스별 콘텐츠 우선순위를 고려해 모바일 탐색 흐름 재배치\n• Scalability: 운영 단계에서 콘텐츠 교체와 UI 수정이 분리되도록 구조와 스타일을 정리',
+        content: [
+          'BEM + 템플릿 전략: 대규모 페이지를 공통 구조로 묶어 수정 범위를 줄이는 마크업 아키텍처 설계',
+          'SVG Manipulation: 이미지가 아닌 코드 기반 벡터 그래픽으로 전환해 각 지역 상태를 직접 제어',
+          'Global Layout: 상대 단위와 Flexbox/Grid를 활용해 다국어 텍스트 길이 변화를 흡수',
+          'Responsive Strategy: 디바이스별 콘텐츠 우선순위를 고려해 모바일 탐색 흐름 재배치',
+          'Scalability: 운영 단계에서 콘텐츠 교체와 UI 수정이 분리되도록 구조와 스타일을 정리',
+        ],
       },
       {
         type: 'result',
@@ -150,8 +162,13 @@ export const projects: Project[] = [
       {
         type: 'work',
         title: 'Key Work',
-        content:
-          '• 외부 React 코드베이스의 컴포넌트 의존 관계를 파악하고 수정 범위 선정\n• 미사용 기능과 불필요한 컴포넌트를 정리해 유지보수 대상 축소\n• PC 중심으로 구성된 레이아웃을 모바일에서도 사용 가능한 반응형 구조로 재설계\n• 검색 조건 및 필터링 UI 컴포넌트 설계와 추가\n• FIS 기존 웹 서비스 디자인 가이드를 기준으로 챗봇 UI 스타일링',
+        content: [
+          '외부 React 코드베이스의 컴포넌트 의존 관계를 파악하고 수정 범위 선정',
+          '미사용 기능과 불필요한 컴포넌트를 정리해 유지보수 대상 축소',
+          'PC 중심으로 구성된 레이아웃을 모바일에서도 사용 가능한 반응형 구조로 재설계',
+          '검색 조건 및 필터링 UI 컴포넌트 설계와 추가',
+          'FIS 기존 웹 서비스 디자인 가이드를 기준으로 챗봇 UI 스타일링',
+        ],
       },
       {
         type: 'problem',
@@ -162,8 +179,13 @@ export const projects: Project[] = [
       {
         type: 'tech',
         title: 'Technical Points',
-        content:
-          '• React 컴포넌트 분석: 외부 코드베이스의 컴포넌트 계층, Props 흐름, 스타일 적용 방식을 파악해 수정 범위 설정\n• 선택적 리팩토링: 전체 재작성 대신 유지할 코드와 교체할 코드를 구분해 변경 범위 관리\n• 반응형 전환: 기존 PC 기준 고정 레이아웃을 유동적인 모바일 대응 구조로 조정\n• 디자인 시스템 통합: 외부 컴포넌트에 서비스 디자인 가이드를 적용하는 CSS 오버라이드 전략 구성\n• 컴포넌트 확장: 검색/필터 UI를 기존 구조를 해치지 않는 방식으로 추가',
+        content: [
+          'React 컴포넌트 분석: 외부 코드베이스의 컴포넌트 계층, Props 흐름, 스타일 적용 방식을 파악해 수정 범위 설정',
+          '선택적 리팩토링: 전체 재작성 대신 유지할 코드와 교체할 코드를 구분해 변경 범위 관리',
+          '반응형 전환: 기존 PC 기준 고정 레이아웃을 유동적인 모바일 대응 구조로 조정',
+          '디자인 시스템 통합: 외부 컴포넌트에 서비스 디자인 가이드를 적용하는 CSS 오버라이드 전략 구성',
+          '컴포넌트 확장: 검색/필터 UI를 기존 구조를 해치지 않는 방식으로 추가',
+        ],
       },
       {
         type: 'result',
@@ -216,8 +238,14 @@ export const projects: Project[] = [
       {
         type: 'work',
         title: 'Key Work',
-        content:
-          '• 로그인 상태, 권한, 관심품목 여부에 따른 조건부 UI 구조 설계\n• body 클래스 기반으로 로그인/권한 같은 전역 상태 제어\n• data-* 속성으로 품목 식별자를 DOM에 바인딩해 탭 전환 시 해당 품목 데이터 갱신\n• 품목마다 DOM을 생성하지 않고 선택된 품목 데이터로 단일 컨테이너를 업데이트\n• 관심품목 탭이 가로 스크롤 구조가 될 때 선택 탭이 중앙에 오도록 scrollIntoView 적용\n• 가격, 거래량, 지표, amChart 차트 영역을 포함한 데이터 대시보드 UI 퍼블리싱',
+        content: [
+          '로그인 상태, 권한, 관심품목 여부에 따른 조건부 UI 구조 설계',
+          'body 클래스 기반으로 로그인/권한 같은 전역 상태 제어',
+          'data-* 속성으로 품목 식별자를 DOM에 바인딩해 탭 전환 시 해당 품목 데이터 갱신',
+          '품목마다 DOM을 생성하지 않고 선택된 품목 데이터로 단일 컨테이너를 업데이트',
+          '관심품목 탭이 가로 스크롤 구조가 될 때 선택 탭이 중앙에 오도록 scrollIntoView 적용',
+          '가격, 거래량, 지표, amChart 차트 영역을 포함한 데이터 대시보드 UI 퍼블리싱',
+        ],
       },
       {
         type: 'problem',
@@ -228,8 +256,12 @@ export const projects: Project[] = [
       {
         type: 'tech',
         title: 'Technical Points',
-        content:
-          '• 상태 계층 분리: body 클래스는 로그인/권한 같은 전역 상태, data-* 속성은 품목 식별/탭 active 같은 컴포넌트 상태에 사용\n• 단일 컨테이너 패턴: 품목마다 DOM을 생성하지 않고 하나의 컨테이너를 데이터로 업데이트\n• data-* 기반 이벤트 처리: 하드코딩 선택자 없이 품목 식별값을 읽어 탭 전환 처리\n• scrollIntoView UX: 가로 스크롤 탭에서 활성 항목이 중앙에 오도록 처리\n• amChart 연동: 가격/거래량 데이터를 차트 영역에 연결하고 탭 전환 시 표시 데이터 갱신',
+        content: [
+          '상태 계층 분리: body 클래스는 로그인/권한 같은 전역 상태, data-* 속성은 품목 식별/탭 active 같은 컴포넌트 상태에 사용',
+          '단일 컨테이너 패턴: 품목마다 DOM을 생성하지 않고 하나의 컨테이너를 데이터로 업데이트',
+          'data-* 기반 이벤트 처리: 하드코딩 선택자 없이 품목 식별값을 읽어 탭 전환 처리',
+          'scrollIntoView UX: 가로 스크롤 탭에서 활성 항목이 중앙에 오도록 처리',
+        ],
       },
       {
         type: 'result',
@@ -283,8 +315,17 @@ export const projects: Project[] = [
       {
         type: 'work',
         title: 'Key Work',
-        content:
-          '• SoundCloud API를 Cloudflare Workers 서버리스 프록시로 감싸 API 키 노출 없이 호출\n• /api/search, /api/resolve, /api/stream 엔드포인트 설계\n• localStorage 캐싱과 Worker 응답 캐시 헤더 적용으로 반복 API 호출 절감\n• 현재 트랙, 재생 여부, 재생 시간, 플레이리스트를 Context로 전역 관리\n• 검색 결과 프리뷰 재생과 메인 플레이어를 독립 흐름으로 분리해 오디오 상태 충돌 방지\n• 응답 지연 시 스켈레톤 UI 표시, 실패 시 에러 상태 분리 처리\n• Firebase Auth 이메일 로그인과 Firestore 사용자별 좋아요 저장\n• 프로필 수정, 내가 쓴 글/댓글 모아보기 등 로그인 사용자 활동 화면 구현\n• 플레이리스트 Drag & Drop 순서 편집, 모바일 하단 플레이어, 다크모드 지원',
+        content: [
+          'SoundCloud API를 Cloudflare Workers 서버리스 프록시로 감싸 API 키 노출 없이 호출',
+          '/api/search, /api/resolve, /api/stream 엔드포인트 설계',
+          'localStorage 캐싱과 Worker 응답 캐시 헤더 적용으로 반복 API 호출 절감',
+          '현재 트랙, 재생 여부, 재생 시간, 플레이리스트를 Context로 전역 관리',
+          '검색 결과 프리뷰 재생과 메인 플레이어를 독립 흐름으로 분리해 오디오 상태 충돌 방지',
+          '응답 지연 시 스켈레톤 UI 표시, 실패 시 에러 상태 분리 처리',
+          'Firebase Auth 이메일 로그인과 Firestore 사용자별 좋아요 저장',
+          '프로필 수정, 내가 쓴 글/댓글 모아보기 등 로그인 사용자 활동 화면 구현',
+          '플레이리스트 Drag & Drop 순서 편집, 모바일 하단 플레이어, 다크모드 지원',
+        ],
       },
       {
         type: 'problem',
@@ -295,8 +336,14 @@ export const projects: Project[] = [
       {
         type: 'tech',
         title: 'Technical Points',
-        content:
-          '• Cloudflare Workers 프록시: API 키 보안과 캐시 헤더 적용을 동시에 처리하고, 정적 프론트엔드에서도 외부 API를 안전하게 호출하기 위해 선택\n• Context 기반 오디오 상태: currentTrack, isPlaying, currentTime, playlist를 단일 Context로 묶어 여러 컴포넌트에서 일관된 플레이어 제어 가능\n• 캐싱 전략: 검색 결과와 스트림 URL을 localStorage에 저장해 반복 방문/재생 시 API 호출 감소\n• 스켈레톤 UI: 로딩 상태와 에러 상태를 분리해 API 응답 전 빈 화면 노출 최소화\n• Firebase 연동: Auth로 이메일 로그인, Firestore로 사용자별 좋아요, 프로필, 게시글/댓글 데이터를 관리하고 인증 상태에 따른 조건부 UI 처리\n• 플레이리스트 Drag & Drop 순서 편집, 모바일 하단 플레이어, 다크모드 지원',
+        content: [
+          'Cloudflare Workers 프록시: API 키 보안과 캐시 헤더 적용을 동시에 처리하고, 정적 프론트엔드에서도 외부 API를 안전하게 호출하기 위해 선택',
+          'Context 기반 오디오 상태: currentTrack, isPlaying, currentTime, playlist를 단일 Context로 묶어 여러 컴포넌트에서 일관된 플레이어 제어 가능',
+          '캐싱 전략: 검색 결과와 스트림 URL을 localStorage에 저장해 반복 방문/재생 시 API 호출 감소',
+          '스켈레톤 UI: 로딩 상태와 에러 상태를 분리해 API 응답 전 빈 화면 노출 최소화',
+          'Firebase 연동: Auth로 이메일 로그인, Firestore로 사용자별 좋아요, 프로필, 게시글/댓글 데이터를 관리하고 인증 상태에 따른 조건부 UI 처리',
+          '플레이리스트 Drag & Drop 순서 편집, 모바일 하단 플레이어, 다크모드 지원',
+        ],
       },
       {
         type: 'result',
@@ -354,8 +401,18 @@ export const projects: Project[] = [
       {
         type: 'work',
         title: 'Key Work',
-        content:
-          '• React + TypeScript 기반으로 이력서 데이터 타입, 기본값, 샘플 데이터 구조 설계\n• 기본 정보, 학력, 자격증, 경력, 프로젝트, 링크, 스킬을 섹션별 입력 컴포넌트로 구성\n• 입력 폼과 A4 문서 미리보기를 같은 상태에 연결해 작성 결과를 실시간으로 확인 가능하게 구현\n• 반복 섹션의 추가/삭제 흐름과 필드별 유효성 검사, 오류 탭 표시, 오류 필드 포커스 이동 구현\n• localStorage를 활용해 작성 중인 이력서를 저장하고 최근 작성중 목록에서 다시 열 수 있도록 구성\n• 브라우저 인쇄와 print CSS를 활용해 텍스트 선택/검색이 가능한 PDF 저장 흐름 구현\n• 모바일/태블릿/데스크톱 화면에서 입력과 미리보기 흐름이 무너지지 않도록 반응형 레이아웃 정리\n• label 연결, 버튼 상태, 다이얼로그 포커스 복귀, table caption/scope 적용으로 접근성 품질 개선\n• 입력값 검증과 저장 시간 표시 로직을 순수 함수로 분리하고 Vitest 단위 테스트 추가\n• Vite 빌드 결과물을 Cloudflare Workers Assets로 배포하고 SPA 새로고침 대응 설정 적용',
+        content: [
+          'React + TypeScript 기반으로 이력서 데이터 타입, 기본값, 샘플 데이터 구조 설계',
+          '기본 정보, 학력, 자격증, 경력, 프로젝트, 링크, 스킬을 섹션별 입력 컴포넌트로 구성',
+          '입력 폼과 A4 문서 미리보기를 같은 상태에 연결해 작성 결과를 실시간으로 확인 가능하게 구현',
+          '반복 섹션의 추가/삭제 흐름과 필드별 유효성 검사, 오류 탭 표시, 오류 필드 포커스 이동 구현',
+          'localStorage를 활용해 작성 중인 이력서를 저장하고 최근 작성중 목록에서 다시 열 수 있도록 구성',
+          '브라우저 인쇄와 print CSS를 활용해 텍스트 선택/검색이 가능한 PDF 저장 흐름 구현',
+          '모바일/태블릿/데스크톱 화면에서 입력과 미리보기 흐름이 무너지지 않도록 반응형 레이아웃 정리',
+          'label 연결, 버튼 상태, 다이얼로그 포커스 복귀, table caption/scope 적용으로 접근성 품질 개선',
+          '입력값 검증과 저장 시간 표시 로직을 순수 함수로 분리하고 Vitest 단위 테스트 추가',
+          'Vite 빌드 결과물을 Cloudflare Workers Assets로 배포하고 SPA 새로고침 대응 설정 적용',
+        ],
       },
       {
         type: 'problem',
@@ -366,8 +423,18 @@ export const projects: Project[] = [
       {
         type: 'tech',
         title: 'Technical Points',
-        content:
-          '• TypeScript 데이터 모델: Resume, Education, Experience, Project 등 문서 데이터를 타입으로 정의해 폼과 미리보기의 데이터 기준을 통일\n• 섹션 기반 React 구조: 기본 정보, 학력, 자격증, 경력, 프로젝트, 링크, 스킬 입력을 기능 단위 컴포넌트로 분리\n• localStorage 저장 구조: 작성 중 문서를 브라우저에 저장하고 최근 작성중 목록에서 복원할 수 있도록 구성\n• 유효성 검사와 포커스 이동: 오류가 있는 탭과 필드를 사용자가 바로 찾을 수 있도록 상태와 포커스 흐름 정리\n• 테스트 가능한 검증 로직: 기본 정보, 선택 섹션, 저장 시간 표시 로직을 순수 함수로 분리하고 Vitest로 주요 케이스 검증\n• 문서 출력 전략: PNG 저장은 보조 기능으로 유지하고, 제출용 출력은 print CSS 기반 PDF 저장 흐름에 집중\n• 반응형 레이아웃: 데스크톱에서는 입력 폼과 미리보기를 함께 보여주고, 좁은 화면에서는 작성 흐름이 유지되도록 배치 조정\n• 접근성 개선: label/input 연결, button 상태, dialog focus return, table caption/scope 등 기본 접근성 요소 점검\n• 브라우저 이슈 대응: Safari에서 table rowSpan 높이가 즉시 재계산되지 않는 문제를 확인하고 미리보기 table 재마운트로 레이아웃 깨짐 방지\n• 배포 설정: Cloudflare Workers Assets와 SPA fallback 설정으로 Vite 정적 앱 배포 흐름 구성',
+        content: [
+          'TypeScript 데이터 모델: Resume, Education, Experience, Project 등 문서 데이터를 타입으로 정의해 폼과 미리보기의 데이터 기준을 통일',
+          '섹션 기반 React 구조: 기본 정보, 학력, 자격증, 경력, 프로젝트, 링크, 스킬 입력을 기능 단위 컴포넌트로 분리',
+          'localStorage 저장 구조: 작성 중 문서를 브라우저에 저장하고 최근 작성중 목록에서 복원할 수 있도록 구성',
+          '유효성 검사와 포커스 이동: 오류가 있는 탭과 필드를 사용자가 바로 찾을 수 있도록 상태와 포커스 흐름 정리',
+          '테스트 가능한 검증 로직: 기본 정보, 선택 섹션, 저장 시간 표시 로직을 순수 함수로 분리하고 Vitest로 주요 케이스 검증',
+          '문서 출력 전략: PNG 저장은 보조 기능으로 유지하고, 제출용 출력은 print CSS 기반 PDF 저장 흐름에 집중',
+          '반응형 레이아웃: 데스크톱에서는 입력 폼과 미리보기를 함께 보여주고, 좁은 화면에서는 작성 흐름이 유지되도록 배치 조정',
+          '접근성 개선: label/input 연결, button 상태, dialog focus return, table caption/scope 등 기본 접근성 요소 점검',
+          '브라우저 이슈 대응: Safari에서 table rowSpan 높이가 즉시 재계산되지 않는 문제를 확인하고 미리보기 table 재마운트로 레이아웃 깨짐 방지',
+          '배포 설정: Cloudflare Workers Assets와 SPA fallback 설정으로 Vite 정적 앱 배포 흐름 구성',
+        ],
       },
       {
         type: 'result',

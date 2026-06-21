@@ -36,19 +36,18 @@ export function Header({ variant = 'home', meta }: HeaderProps) {
         <div className="mx-auto flex items-center justify-between gap-6">
           {isDetail ? (
             <>
-              <button
-                type="button"
-                onClick={() => navigate(-1)}
-                className="flex items-center gap-2 text-sm transition-colors hover:text-[#8df5c5]"
+              <Link
+                to="/"
+                className="flex items-center gap-2 text-sm transition-colors hover:text-[#8df5c5] focus-visible:text-[#8df5c5]"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft aria-hidden="true" className="h-4 w-4" />
                 Back to Portfolio
-              </button>
+              </Link>
             </>
           ) : (
             <>
               <h1 className="text-sm font-medium tracking-wider">
-                <Link to="/" className="hover:text-[#8df5c5] transition-colors">
+                <Link to="/" className="hover:text-[#8df5c5] focus-visible:text-[#8df5c5] transition-colors">
                   PORTFOLIO
                 </Link>
               </h1>
@@ -65,13 +64,13 @@ export function Header({ variant = 'home', meta }: HeaderProps) {
               >
                 <a
                   href="#work"
-                  className="hover:text-[#8df5c5] transition-colors"
+                  className="hover:text-[#8df5c5] focus-visible:text-[#8df5c5] transition-colors"
                 >
                   Work
                 </a>
                 <a
                   href="#about"
-                  className="hover:text-[#8df5c5] transition-colors"
+                  className="hover:text-[#8df5c5] focus-visible:text-[#8df5c5] transition-colors"
                 >
                   About
                 </a>

@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router';
+import { useEffect, useRef } from 'react';
+import { useParams, Link } from 'react-router';
 import { motion } from 'motion/react';
 import {
   Eye,
@@ -12,6 +12,7 @@ import {
   Paintbrush,
   Link2,
   Github,
+  Dot,
 } from 'lucide-react';
 import {
   projectData,
@@ -29,28 +30,38 @@ const sectionIcons: Record<ProjectSectionType, LucideIcon> = {
 };
 
 export function ProjectDetailPage() {
-  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const project = id ? projectData[id] : null;
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+
+    document.title = project
+      ? `${project.title} | Sujin Portfolio`
+      : 'Project not found | Sujin Portfolio';
+
+    mainRef.current?.focus();
+
+    return () => {
+      document.title = 'Sujin Portfolio';
+    };
+  }, [id, project]);
 
   if (!project) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <main ref={mainRef} id="main-content" tabIndex={-1} className="flex min-h-screen items-center justify-center">
         <div className="text-center">
           <h1 className="text-4 xl mb-4 font-black">Project not found</h1>
           <Link
             to="/"
             className="inline-flex items-center gap-1 text-sm underline"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
             Return to portfolio
           </Link>
         </div>
-      </div>
+      </main>
     );
   }
 
@@ -59,7 +70,7 @@ export function ProjectDetailPage() {
       <Header variant="detail" meta={project.duration} />
 
       {/* Main Content */}
-      <main className="relative z-10 mx-auto max-w-6xl px-6 py-10 md:px-8 md:py-20">
+      <main ref={mainRef} id="main-content" tabIndex={-1} className="relative z-10 mx-auto max-w-6xl px-6 py-10 md:px-8 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -123,7 +134,7 @@ export function ProjectDetailPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="사이트 바로가기 (새 창)"
-                  className="flex gap-2 items-center hover:text-white/50"
+                  className="flex gap-2 items-center hover:text-white/50 focus-visible:text-white/50"
                 >
                   <Link2 className="h-4 w-4 shrink-0" aria-hidden="true" />
                   {project.link.replace(/^https?:\/\//, '')}
@@ -134,7 +145,7 @@ export function ProjectDetailPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub 저장소 바로가기 (새 창)"
-                    className="flex gap-2 items-center hover:text-white/50"
+                    className="flex gap-2 items-center hover:text-white/50 focus-visible:text-white/50"
                   >
                     <Github className="h-4 w-4 shrink-0" aria-hidden="true" />
                     {project.github.replace('https://github.com/', '')}
@@ -155,7 +166,7 @@ export function ProjectDetailPage() {
           >
             <div className="flex items-start gap-3 md:gap-8">
               <div className="shrink-0 pt-1">
-                <Paintbrush className="h-6 w-6 stroke-[1.5]" />
+                <Paintbrush aria-hidden="true" className="h-6 w-6 stroke-[1.5]" />
               </div>
               <div className="flex-1">
                 <h2
@@ -201,24 +212,36 @@ export function ProjectDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="flex items-start gap-3 md:gap-8">
+                <section className="flex items-start gap-3 md:gap-8">
                   <div className="shrink-0 pt-1">
-                    <SectionIcon className="h-6 w-6 stroke-[1.5]" />
+                    <SectionIcon aria-hidden="true" className="h-6 w-6 stroke-[1.5]" />
                   </div>
                   <div className="flex-1">
                     <h2 className="mb-4 text-lg md:text-2xl font-bold">
                       {section.title}
                     </h2>
-                    <p className="whitespace-pre-line text-sm md:text-lg leading-relaxed text-white/80 break-keep">
-                      {section.content}
-                    </p>
+                    <div className="text-sm md:text-lg leading-relaxed text-white/80 break-keep">
+                      {Array.isArray(section.content) ? (
+                        <ul className="flex flex-col gap-2">
+                          {section.content.map((item) => (
+                            <li key={item} className="flex gap-1">
+                              <Dot aria-hidden="true" className="mt-0.5" />{item}
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="whitespace-pre-line">{section.content}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
+                </section>
 
                 {/* Divider */}
-                {index < project.sections.length - 1 && (
-                  <div className="mt-8 md:mt-16 h-px bg-white/10" />
-                )}
+                {
+                  index < project.sections.length - 1 && (
+                    <div className="mt-8 md:mt-16 h-px bg-white/10" />
+                  )
+                }
               </motion.div>
             );
           })}
@@ -231,16 +254,15 @@ export function ProjectDetailPage() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-32 border-t border-white/10 pt-12"
         >
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3"
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3 focus-visible:gap-3"
           >
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
             View all projects
-          </button>
+          </Link>
         </motion.div>
-      </main>
-    </div>
+      </main >
+    </div >
   );
 }

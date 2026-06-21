@@ -147,7 +147,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                   hover: { color: '#8df5c5', transition: { duration: 0.3 } },
                 }}
               >
-                <ArrowUpRight className="h-6 w-6" />
+                <ArrowUpRight aria-hidden="true" className="h-6 w-6" />
               </motion.div>
             </motion.div>
           </div>

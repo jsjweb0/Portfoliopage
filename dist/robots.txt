@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://jsjweb0.github.io/Portfoliopage/sitemap.xml
