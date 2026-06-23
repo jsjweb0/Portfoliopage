@@ -8,7 +8,7 @@
 ## 이 포트폴리오가 보여주려는 것
 
 1. **퍼블리셔에서 프론트엔드로 확장하는 과정**  
-   실무 퍼블리싱 프로젝트(고흥관광, 농넷, FIS Chat)와 개인 React 프로젝트(NEWTRONOME)를 함께 보여줍니다.
+   웹 퍼블리셔로 일하며 반복되는 페이지 구조, 다국어 레이아웃, 로그인 상태별 UI, 운영 중 수정 비용을 직접 경험했습니다. 이후 React 프로젝트에서는 이 경험을 컴포넌트 분리, 데이터 기반 렌더링, 상태 관리, 입력 검증 구조로 확장했습니다.
 
 2. **데이터 기반 컴포넌트 설계**  
    프로젝트 정보를 TypeScript 타입으로 정의하고, 프로젝트 카드와 상세 페이지를 같은 데이터에서 동적으로 렌더링합니다.
@@ -20,10 +20,11 @@
 
 | 프로젝트   | 기술               | 기여도 | 링크                                           |
 | ---------- | ------------------ | ------ | ---------------------------------------------- |
-| 고흥관광   | HTML/CSS/SVG       | 90%    | [보기](https://tour.goheung.go.kr)             |
+| Dockit     | React/Typescript   | 100%   | [보기](https://dockit.jsjweb0.workers.dev/)    |
+| NEWTRONOME | React/Firebase     | 100%   | [보기](https://newtronome.jsjweb0.workers.dev) |
 | FIS Chat   | React 커스터마이징 | 100%   | [보기](https://www.atfis.or.kr/fis-everything) |
 | 농넷       | HTML/CSS/amChart   | 100%   | [보기](https://www.nongnet.or.kr)              |
-| NEWTRONOME | React/Firebase     | 100%   | [보기](https://newtronome.jsjweb0.workers.dev) |
+| 고흥관광   | HTML/CSS/SVG       | 90%    | [보기](https://tour.goheung.go.kr)             |
 
 ## 기술 스택
 
@@ -33,9 +34,9 @@
 
 ## 기술 선택 이유
 
-- **React Router v7**: 최신 라우팅 구조를 경험하고, 프로젝트 목록과 상세 페이지를 명확하게 분리하기 위해 사용했습니다.
-- **motion/react**: React 19 대응 패키지인 Motion의 사용 흐름을 익히고, 페이지 전환과 헤더 상태 변화에 필요한 작은 인터랙션만 적용했습니다.
-- **Tailwind CSS v4**: CSS-first 설정 방식을 적용해 Vite 프로젝트 안에서 빠르게 반응형 레이아웃과 일관된 유틸리티 스타일을 구성했습니다.
+- **React Router v7**: 프로젝트 목록과 상세 페이지가 같은 데이터에서 렌더링되도록 구성하기 위해 사용했습니다. 정적 포트폴리오지만 `/project/:id` 구조를 적용해 프로젝트가 늘어나도 라우트와 상세 페이지를 반복 작성하지 않도록 했습니다.
+- **motion/react**: 포트폴리오의 정보 탐색을 방해하지 않는 범위에서 페이지 진입과 헤더 상태 변화에만 제한적으로 사용했습니다. 시각 효과보다 콘텐츠 가독성을 우선했습니다.
+- **Tailwind CSS v4**: 빠른 반응형 조정과 일관된 spacing 관리를 위해 사용했습니다. 다만 프로젝트별 상세 콘텐츠는 데이터 구조로 분리해 스타일과 콘텐츠가 섞이지 않도록 했습니다.
 - **Cloudflare Workers**: NEWTRONOME에서 SoundCloud API 키를 브라우저에 노출하지 않고, Netlify Functions 사용량 관리 한계를 보완하기 위해 서버리스 프록시로 사용했습니다.
 
 ## 포트폴리오 구조 설명

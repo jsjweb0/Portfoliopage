@@ -99,7 +99,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               variants={itemVariants}
               transition={{ duration: 0.3, delay: 0.05 }}
             >
-              {project.description}
+              {project.summary || project.description}
             </motion.p>
 
             <motion.div

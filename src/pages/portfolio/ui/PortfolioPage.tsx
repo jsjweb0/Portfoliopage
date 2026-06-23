@@ -23,12 +23,12 @@ export function PortfolioPage() {
           <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">
             WEB PUBLISHER TO FRONTEND
           </p>
-          <h2 className="max-w-5xl text-4xl font-bold leading-tight md:text-7xl">
-            8년의 UI 구현 경험 위에 React와 TypeScript를 쌓고 있습니다.
+          <h2 className="text-4xl font-bold leading-tight md:text-7xl">
+            8년의 UI 구현 경험 위에 <br />React와 TypeScript를 쌓고 있습니다.
           </h2>
-          <p className="mt-8 max-w-3xl text-base leading-8 text-white/70 md:text-xl">
-            실무에서 다져온 반응형 퍼블리싱, 협업 QA, 운영형 UI 감각을 바탕으로
-            컴포넌트 설계와 상태 관리까지 확장하는 프론트엔드 포트폴리오입니다.
+          <p className="mt-8 text-base leading-8 text-white/70 md:text-xl">
+            다국어 페이지, 상태별 UI, 운영형 대시보드를 구현하며 반복 수정과 예외 케이스를 줄이는 구조의 중요성을 경험했습니다. <br />
+            지금은 그 경험을 React 컴포넌트, 상태 관리, 입력 검증, 접근성 개선으로 확장하고 있습니다.
           </p>
         </section>
 
@@ -46,16 +46,13 @@ export function PortfolioPage() {
           <div className="mb-16 space-y-10 md:mb-30">
             <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">ABOUT</p>
             <h2 className="text-3xl font-bold leading-tight md:text-5xl">
-              화면을 정확하게 구현하고, 유지보수 가능한 구조로 정리하는
-              프론트엔드 지원자입니다.
+              디자인 시안을 정확하게 구현하는 일에서 시작해,<br />
+              이제는 React와 TypeScript로 화면의 구조와 상태까지 설계하고 있습니다.
             </h2>
             <p className="text-base leading-8 text-white/70 md:text-xl">
-              웹 퍼블리셔로 실무 프로젝트를 진행하며 반응형 레이아웃, 운영형 UI,
-              협업 QA를 경험했습니다.
-              <br />
-              지금은 React와 TypeScript 기반으로 화면을 컴포넌트 단위로
-              설계하고, 데이터에 따라 확장되는 포트폴리오 구조를 만들어가고
-              있습니다.
+              웹 퍼블리셔로 일하며 100여 개 서브페이지, 다국어 레이아웃, 로그인 상태별 화면, 운영 중 수정 요청을 반복해서 다뤘습니다. 그 과정에서 단순히 화면을 정확히 구현하는 것뿐 아니라, 나중에 바뀔 수 있는 부분을 예측하고 구조화하는 일이 중요하다는 것을 배웠습니다.
+              <br /><br />
+              이후 React와 TypeScript를 학습하며 실무에서 겪었던 문제를 컴포넌트 분리, 데이터 기반 렌더링, 상태 관리, 입력 검증 구조로 다시 풀어보고 있습니다. 포트폴리오의 프로젝트들은 “무엇을 만들었는가”보다 “어떤 문제를 왜 그렇게 해결했는가”를 보여주는 데 초점을 두었습니다.
             </p>
           </div>
 
