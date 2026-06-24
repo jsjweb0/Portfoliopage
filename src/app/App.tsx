@@ -1,5 +1,6 @@
 import { RouterProvider } from "react-router";
 import { router } from "./routes";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 export default function App() {
   return (
@@ -7,7 +8,10 @@ export default function App() {
       <a href="#main-content" className="skip-link">
         본문 바로가기
       </a>
-      <RouterProvider router={router} />
+
+      <ErrorBoundary>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
     </>
   );
 }

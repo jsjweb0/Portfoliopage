@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
 import { motion } from 'motion/react';
 import {
@@ -206,11 +206,8 @@ export function ProjectDetailPage() {
           {project.sections.map((section, index) => {
             const SectionIcon = sectionIcons[section.type];
             return (
-              <motion.div
+              <Fragment
                 key={section.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <section className="flex items-start gap-3 md:gap-8">
                   <div className="shrink-0 pt-1">
@@ -242,26 +239,19 @@ export function ProjectDetailPage() {
                     <div className="mt-8 md:mt-16 h-px bg-white/10" />
                   )
                 }
-              </motion.div>
+              </Fragment>
             );
           })}
         </div>
 
         {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-32 border-t border-white/10 pt-12"
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3 focus-visible:gap-3"
         >
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3 focus-visible:gap-3"
-          >
-            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-            View all projects
-          </Link>
-        </motion.div>
+          <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+          View all projects
+        </Link>
       </main >
     </div >
   );
