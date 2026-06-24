@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
 import { useScrolled } from '../../shared/hooks/useScrolled';
 
@@ -9,7 +9,6 @@ type HeaderProps = {
 };
 
 export function Header({ variant = 'home', meta }: HeaderProps) {
-  const navigate = useNavigate();
   const scrolled = useScrolled(12);
   const isDetail = variant === 'detail';
 
