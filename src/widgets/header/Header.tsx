@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
-import { useScrolled } from '../../shared/hooks/useScrolled';
 
 type HeaderProps = {
   variant?: 'home' | 'detail';
@@ -9,8 +9,21 @@ type HeaderProps = {
 };
 
 export function Header({ variant = 'home', meta }: HeaderProps) {
-  const scrolled = useScrolled(12);
+  const [scrolled, setScrolled] = useState(false);
   const isDetail = variant === 'detail';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 12);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <motion.header
