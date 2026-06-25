@@ -243,8 +243,9 @@ export function ProjectDetailPage() {
             );
           })}
         </div>
-
-        {/* Footer */}
+      </main>
+      {/* Footer */}
+      <div className="mx-auto max-w-6xl px-6 py-1 md:px-8">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3 focus-visible:gap-3"
@@ -252,7 +253,7 @@ export function ProjectDetailPage() {
           <ArrowLeft aria-hidden="true" className="h-4 w-4" />
           View all projects
         </Link>
-      </main >
-    </div >
+      </div>
+    </div>
   );
 }
