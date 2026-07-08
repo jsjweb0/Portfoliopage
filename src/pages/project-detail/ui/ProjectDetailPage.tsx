@@ -218,7 +218,22 @@ export function ProjectDetailPage() {
                       {section.title}
                     </h2>
                     <div className="text-sm md:text-lg leading-relaxed text-white/80 break-keep">
-                      {Array.isArray(section.content) ? (
+                      {section.type === 'problem' ? (
+                        <ul className="grou flex flex-col gap-4">
+                          {section.content.map((item, index) => (
+                            <li key={`${section.title}-${index}`} className="space-y-3 py-8 border-b border-b-white/10 last:py-0 last:border-b-0">
+                              <p>
+                                <strong className="inline-block mr-2">문제 {index + 1} </strong>
+                                {item.problem}
+                              </p>
+                              <p>
+                                <strong className="inline-block mr-2">해결 </strong>
+                                {item.solution}
+                              </p>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : Array.isArray(section.content) ? (
                         <ul className="flex flex-col gap-2">
                           {section.content.map((item) => (
                             <li key={item} className="flex gap-1">

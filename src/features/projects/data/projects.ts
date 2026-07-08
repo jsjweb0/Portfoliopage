@@ -5,13 +5,24 @@ export type ProjectSectionType =
   | 'tech'
   | 'result';
 
-type ProjectSectionContent = string | string[];
+type ProblemSolutionItem = {
+  problem: string;
+  solution: string;
+};
 
-export interface ProjectSection {
-  type: ProjectSectionType;
+type TextSection = {
+  type: Exclude<ProjectSectionType, 'problem'>;
   title: string;
-  content: ProjectSectionContent;
-}
+  content: string | string[];
+};
+
+type ProblemSection = {
+  type: 'problem';
+  title: string;
+  content: ProblemSolutionItem[];
+};
+
+export type ProjectSection = TextSection | ProblemSection;
 
 export interface ProjectPreviewImage {
   src: string;
@@ -98,8 +109,26 @@ export const projects: Project[] = [
       {
         type: 'problem',
         title: 'Problem & Solution',
-        content:
-          '문제 1: 서브페이지 100여 개를 개별 관리하면 수정이 발생할 때마다 여러 화면을 동시에 확인해야 했습니다.\n해결: 공통 요소와 콘텐츠 영역을 분리한 BEM 템플릿 구조를 설계해 반복 마크업을 줄이고, 공통 블록 수정이 전체 페이지에 일관되게 반영되도록 했습니다.\n\n문제 2: 번역 언어에 따라 텍스트 길이가 달라지면서 버튼과 메뉴 레이아웃이 어긋나는 케이스가 있었습니다.\n해결: px 고정값보다 em, rem, %, Flexbox, Grid를 활용해 콘텐츠 길이에 따라 자연스럽게 늘어나는 레이아웃으로 구현했습니다.\n\n문제 3: 이미지 지도는 특정 지역을 정확히 선택하기 어렵고 선택 상태를 시각적으로 보여주기 제한적이었습니다.\n해결: PNG 이미지를 SVG 코드로 전환해 행정구역을 각각 독립 요소로 제어하고, hover 시 색상 변경과 click 시 관광 정보 연결이 가능하도록 구현했습니다.',
+        content: [
+          {
+            problem:
+              '서브페이지 100여 개를 개별 관리하면 수정이 발생할 때마다 여러 화면을 동시에 확인해야 했습니다.',
+            solution:
+              '공통 요소와 콘텐츠 영역을 분리한 BEM 템플릿 구조를 설계해 반복 마크업을 줄이고, 공통 블록 수정이 전체 페이지에 일관되게 반영되도록 했습니다.',
+          },
+          {
+            problem:
+              '번역 언어에 따라 텍스트 길이가 달라지면서 버튼과 메뉴 레이아웃이 어긋나는 케이스가 있었습니다.',
+            solution:
+              'px 고정값보다 em, rem, %, Flexbox, Grid를 활용해 콘텐츠 길이에 따라 자연스럽게 늘어나는 레이아웃으로 구현했습니다.',
+          },
+          {
+            problem:
+              '이미지 지도는 특정 지역을 정확히 선택하기 어렵고 선택 상태를 시각적으로 보여주기 제한적이었습니다.',
+            solution:
+              'PNG 이미지를 SVG 코드로 전환해 행정구역을 각각 독립 요소로 제어하고, hover 시 색상 변경과 click 시 관광 정보 연결이 가능하도록 구현했습니다.',
+          },
+        ],
       },
       {
         type: 'tech',
@@ -174,8 +203,26 @@ export const projects: Project[] = [
       {
         type: 'problem',
         title: 'Problem & Solution',
-        content:
-          '문제 1: 기존 챗봇이 PC 중심 구조로 개발되어 모바일에서 사용 흐름이 불편했습니다.\n해결: 뷰포트별 콘텐츠 노출 우선순위를 재정리하고 반응형 레이아웃으로 개편해 스마트폰에서도 질문 입력과 답변 확인 흐름이 이어지도록 했습니다.\n\n문제 2: 범용 솔루션이라 FIS 서비스와 맞지 않는 기능과 컴포넌트가 포함되어 있었습니다.\n해결: 컴포넌트 의존 관계를 분석한 뒤 미사용 기능을 제거하고, 서비스에 필요한 기능 중심으로 컴포넌트 계층을 단순화했습니다.\n\n문제 3: 외부 솔루션의 기본 디자인이 기존 웹 서비스와 이질적으로 보였습니다.\n해결: FIS 디자인 가이드의 색상, 타이포그래피, 간격 기준을 반영해 챗봇 마크업과 스타일을 수정하고 서비스 내 시각적 일관성을 확보했습니다.',
+        content: [
+          {
+            problem:
+              '기존 챗봇이 PC 중심 구조로 개발되어 모바일에서 사용 흐름이 불편했습니다.',
+            solution:
+              '뷰포트별 콘텐츠 노출 우선순위를 재정리하고 반응형 레이아웃으로 개편해 스마트폰에서도 질문 입력과 답변 확인 흐름이 이어지도록 했습니다.',
+          },
+          {
+            problem:
+              '범용 솔루션이라 FIS 서비스와 맞지 않는 기능과 컴포넌트가 포함되어 있었습니다.',
+            solution:
+              '컴포넌트 의존 관계를 분석한 뒤 미사용 기능을 제거하고, 서비스에 필요한 기능 중심으로 컴포넌트 계층을 단순화했습니다.',
+          },
+          {
+            problem:
+              '외부 솔루션의 기본 디자인이 기존 웹 서비스와 이질적으로 보였습니다.',
+            solution:
+              'FIS 디자인 가이드의 색상, 타이포그래피, 간격 기준을 반영해 챗봇 마크업과 스타일을 수정하고 서비스 내 시각적 일관성을 확보했습니다.',
+          },
+        ],
       },
       {
         type: 'tech',
@@ -251,8 +298,32 @@ export const projects: Project[] = [
       {
         type: 'problem',
         title: 'Problem & Solution',
-        content:
-          '문제 1: 로그인 전/후 화면, 권한별 화면, 모바일/PC 화면이 다르게 동작해야 해서 분기 관리가 복잡했습니다.\n해결: body에 상태 클래스를 부여하고 CSS에서 해당 상태에 맞는 UI를 보여주는 방식으로 전역 분기 구조를 단순화했습니다.\n\n문제 2: 관심품목 수가 늘어나면서 탭이 가로 스크롤 영역이 되었고, 선택한 탭이 화면 밖으로 밀려나는 경우가 있었습니다.\n해결: 탭 클릭 시 scrollIntoView를 적용해 선택 탭이 뷰포트 중앙에 오도록 개선했습니다.\n\n문제 3: 품목별로 가격, 거래량, 차트 DOM을 모두 생성하면 품목이 늘어날수록 초기 렌더링 부담이 커질 수 있었습니다.\n해결: 단일 콘텐츠 컨테이너를 두고 탭 전환 시 해당 품목의 데이터로 이미지, 가격, 지표 영역만 교체하는 방식으로 설계했습니다.\n\n문제 4: 품목 식별자를 JS 변수나 선택자 문자열로 하드코딩하면 품목 추가/삭제 시 코드 수정 범위가 커졌습니다.\n해결: 품목 식별값을 data-* 속성으로 관리해 HTML 구조 확장만으로 탭 동작을 유지할 수 있도록 했습니다.',
+        content: [
+          {
+            problem:
+              '로그인 전/후 화면, 권한별 화면, 모바일/PC 화면이 다르게 동작해야 해서 분기 관리가 복잡했습니다.',
+            solution:
+              'body에 상태 클래스를 부여하고 CSS에서 해당 상태에 맞는 UI를 보여주는 방식으로 전역 분기 구조를 단순화했습니다.',
+          },
+          {
+            problem:
+              '관심품목 수가 늘어나면서 탭이 가로 스크롤 영역이 되었고, 선택한 탭이 화면 밖으로 밀려나는 경우가 있었습니다.',
+            solution:
+              '탭 클릭 시 scrollIntoView를 적용해 선택 탭이 뷰포트 중앙에 오도록 개선했습니다.',
+          },
+          {
+            problem:
+              '품목별로 가격, 거래량, 차트 DOM을 모두 생성하면 품목이 늘어날수록 초기 렌더링 부담이 커질 수 있었습니다.',
+            solution:
+              '단일 콘텐츠 컨테이너를 두고 탭 전환 시 해당 품목의 데이터로 이미지, 가격, 지표 영역만 교체하는 방식으로 설계했습니다.',
+          },
+          {
+            problem:
+              '품목 식별자를 JS 변수나 선택자 문자열로 하드코딩하면 품목 추가/삭제 시 코드 수정 범위가 커졌습니다.',
+            solution:
+              '품목 식별값을 data-* 속성으로 관리해 HTML 구조 확장만으로 탭 동작을 유지할 수 있도록 했습니다.',
+          },
+        ],
       },
       {
         type: 'tech',
@@ -333,8 +404,32 @@ export const projects: Project[] = [
       {
         type: 'problem',
         title: 'Problem & Solution',
-        content:
-          '문제 1: SoundCloud API 키 노출\n프론트엔드에서 직접 API를 호출하면 브라우저 네트워크 탭에서 API 키가 노출될 수 있었습니다.\n해결: Cloudflare Workers를 서버리스 프록시로 구성하고 API 키를 Worker Secret 환경변수로 관리했습니다. 프론트엔드는 /api/* 엔드포인트만 호출하고 실제 SoundCloud 요청은 Worker에서 처리하도록 분리했습니다.\n\n문제 2: 외부 API 호출량과 응답 흐름 관리\n음악 검색, 플레이리스트 로딩, 스트림 URL 요청이 반복되면서 같은 데이터를 여러 번 요청하는 문제가 있었습니다.\n해결: Cloudflare Workers로 API 요청 경로를 통합하고 초기 로딩 플레이리스트 수를 제한했습니다. 검색 결과와 스트림 URL을 localStorage에 캐싱하고 Worker 응답에 캐시 헤더를 적용해 동일 요청 반복을 최소화했습니다.\n\n문제 3: 전역 플레이어와 검색 프리뷰 동시 재생으로 인한 오디오 상태 충돌\n두 재생 흐름이 독립적으로 동작하면서 소리가 겹치거나 상태가 꼬이는 문제가 발생했습니다.\n해결: 메인 플레이어는 Context로 전역 상태를 관리하고, 검색 프리뷰는 독립 재생 흐름으로 분리했습니다. 프리뷰 재생 시작 시 메인 플레이어를 일시정지하도록 처리해 충돌을 방지했습니다.\n\n문제 4: 로그인 사용자별 활동 데이터 관리\n좋아요, 프로필, 내가 쓴 글과 댓글처럼 사용자 기준으로 달라지는 데이터를 화면마다 일관되게 보여줘야 했습니다.\n해결: Firebase Auth 인증 상태를 기준으로 조건부 UI를 구성하고, Firestore 데이터를 사용자 기준으로 조회해 마이페이지와 프로필 화면에서 다시 확인할 수 있도록 연결했습니다.',
+        content: [
+          {
+            problem:
+              'SoundCloud API 키 노출\n프론트엔드에서 직접 API를 호출하면 브라우저 네트워크 탭에서 API 키가 노출될 수 있었습니다.',
+            solution:
+              'Cloudflare Workers를 서버리스 프록시로 구성하고 API 키를 Worker Secret 환경변수로 관리했습니다. 프론트엔드는 /api/* 엔드포인트만 호출하고 실제 SoundCloud 요청은 Worker에서 처리하도록 분리했습니다.',
+          },
+          {
+            problem:
+              '외부 API 호출량과 응답 흐름 관리\n음악 검색, 플레이리스트 로딩, 스트림 URL 요청이 반복되면서 같은 데이터를 여러 번 요청하는 문제가 있었습니다.',
+            solution:
+              'Cloudflare Workers로 API 요청 경로를 통합하고 초기 로딩 플레이리스트 수를 제한했습니다. 검색 결과와 스트림 URL을 localStorage에 캐싱하고 Worker 응답에 캐시 헤더를 적용해 동일 요청 반복을 최소화했습니다.',
+          },
+          {
+            problem:
+              '전역 플레이어와 검색 프리뷰 동시 재생으로 인한 오디오 상태 충돌\n두 재생 흐름이 독립적으로 동작하면서 소리가 겹치거나 상태가 꼬이는 문제가 발생했습니다.',
+            solution:
+              '메인 플레이어는 Context로 전역 상태를 관리하고, 검색 프리뷰는 독립 재생 흐름으로 분리했습니다. 프리뷰 재생 시작 시 메인 플레이어를 일시정지하도록 처리해 충돌을 방지했습니다.',
+          },
+          {
+            problem:
+              '로그인 사용자별 활동 데이터 관리\n좋아요, 프로필, 내가 쓴 글과 댓글처럼 사용자 기준으로 달라지는 데이터를 화면마다 일관되게 보여줘야 했습니다.',
+            solution:
+              'Firebase Auth 인증 상태를 기준으로 조건부 UI를 구성하고, Firestore 데이터를 사용자 기준으로 조회해 마이페이지와 프로필 화면에서 다시 확인할 수 있도록 연결했습니다.',
+          },
+        ],
       },
       {
         type: 'tech',
@@ -358,7 +453,7 @@ export const projects: Project[] = [
   },
   {
     id: '05',
-    title: 'Dockit',
+    title: 'DocKit',
     category: 'React',
     year: '2026 ~ In Progress',
     role: 'Frontend Developer',
@@ -369,7 +464,7 @@ export const projects: Project[] = [
     summary:
       '웹에서 이력서, 자기소개서, 경력기술서를 작성하고 제출용 문서 형태로 실시간 확인할 수 있는 React + TypeScript 기반 문서 작성 도구입니다.',
     description:
-      '별도 문서 프로그램 없이 웹에서 국문 취업 문서를 작성하고, 제출용 문서 형태로 실시간 확인할 수 있는 React + TypeScript 기반 문서 작성 도구입니다. 입력 폼과 문서 미리보기를 하나의 상태로 연결해 작성 내용이 즉시 반영되도록 했고, 문서별 검증 규칙을 adapter로 분리해 새 양식 추가 시 반복되는 검증 구현을 줄였습니다.',
+      '별도 문서 프로그램 없이 웹에서 국문 취업 문서를 작성하고 제출용 문서 형태로 실시간 확인할 수 있는 React + TypeScript 기반 문서 작성 도구입니다. 이력서 기능에서 시작해 자기소개서와 경력기술서로 확장하면서, 문서 상태는 Context에 집중시키고 문서별 설정과 검증 흐름은 분리해 새 양식을 추가하기 쉬운 구조로 정리했습니다.',
     tags: [
       'React',
       'TypeScript',
@@ -393,7 +488,7 @@ export const projects: Project[] = [
       },
       {
         src: 'images/projects/dockit_mobile.jpg',
-        alt: 'Dockit 이력서 작성 도구 모바일 화면',
+        alt: 'DocKit 이력서 작성 도구 모바일 화면',
         caption: '모바일에서 입력 흐름을 유지하도록 정리한 이력서 작성 화면',
       },
     ],
@@ -402,17 +497,17 @@ export const projects: Project[] = [
         type: 'overview',
         title: 'Overview',
         content:
-          '국문 취업 문서는 이력서, 자기소개서, 경력기술서처럼 문서마다 형식과 필수 입력 항목이 달라 작성 흐름이 쉽게 복잡해집니다. 입력 누락, 작성 중 데이터 손실, 미리보기와 출력 결과 불일치가 생기면 실제 제출 도구로 신뢰하기 어렵다고 판단했습니다.\n\n이를 해결하기 위해 문서별 단일 상태를 기준으로 입력 폼과 제출용 미리보기를 연결하고, localStorage 저장/복원, 입력값 검증, 오류 필드 포커스 이동, print CSS 기반 PDF 저장 흐름을 구현했습니다.\n\n이후 문서 양식이 늘어날 때 검증 로직이 Provider에 반복되는 문제를 줄이기 위해 공통 useDocumentValidation 훅과 문서별 validation adapter를 분리했습니다. 그 결과 작성, 검증, 저장, 출력까지 이어지는 문서 작성 흐름을 유지하면서 새 양식을 추가하기 쉬운 구조로 개선했습니다.',
+          '국문 취업 문서는 이력서, 자기소개서, 경력기술서처럼 문서마다 형식과 필수 입력 항목이 달라 작성 흐름이 쉽게 복잡해집니다. 입력 누락, 작성 중 데이터 손실, 미리보기와 출력 결과 불일치가 생기면 실제 제출 도구로 신뢰하기 어렵다고 판단했습니다.\n\n처음에는 이력서 작성 기능을 중심으로 구현했지만, 자기소개서와 경력기술서가 추가되면서 Context가 문서 상태뿐 아니라 템플릿 설정, 검증 흐름, 화면 동작까지 함께 담당하는 문제가 생겼습니다. 이를 해결하기 위해 Context에는 문서 상태와 상태 변경 책임을 남기고, 문서별 Provider, 샘플 데이터, 제목 생성 함수는 editor.config.ts로 분리했습니다.\n\n검증은 문서 복잡도에 따라 구조를 다르게 적용했습니다. 반복 섹션이 많은 이력서는 공통 useDocumentValidation 훅과 adapter를 사용하고, 자기소개서와 경력기술서는 문서별 validation hook으로 단순하게 관리했습니다.',
       },
       {
         type: 'work',
         title: 'Key Work',
         content: [
           '이력서, 자기소개서, 경력기술서 문서 타입과 기본값, 샘플 데이터 구조 설계',
-          '문서별 입력 폼과 제출용 미리보기를 같은 상태에 연결해 작성 결과를 실시간으로 확인 가능하게 구현',
-          '공통 useDocumentValidation 훅과 문서별 validation adapter를 분리해 touched field 관리, 전체 검증, 첫 오류 메시지 계산 흐름 재사용',
-          '문서별 에러 구조는 유지하면서 검증 결과 반환 형식을 isValid, errors, firstMessage로 통일',
-          'localStorage를 활용해 작성 중인 이력서를 저장하고 최근 작성 문서 목록에서 다시 열 수 있도록 구성',
+          'Context에는 문서 상태와 상태 변경 책임을 남기고, 문서별 설정은 editor.config.ts로 분리',
+          '공통 EditorLayout이 문서 내부 구조를 몰라도 Provider, useEditor, 샘플 데이터, 제목 생성 함수를 설정으로 연결하도록 구성',
+          '문서별 복잡도에 따라 이력서는 공통 validation hook과 adapter를 사용하고, 단순한 문서는 문서별 validation hook으로 관리',
+          'localStorage를 활용해 작성 중인 문서를 저장하고 최근 작성 문서 목록에서 다시 열 수 있도록 구성',
           '브라우저 인쇄와 print CSS를 활용해 텍스트 선택/검색이 가능한 PDF 저장 흐름 구현',
           '모바일/태블릿/데스크톱 화면에서 입력과 미리보기 흐름이 무너지지 않도록 반응형 레이아웃 정리',
           '입력값 검증과 저장 시간 표시 로직을 순수 함수로 분리하고 Vitest 단위 테스트 추가',
@@ -422,17 +517,35 @@ export const projects: Project[] = [
       {
         type: 'problem',
         title: 'Problem & Solution',
-        content:
-          '문제 1: 입력 폼과 미리보기 데이터 불일치 가능성\n이력서 작성 도구는 사용자가 입력한 값이 문서 미리보기에 즉시 반영되어야 합니다. 폼과 미리보기가 각각 다른 데이터를 관리하면 수정 사항이 누락되거나 화면마다 결과가 달라질 수 있었습니다.\n해결: Resume 타입을 기준으로 하나의 상태 구조를 만들고, 폼 입력 컴포넌트와 미리보기 컴포넌트가 같은 데이터를 사용하도록 연결했습니다. 기본값과 샘플 데이터도 별도 모델 파일로 분리해 유지보수하기 쉽게 정리했습니다.\n\n문제 2: 반복 섹션 검증과 오류 탐색의 어려움\n이력서, 자기소개서, 경력기술서는 에러 구조와 검증 필드가 서로 다릅니다. 이 차이를 각 Provider에서 직접 처리하면 touched field 관리, 전체 검증, 첫 오류 메시지 계산, 에러 개수 계산 로직이 문서마다 반복되어 새 양식을 추가할수록 유지보수가 어려워질 수 있었습니다.\n해결: 공통 useDocumentValidation 훅은 검증 상태와 touched field 흐름만 담당하도록 분리하고, 문서별 validation adapter가 필드 key 생성, 단일 필드 검증, 전체 검증, 에러 개수 계산을 맡도록 정리했습니다. 이를 통해 문서별 에러 구조는 유지하면서도 공통 검증 흐름을 재사용할 수 있게 했습니다.\n\n문제 3: 작성 중 데이터 손실과 출력 품질 문제\n사용자가 페이지를 나가거나 다시 접속했을 때 작성하던 이력서를 잃으면 실제 도구로 사용하기 어렵습니다. 또한 이미지 캡처 방식은 빠르게 결과를 확인하기에는 좋지만, 제출용 PDF에서 텍스트 선택과 검색이 어렵다는 한계가 있었습니다.\n해결: localStorage 저장/복원 흐름을 추가해 작성 중인 이력서를 최근 작성중 목록에서 다시 열 수 있도록 구성했습니다. 작성 중인 내용이 있을 때 이탈 방지 안내를 제공하고, 브라우저 인쇄 기능과 @media print 스타일을 활용해 텍스트 선택이 가능한 PDF 저장 흐름으로 정리했습니다.',
+        content: [
+          {
+            problem:
+              '문서 양식 증가에 따른 Context 책임 증가\n초기에는 이력서 작성 기능만 있었기 때문에 Context와 에디터 구조가 이력서 중심으로 구성되어도 큰 문제가 없었습니다. 하지만 자기소개서와 경력기술서가 추가되면서 문서 상태, 템플릿 설정, 검증 흐름, 화면 동작이 한곳에 모여 새 양식을 추가할 때 확인해야 하는 범위가 커졌습니다.',
+            solution:
+              'Context에는 현재 문서 데이터와 상태 변경처럼 에디터 상태에 직접 관련된 책임만 남겼습니다. 문서별 템플릿 정보는 documentTemplates.ts, Provider와 useEditor, 샘플 데이터, 제목 생성 함수는 editor.config.ts에서 관리하도록 분리해 공통 EditorLayout이 문서 내부 구조를 몰라도 동작하도록 정리했습니다.',
+          },
+          {
+            problem:
+              '문서별 복잡도에 따른 검증 구조 분리\n이력서는 기본 정보, 학력, 경력, 프로젝트처럼 반복 섹션과 검증 필드가 많아 touched field 관리, 전체 검증, 첫 오류 메시지 계산, 에러 개수 계산이 복잡했습니다. 반면 자기소개서와 경력기술서는 검증 범위가 상대적으로 단순해 같은 adapter 구조를 모두 적용하면 코드가 불필요하게 무거워질 수 있었습니다.',
+            solution:
+              '이력서는 공통 useDocumentValidation 훅과 resumeValidationAdapter로 검증 상태 관리 흐름을 분리했습니다. 자기소개서와 경력기술서는 문서별 validation hook에서 직접 관리하도록 두어, 문서 복잡도에 맞게 공통화와 단순성의 균형을 맞췄습니다.',
+          },
+          {
+            problem:
+              '작성 중 데이터 손실과 출력 품질 문제\n사용자가 페이지를 나가거나 다시 접속했을 때 작성하던 문서를 잃으면 실제 도구로 사용하기 어렵습니다. 또한 이미지 캡처 방식은 빠르게 결과를 확인하기에는 좋지만, 제출용 PDF에서 텍스트 선택과 검색이 어렵다는 한계가 있었습니다.',
+            solution:
+              'localStorage 저장/복원 흐름을 추가해 작성 중인 문서를 최근 작성 목록에서 다시 열 수 있도록 구성했습니다. 작성 중인 내용이 있을 때 이탈 방지 안내를 제공하고, 브라우저 인쇄 기능과 @media print 스타일을 활용해 텍스트 선택이 가능한 PDF 저장 흐름으로 정리했습니다.',
+          },
+        ],
       },
       {
         type: 'tech',
         title: 'Technical Points',
         content: [
-          'TypeScript 데이터 모델: Resume, Education, Experience, Project 등 문서 데이터를 타입으로 정의해 폼과 미리보기의 데이터 기준을 통일',
+          'Editor config 구조: 문서별 Provider, useEditor, 샘플 데이터, 제목 생성 함수를 설정으로 연결해 공통 EditorLayout 재사용',
           'localStorage 저장 구조: 작성 중 문서를 브라우저에 저장하고 최근 작성중 목록에서 복원할 수 있도록 구성',
           '공통 검증 훅: useDocumentValidation에서 touched field 관리, 단일 필드 재검증, 전체 검증, 에러 개수 계산 흐름을 공통화',
-          'Validation adapter: Resume, CoverLetter, CareerSummary별로 필드 key 생성과 검증 규칙을 분리해 새 문서 양식 추가 시 Provider 중복을 줄임',
+          'Validation 구조: 복잡한 이력서는 adapter로 필드 key 생성과 검증 규칙을 분리하고, 단순한 문서는 문서별 validation hook으로 관리',
           '검증 결과 타입 통일: 문서별 errors 내부 구조는 유지하되 공통 훅이 사용하는 결과는 isValid, errors, firstMessage 형태로 통일',
           '문서 출력 전략: 제출용 출력은 print CSS 기반 PDF 저장 흐름에 집중',
           '반응형 레이아웃: 데스크톱에서는 입력 폼과 미리보기를 함께 보여주고, 좁은 화면에서는 작성 흐름이 유지되도록 배치 조정',
@@ -445,7 +558,7 @@ export const projects: Project[] = [
         type: 'result',
         title: 'Result & Next Steps',
         content:
-          '이력서, 자기소개서, 경력기술서의 입력, 검증, 저장, 미리보기, 출력 흐름을 문서별 단일 상태 기준으로 연결했습니다. 또한 공통 useDocumentValidation 훅과 validation adapter 구조를 적용해 새 양식 추가 시 반복되는 검증 상태 관리를 줄였습니다.\n\n다음 단계에서는 문서별 validation adapter 테스트 보강, 초기 번들 최적화, 브라우저별 PDF 저장 안내 개선, 긴 텍스트와 인쇄 환경에 대한 출력 안정성 개선을 진행할 예정입니다.',
+          '이력서에서 자기소개서, 경력기술서로 문서 양식이 늘어나는 과정에서 Context 책임을 줄이고, 공통 EditorLayout과 문서별 config를 연결하는 구조로 정리했습니다. 이를 통해 문서 상태 관리는 유지하면서도 새 양식 추가 시 수정해야 하는 범위를 줄였습니다.\n\n다음 단계에서는 문서별 validation hook 테스트 보강, 초기 번들 최적화, 브라우저별 PDF 저장 안내 개선, 긴 텍스트와 인쇄 환경에 대한 출력 안정성 개선을 진행할 예정입니다.',
       },
     ],
   },
