@@ -455,12 +455,12 @@ export const projects: Project[] = [
     id: '05',
     title: 'DocKit',
     category: 'React',
-    year: '2026 ~ In Progress',
+    year: '2026',
     role: 'Frontend Developer',
     contribution: 'Frontend 100%',
     stack:
       'React · TypeScript · Vite · Tailwind CSS · React Router · Radix UI · Vitest · localStorage · Cloudflare Workers',
-    duration: '2026.04 - 기능 확장 중',
+    duration: '2026.04 - 2026.07',
     summary:
       '웹에서 이력서, 자기소개서, 경력기술서를 작성하고 제출용 문서 형태로 실시간 확인할 수 있는 React + TypeScript 기반 문서 작성 도구입니다.',
     description:
