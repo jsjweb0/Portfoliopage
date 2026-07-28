@@ -20,10 +20,10 @@
 
 ### ⚛️ React 프로젝트
 
-| 프로젝트   | 핵심 구현                                                   | 기술                                | 링크                                           |
-| ---------- | ----------------------------------------------------------- | ----------------------------------- | ---------------------------------------------- |
-| Dockit     | 이력서/자기소개서 입력, 실시간 미리보기, 문서별 검증 구조   | React, TypeScript                   | [보기](https://dockit.jsjweb0.workers.dev/)    |
-| NEWTRONOME | SoundCloud 재생, Firebase 인증, 24시간 캐싱, Workers 프록시 | React, Firebase, Cloudflare Workers | [보기](https://newtronome.jsjweb0.workers.dev) |
+| 프로젝트   | 핵심 구현                                                                  | 기술                                                                                                                                         | 링크                                           |
+| ---------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Dockit     | 이력서/자기소개서 입력, 실시간 미리보기, 문서별 검증 구조                  | React, TypeScript                                                                                                                            | [보기](https://dockit.jsjweb0.workers.dev/)    |
+| NEWTRONOME | SoundCloud Widget 기반 재생 제어, Firebase 인증, 로그인 사용자별 트랙 저장 | React, TypeScript, Vite, Zustand, Tailwind CSS, Firebase Authentication / Firestore, SoundCloud Widget API, Cloudflare Workers Static Assets | [보기](https://newtronome.jsjweb0.workers.dev) |
 
 ### 🧩 실무 퍼블리싱 프로젝트
 
@@ -95,6 +95,6 @@ GitHub Actions를 사용해 `main` 브랜치로 push하거나 pull request를 �
 ## 🌱 배운 것 / 앞으로 할 것
 
 - 퍼블리싱 실무 경험을 React 컴포넌트 구조로 옮기며, 반복 UI를 데이터 기반으로 렌더링하는 방식을 정리했습니다.
-- 외부 API를 직접 호출하지 않고 Cloudflare Workers를 거쳐 API 키 보호와 요청 흐름 분리를 경험했습니다.
-- NEWTRONOME에서 localStorage 24시간 캐싱을 적용해 반복 API 호출을 줄이는 방법을 실험했습니다.
+- 별도의 Client ID나 비공식 API 요청 없이 공식 SoundCloud Widget을 활용해 플레이리스트 재생과 트랙 정보를 구성했습니다.
+- Widget 재생 이벤트를 Zustand 상태와 연결해 트랙 목록, 플레이리스트 패널, 하단 컨트롤의 상태를 동기화했습니다.
 - 다음 단계에서는 실제 화면 캡처를 README에 추가하고, 프로젝트별 GitHub 링크와 개선 전/후 포인트를 더 구체화할 예정입니다.
