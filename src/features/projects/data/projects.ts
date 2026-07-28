@@ -351,18 +351,19 @@ export const projects: Project[] = [
     role: 'Frontend Developer',
     contribution: 'frontend 100%',
     stack:
-      'React · Vite · Firebase Auth · Firestore · SoundCloud API · Cloudflare Workers',
-    duration: '2025.08 - 2026.05',
+      'React · TypeScript · Vite · Zustand · Tailwind CSS · Firebase Auth · Firestore · SoundCloud Widget API · Cloudflare Workers',
+    duration: '2025.08 - 진행중',
     summary:
-      '좋아하는 disco, house 음악을 SoundCloud API로 검색하고 랜덤 재생할 수 있도록 기획한 첫 React 프로젝트입니다. 음악 플레이어에서 시작해 로그인, 좋아요, 게시판 등 커뮤니티 기능까지 확장했습니다.',
+      '개인 SoundCloud 플레이리스트를 랜덤으로 탐색하고 재생할 수 있도록 만든 React 음악 서비스입니다. 공식 SoundCloud Widget 기반 플레이어에서 시작해 로그인, 트랙 저장, 게시판, 사용자 활동 기능까지 확장했습니다.',
     description:
-      'SoundCloud API를 활용해 disco, house 음악을 검색하고 랜덤 재생할 수 있도록 기획한 React 기반 음악 플레이어 서비스입니다. 개인 취향에서 출발한 프로젝트지만, 개발 과정에서 API 키 보안, 반복 요청 관리, 로그인 사용자별 데이터 저장, 전역 오디오 상태 충돌 같은 실제 서비스 문제를 해결하며 커뮤니티 기능까지 확장했습니다.',
+      '좋아하는 disco, house 플레이리스트를 랜덤으로 탐색하고 하나의 화면에서 이어서 재생하기 위해 기획한 React 서비스입니다. 초기 Client ID·프록시 기반 연동을 공식 SoundCloud Widget 방식으로 전환했으며, Widget 이벤트와 Zustand 상태를 연결해 트랙 목록, 재생 컨트롤, 진행 시간을 동기화했습니다. Firebase Auth와 Firestore를 활용해 사용자별 트랙 저장과 활동 관리 기능도 구현했습니다.',
     tags: [
       'React',
-      'API Integration',
+      'TypeScript',
+      'SoundCloud Widget',
+      'Zustand',
       'Responsive',
-      'Firebase Auth',
-      'Tailwind CSS',
+      'Firebase',
     ],
     link: 'https://newtronome.jsjweb0.workers.dev',
     github: 'https://github.com/jsjweb0/newtronome',
@@ -370,13 +371,13 @@ export const projects: Project[] = [
       {
         src: 'images/projects/newtronome_pc.png',
         alt: 'NEWTRONOME 메인 화면',
-        caption: 'SoundCloud API로 랜덤 음악 리스트와 재생이 가능한 PC 화면',
+        caption:
+          '랜덤 SoundCloud 플레이리스트와 고정형 플레이어를 구성한 데스크톱 화면',
       },
       {
         src: 'images/projects/newtronome_mobile.jpg',
         alt: 'NEWTRONOME 모바일 화면',
-        caption:
-          'SoundCloud API로 랜덤 음악 리스트와 검색이 가능한 모바일 화면',
+        caption: '플레이리스트 탐색과 하단 재생 컨트롤을 제공하는 모바일 화면',
       },
     ],
     sections: [
@@ -384,21 +385,22 @@ export const projects: Project[] = [
         type: 'overview',
         title: 'Overview',
         content:
-          '음악 검색/재생 프로젝트를 만들면서 단순 API 호출만으로는 실제 서비스처럼 동작하기 어렵다는 문제를 발견했습니다. API 키 노출, 반복 요청, 전역 플레이어와 검색 프리뷰의 오디오 상태 충돌을 직접 해결해야 했습니다.\n\nSoundCloud API는 Cloudflare Workers 프록시로 분리하고, 검색 결과와 스트림 URL은 캐싱했으며, 메인 플레이어 상태는 Context로 관리했습니다.\n\n그 결과 API 보안, 요청 흐름, 오디오 상태를 분리한 실제 서비스형 React 프로젝트로 확장 경험했고, Firebase Auth/Firestore를 연결해 사용자별 좋아요와 활동 데이터까지 확장했습니다.',
+          '개인 SoundCloud 플레이리스트를 랜덤으로 탐색하고 재생할 수 있는 React 음악 서비스입니다. 초기에는 Client ID와 별도 프록시를 사용해 트랙 정보와 스트리밍 URL을 가져왔지만, 외부 응답 구조와 키 관리에 대한 의존성이 컸습니다.\n\n이를 공식 SoundCloud Widget 기반 구조로 전환하고 READY, PLAY, PAUSE, PLAY_PROGRESS 이벤트를 React 플레이어 상태와 연결했습니다. 현재 트랙, 재생 여부, 진행 시간, 플레이리스트는 Zustand에서 관리해 메인 화면, 플레이리스트 패널, 하단 컨트롤이 동일한 상태를 공유하도록 구성했습니다.\n\nFirebase Auth와 Firestore를 연결해 로그인 사용자별 트랙 저장, 프로필, 게시글과 댓글 활동을 관리하고 있으며, 프론트엔드는 Cloudflare Workers Static Assets로 배포했습니다.',
       },
       {
         type: 'work',
         title: 'Key Work',
         content: [
-          'SoundCloud API를 Cloudflare Workers 서버리스 프록시로 감싸 API 키 노출 없이 호출',
-          '/api/search, /api/resolve, /api/stream 엔드포인트 설계',
-          'localStorage 캐싱과 Worker 응답 캐시 헤더 적용으로 반복 API 호출 절감',
-          '현재 트랙, 재생 여부, 재생 시간, 플레이리스트를 Context로 전역 관리',
-          '검색 결과 프리뷰 재생과 메인 플레이어를 독립 흐름으로 분리해 오디오 상태 충돌 방지',
-          '응답 지연 시 스켈레톤 UI 표시, 실패 시 에러 상태 분리 처리',
-          'Firebase Auth 이메일 로그인과 Firestore 사용자별 좋아요 저장',
+          '공식 SoundCloud Widget 기반 플레이리스트 로딩과 재생 제어 구현',
+          'READY, PLAY, PAUSE, PLAY_PROGRESS 이벤트를 React 상태와 연결',
+          '현재 트랙, 재생 여부, 진행 시간, 플레이리스트를 Zustand로 전역 관리',
+          'Widget 트랙 데이터를 검증하고 애플리케이션용 PlayerTrack 타입으로 변환',
+          '플레이리스트 내부 곡 제목 필터링과 그리드·목록 보기 구현',
+          'Firebase Auth 이메일 인증과 Firestore 사용자별 트랙 저장 구현',
+          '트랙 저장 목록의 로딩·빈 상태·오류 상태와 실시간 갱신 처리',
           '프로필 수정, 내가 쓴 글/댓글 모아보기 등 로그인 사용자 활동 화면 구현',
-          '플레이리스트 Drag & Drop 순서 편집, 모바일 하단 플레이어, 다크모드 지원',
+          '반응형 플레이리스트 패널, 모바일 하단 플레이어, 다크모드 구현',
+          'GitHub Actions와 Cloudflare Workers Static Assets 기반 자동 배포',
         ],
       },
       {
@@ -407,27 +409,27 @@ export const projects: Project[] = [
         content: [
           {
             problem:
-              'SoundCloud API 키 노출\n프론트엔드에서 직접 API를 호출하면 브라우저 네트워크 탭에서 API 키가 노출될 수 있었습니다.',
+              'Client ID·프록시 기반 SoundCloud 연동\n별도 API 요청과 스트리밍 URL 변환에 의존해 외부 응답 구조와 키 관리 부담이 커졌습니다.',
             solution:
-              'Cloudflare Workers를 서버리스 프록시로 구성하고 API 키를 Worker Secret 환경변수로 관리했습니다. 프론트엔드는 /api/* 엔드포인트만 호출하고 실제 SoundCloud 요청은 Worker에서 처리하도록 분리했습니다.',
+              'Client ID와 전용 API 프록시를 제거하고 공식 SoundCloud Widget 기반으로 재구성했습니다. Widget이 제공하는 재생 기능과 트랙 정보 범위 안에서 서비스를 구성해 별도 스트리밍 URL 변환을 없앴습니다.',
           },
           {
             problem:
-              '외부 API 호출량과 응답 흐름 관리\n음악 검색, 플레이리스트 로딩, 스트림 URL 요청이 반복되면서 같은 데이터를 여러 번 요청하는 문제가 있었습니다.',
+              'Widget 내부 재생 상태와 React UI 상태 불일치\n재생은 iframe 내부에서 실행되기 때문에 React 컴포넌트가 현재 곡, 재생 여부, 진행 시간을 직접 알 수 없었습니다.',
             solution:
-              'Cloudflare Workers로 API 요청 경로를 통합하고 초기 로딩 플레이리스트 수를 제한했습니다. 검색 결과와 스트림 URL을 localStorage에 캐싱하고 Worker 응답에 캐시 헤더를 적용해 동일 요청 반복을 최소화했습니다.',
+              'READY, PLAY, PAUSE, PLAY_PROGRESS 이벤트를 구독하고 필요한 값을 Zustand 상태에 반영했습니다. 메인 트랙 목록, 플레이리스트 패널, 하단 컨트롤이 하나의 재생 상태를 공유하도록 구성했습니다.',
           },
           {
             problem:
-              '전역 플레이어와 검색 프리뷰 동시 재생으로 인한 오디오 상태 충돌\n두 재생 흐름이 독립적으로 동작하면서 소리가 겹치거나 상태가 꼬이는 문제가 발생했습니다.',
+              '숨겨진 Widget의 플레이리스트 지연 로딩\nWidget iframe을 조건부 렌더링하거나 display:none으로 숨기면 READY 이벤트와 전체 트랙 로딩이 정상적으로 진행되지 않았습니다.',
             solution:
-              '메인 플레이어는 Context로 전역 상태를 관리하고, 검색 프리뷰는 독립 재생 흐름으로 분리했습니다. 프리뷰 재생 시작 시 메인 플레이어를 일시정지하도록 처리해 충돌을 방지했습니다.',
+              'Widget을 화면 밖에 항상 마운트하고 렌더 영역을 확보했습니다. getSounds 결과가 완전하지 않을 때 제한된 횟수만 재시도하고 로딩 상태를 별도로 표시했습니다. 다만 이 방식은 Widget 내부 렌더링 동작에 의존하므로 곡 수나 Widget 구현이 바뀌면 재검증이 필요합니다.',
           },
           {
             problem:
-              '로그인 사용자별 활동 데이터 관리\n좋아요, 프로필, 내가 쓴 글과 댓글처럼 사용자 기준으로 달라지는 데이터를 화면마다 일관되게 보여줘야 했습니다.',
+              '사용자별 트랙 저장 상태 관리\n로그인 사용자마다 저장한 트랙이 달라 버튼 상태와 Likes 목록을 일관되게 갱신해야 했습니다.',
             solution:
-              'Firebase Auth 인증 상태를 기준으로 조건부 UI를 구성하고, Firestore 데이터를 사용자 기준으로 조회해 마이페이지와 프로필 화면에서 다시 확인할 수 있도록 연결했습니다.',
+              'Firestore의 users/{uid}/savedTracks 하위 컬렉션에 트랙을 저장하고 onSnapshot으로 변경 사항을 구독했습니다. 외부 데이터는 타입 가드로 검증하고 로딩, 빈 상태, 오류 상태를 분리했습니다.',
           },
         ],
       },
@@ -435,19 +437,20 @@ export const projects: Project[] = [
         type: 'tech',
         title: 'Technical Points',
         content: [
-          'Cloudflare Workers 프록시: API 키 보안과 캐시 헤더 적용을 동시에 처리하고, 정적 프론트엔드에서도 외부 API를 안전하게 호출하기 위해 선택',
-          'Context 기반 오디오 상태: currentTrack, isPlaying, currentTime, playlist를 단일 Context로 묶어 여러 컴포넌트에서 일관된 플레이어 제어 가능',
-          '캐싱 전략: 검색 결과와 스트림 URL을 localStorage에 저장해 반복 방문/재생 시 API 호출 감소',
-          '스켈레톤 UI: 로딩 상태와 에러 상태를 분리해 API 응답 전 빈 화면 노출 최소화',
-          'Firebase 연동: Auth로 이메일 로그인, Firestore로 사용자별 좋아요, 프로필, 게시글/댓글 데이터를 관리하고 인증 상태에 따른 조건부 UI 처리',
-          '플레이리스트 Drag & Drop 순서 편집, 모바일 하단 플레이어, 다크모드 지원',
+          'SoundCloud Widget 연동: 별도 Client ID와 비공식 스트리밍 요청 없이 공식 Widget 범위에서 재생 기능 구성',
+          '이벤트 기반 동기화: Widget 재생 이벤트를 구독해 React UI와 오디오 상태를 연결',
+          'Zustand 상태 관리: 플레이어 상태를 단일 store로 관리해 컴포넌트 간 상태 중복 방지',
+          '외부 데이터 검증: Widget과 Firestore 데이터를 화면에서 사용하기 전에 필요한 필드와 타입 검증',
+          'Firestore 실시간 구독: 사용자별 저장 트랙을 실시간으로 갱신하고 로딩·빈 상태·오류 상태 처리',
+          '반응형 플레이어 UI: 데스크톱 사이드 패널과 모바일 하단 플레이어를 화면 크기에 맞게 구성',
+          'Cloudflare 배포: Workers Static Assets와 GitHub Actions를 이용한 프론트엔드 자동 배포',
         ],
       },
       {
         type: 'result',
         title: 'Result & Next Steps',
         content:
-          '외부 API 연동, 서버리스 프록시, Firebase 인증/데이터 저장, 전역 오디오 상태 관리, 사용자 활동 화면을 하나의 서비스 흐름 안에서 직접 연결하며 React 서비스 개발의 전반적인 흐름을 경험했습니다. 기능이 동작하는 것을 넘어 API 보안, 요청 관리, 상태 충돌, 사용자별 데이터 조회 같은 실제 서비스 문제를 스스로 발견하고 해결한 프로젝트입니다.\n\n앞으로 개선할 것:\n• 학습 과정에서 확장된 구조를 feature 단위 모듈로 리팩토링\n• 댓글 데이터 구조를 글 번호 기준이 아닌 문서 ID 기준으로 리팩토링\n• 모바일 Drag & Drop과 터치 스크롤 충돌을 편집 모드 중심으로 개선\n• 좋아요한 트랙만 모아보는 페이지 추가\n• 플레이어 키보드 접근성 개선: Space 재생/일시정지, 방향키 시크 이동',
+          '공식 SoundCloud Widget의 재생 이벤트를 React 상태와 연결하고, Zustand를 통해 여러 플레이어 UI가 동일한 상태를 공유하도록 구성했습니다. 또한 Firebase 인증, 사용자별 트랙 저장, 게시판과 활동 조회를 하나의 서비스 흐름으로 연결하며 외부 서비스 연동과 전역 상태 관리 경험을 쌓았습니다.\n\n기존 Client ID·프록시 방식을 제거해 구조를 단순화했으며, 플레이어 주요 코드를 TypeScript와 feature 단위 구조로 점진적으로 전환했습니다.\n\n앞으로 개선할 것:\n• Widget 지연 로딩 실패를 위한 명시적인 오류 및 재시도 UI 추가\n• Widget 렌더링 높이에 의존하는 전체 트랙 로딩 방식 개선\n• 남아 있는 JavaScript 파일의 점진적 TypeScript 전환\n• 사용하지 않는 Drag & Drop 의존성 및 레거시 코드 정리',
       },
     ],
   },
