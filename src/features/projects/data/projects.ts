@@ -465,9 +465,9 @@ export const projects: Project[] = [
       'React · TypeScript · Vite · Tailwind CSS · React Router · Radix UI · Vitest · localStorage · Cloudflare Workers',
     duration: '2026.04 - 2026.08',
     summary:
-      '웹에서 이력서, 자기소개서, 경력기술서를 작성하고 제출용 문서 형태로 실시간 확인할 수 있는 React + TypeScript 기반 문서 작성 도구입니다.',
+      '웹에서 이력서, 자기소개서, 경력기술서, 프로젝트 보고서를 작성하고 A4 제출 형태를 실시간으로 확인할 수 있는 React + TypeScript 문서 작성 도구입니다.',
     description:
-      '별도 문서 프로그램 없이 웹에서 국문 취업 문서를 작성하고 A4 제출용 형태로 실시간 확인할 수 있는 React + TypeScript 기반 문서 작성 도구입니다. 문서 종류가 늘면서 생긴 중앙 편집기 설정의 결합을 줄이기 위해 각 문서 페이지가 Provider, 검증, Form, Preview를 직접 조립하도록 리팩터링했습니다. 저장과 검증이 없는 새 문서도 화면부터 구현한 뒤 필요한 기능을 단계적으로 연결할 수 있습니다.',
+      '별도 문서 프로그램 없이 국문 취업 문서 4종을 작성·검증·저장하고 PDF로 출력할 수 있는 도구입니다. 중앙 편집기 설정이 새 문서 구현 순서를 제약하던 문제를 해결하기 위해 각 BuilderPage가 Provider, 검증, Form, Preview를 직접 조립하도록 변경했습니다. 이 구조로 프로젝트 보고서를 화면, 저장, 검증 순으로 단계적으로 연결했습니다.',
     tags: [
       'React',
       'TypeScript',
@@ -482,7 +482,7 @@ export const projects: Project[] = [
       {
         src: 'images/projects/dockit_pc_1.jpg',
         alt: 'DocKit 국문 취업 문서 작성 도구 PC 화면',
-        caption: '이력서, 자기소개서, 경력기술서 문서 양식 목록 메인 화면',
+        caption: '이력서, 자기소개서, 경력기술서, 프로젝트 보고서 양식 목록',
       },
       {
         src: 'images/projects/dockit_pc_2.jpg',
@@ -500,22 +500,22 @@ export const projects: Project[] = [
         type: 'overview',
         title: 'Overview',
         content:
-          '국문 취업 문서는 이력서, 자기소개서, 경력기술서처럼 문서마다 형식과 필수 입력 항목이 다릅니다. 입력 누락, 작성 중 데이터 손실, 미리보기와 출력 결과의 차이를 줄이기 위해 실시간 미리보기, 저장·복원, 검증, PDF 출력 흐름을 구현했습니다.\n\n처음에는 EditorLayout과 중앙 editor.config가 URL에 따라 문서 Provider, 저장, 검증, 샘플 데이터, PDF 출력을 연결했습니다. 문서가 세 종류로 늘어나자 새 화면을 확인하기 위해서도 이 계약에 맞는 기능을 모두 먼저 구현해야 했고, Router가 알고 있는 문서 종류를 Layout에서 pathname으로 다시 판별하는 중복도 생겼습니다.\n\n중앙 config와 EditorLayout, EditorShell을 제거하고 각 BuilderPage가 자신의 Provider, 검증 hook, Header action, Form, Preview를 직접 조립하도록 변경했습니다. 공통 영역에는 세 문서에서 실제로 반복되는 UI와 저장 흐름만 남겼습니다.',
+          '국문 취업 문서는 종류마다 형식과 필수 입력 항목이 다릅니다. 입력 누락, 작성 중 데이터 손실, 미리보기와 출력 결과의 차이를 줄이기 위해 이력서·자기소개서·경력기술서·프로젝트 보고서의 실시간 미리보기, 저장·복원, 검증, PDF 출력 흐름을 구현했습니다.\n\n초기에는 EditorLayout과 중앙 editor.config가 URL에 따라 Provider, 저장, 검증, 샘플, PDF 기능을 한 번에 요구했습니다. 문서가 세 종류로 늘어나자 Form과 Preview만 만든 새 화면을 먼저 확인하기 어려웠고, Router와 Layout이 문서 종류를 중복 판별했습니다.\n\n중앙 config와 과도한 공통 계층을 제거하고 각 BuilderPage가 Provider, 검증 hook, Header action, Form, Preview를 직접 조립하도록 변경했습니다. 공통 영역에는 4종에서 반복되는 UI, 저장, 출력 흐름만 남겼습니다.',
       },
       {
         type: 'work',
         title: 'Key Work',
         content: [
-          '이력서, 자기소개서, 경력기술서 문서 타입과 기본값, 샘플 데이터 구조 설계',
+          '이력서, 자기소개서, 경력기술서, 프로젝트 보고서의 타입과 기본값, 샘플 데이터 설계',
           '중앙 editor.config, EditorLayout, EditorShell을 제거하고 각 BuilderPage가 문서별 편집 흐름을 직접 조립하도록 변경',
-          'EditorHeader, DocumentBuilderLayout, useDocumentEditorCore, createDocumentStorage처럼 세 문서에서 반복되는 기능만 공통화',
+          'EditorHeader, DocumentBuilderLayout, useDocumentEditorCore, createDocumentStorage처럼 4종에서 반복되는 기능만 공통화',
           '공통 core에는 dirty 상태, 초기화, 60초 자동 저장, PDF 상태를 두고 저장 전 검증과 데이터 정리는 문서별 Provider와 storage에서 처리',
-          '문서별 복잡도에 따라 이력서는 공통 validation hook과 adapter를 사용하고, 단순한 문서는 문서별 validation hook으로 관리',
-          '직접 PDF 검증 후 예시 불러오기 흐름을 점검해 이전 오류 상태가 남는 문제를 발견하고, resetVersion 초기화와 같은 문제가 다시 발생하는지 확인하는 테스트 추가',
+          '문서별 복잡도에 따라 이력서는 공통 validation hook과 adapter를 사용하고, 나머지 3종은 문서별 validation hook으로 관리',
+          'PDF 검증 후 예시 불러오기에서 이전 오류가 남는 문제를 resetVersion으로 해결하고 문서 교체 회귀 테스트 추가',
+          '프로젝트 보고서를 기본 상태 → Form/Preview → 저장·검증 순으로 단계적으로 연결',
           'localStorage를 활용해 작성 중인 문서를 저장하고 최근 작성 문서 목록에서 다시 열 수 있도록 구성',
           '브라우저 인쇄와 print CSS를 활용해 텍스트 선택/검색이 가능한 PDF 저장 흐름 구현',
           '모바일/태블릿/데스크톱 화면에서 입력과 미리보기 흐름이 무너지지 않도록 반응형 레이아웃 정리',
-          'Codex 서브 에이전트로 구조 영향과 테스트 누락을 나눠 검토하고, 구현은 한 에이전트로 제한한 뒤 결과를 Vitest와 React Testing Library로 재확인',
           'Vite 빌드 결과물을 Cloudflare Workers Assets로 배포하고 SPA 새로고침 대응 설정 적용',
         ],
       },
@@ -533,13 +533,13 @@ export const projects: Project[] = [
             problem:
               '문서별 복잡도에 따른 검증 구조 분리\n이력서는 기본 정보, 학력, 경력, 프로젝트처럼 반복 섹션과 검증 필드가 많아 touched field 관리, 전체 검증, 첫 오류 메시지 계산, 에러 개수 계산이 복잡했습니다. 반면 자기소개서와 경력기술서는 검증 범위가 상대적으로 단순해 같은 adapter 구조를 모두 적용하면 코드가 불필요하게 무거워질 수 있었습니다.',
             solution:
-              '이력서는 공통 useDocumentValidation 훅과 resumeValidationAdapter로 검증 상태 관리 흐름을 분리했습니다. 자기소개서와 경력기술서는 문서별 validation hook에서 직접 관리하도록 두어, 문서 복잡도에 맞게 공통화와 단순성의 균형을 맞췄습니다.',
+              '이력서는 공통 useDocumentValidation 훅과 resumeValidationAdapter로 touched field, 오류 개수, 첫 오류 위치 계산을 분리했습니다. 자기소개서·경력기술서·프로젝트 보고서는 문서별 validation hook에서 규칙과 오류 상태를 관리해 복잡도에 맞게 구조를 나눈습니다.',
           },
           {
             problem:
               '예시 데이터 교체 후 남는 이전 검증 결과\nPDF 출력 전 전체 검증으로 오류가 표시된 상태에서 예시를 불러오면 문서 값만 바뀌고 이전 오류 개수, 메시지, touched 상태가 그대로 남았습니다.',
             solution:
-              '초기화와 예시 불러오기에서 resetVersion을 갱신하고 문서별 validation hook이 변경을 감지해 검증 상태를 초기화하도록 연결했습니다. PDF 검증 후 예시 불러오기 통합 테스트를 세 문서에 적용해 오류 요약이 0으로 바뀌는 흐름을 확인했습니다.',
+              '초기화와 예시 불러오기에서 resetVersion을 갱신하고 validation hook이 errors와 touched 상태를 함께 초기화하도록 연결했습니다. PDF 검증 후 예시 불러오기 통합 테스트를 4종에 적용해 오류 요약이 0으로 복귀하는 흐름을 확인했습니다.',
           },
         ],
       },
@@ -550,7 +550,7 @@ export const projects: Project[] = [
           '문서별 페이지 조립: 각 BuilderPage가 Provider, 검증, Header action, Form, Preview를 직접 연결',
           '공통화 범위 제한: EditorHeader와 DocumentBuilderLayout은 UI를, useDocumentEditorCore는 dirty 상태·초기화·60초 자동 저장·PDF 상태를 담당',
           '저장 정책 분리: 저장 전 검증과 저장 데이터 정리는 각 문서 Provider와 storage에서 처리',
-          'localStorage 저장 구조: 작성 중 문서를 브라우저에 저장하고 최근 작성중 목록에서 복원할 수 있도록 구성',
+          'localStorage 저장 구조: 작성 중 문서를 브라우저에 저장하고 최근 작성 목록에서 복원하도록 구성',
           '공통 검증 훅: useDocumentValidation에서 touched field 관리, 단일 필드 재검증, 전체 검증, 에러 개수 계산 흐름을 공통화',
           'Validation 구조: 복잡한 이력서는 adapter로 필드 key 생성과 검증 규칙을 분리하고, 단순한 문서는 문서별 validation hook으로 관리',
           '검증 상태 초기화: resetVersion으로 문서 데이터 교체와 errors, touched 상태의 초기화 시점을 연결',
@@ -565,7 +565,7 @@ export const projects: Project[] = [
         type: 'result',
         title: 'Result & Next Steps',
         content:
-          '중앙 editor.config와 공통 Layout이 모든 문서 기능을 미리 요구하던 구조를 문서별 페이지 조립 방식으로 변경했습니다. 기존 이력서, 자기소개서, 경력기술서의 저장, 60초 자동 저장, 초기화, 예시 불러오기, 검증, PDF 출력, 미저장 경고는 유지했고, 현재 15개 테스트 파일의 95개 테스트로 주요 흐름을 확인합니다.\n\n새 문서 편집 화면은 기본 상태와 Form, Preview를 만든 뒤 Router에 등록해 먼저 확인할 수 있으며, 저장과 검증은 문서 feature 내부에서 필요한 시점에 연결할 수 있습니다. 문서별 조립 코드는 일부 반복되지만 현재 세 문서 규모에서는 범용 factory를 추가하지 않고 기능의 위치가 코드에 드러나는 구조를 선택했습니다.\n\n앞으로 개선할 것:\n• 실제 Chrome 인쇄 미리보기에서 A4 페이지 분할과 브라우저별 출력 차이 점검\n• 모바일 문서 작성·미리보기·저장 E2E 테스트 추가\n• localStorage 이전 버전 migration 전략 보강\n• 저장 실패와 저장 공간 부족 상황의 사용자 안내 개선',
+          '중앙 editor.config가 모든 문서 기능을 미리 요구하던 구조를 문서별 페이지 조립 방식으로 변경했습니다. 기존 3종의 저장, 60초 자동 저장, 초기화, 예시 불러오기, 검증, PDF 출력, 미저장 경고를 유지하면서 프로젝트 보고서를 단계적으로 추가했습니다. 현재 22개 테스트 파일의 136개 테스트로 저장, 검증, PDF, 문서 교체, 최근 문서 흐름을 확인합니다.\n\n문서별 조립 코드가 일부 반복되지만 현재 4종 규모에서는 범용 factory를 추가하기보다 기능의 위치와 문서별 정책이 코드에 드러나는 구조를 선택했습니다.\n\n앞으로 개선할 것:\n• 브라우저별 A4 페이지 분할 차이 점검\n• 모바일 문서 작성·미리보기·저장 E2E 테스트 추가\n• localStorage 이전 버전 migration 전략 보강\n• 저장 실패와 저장 공간 부족 상황의 사용자 안내 개선',
       },
     ],
   },
