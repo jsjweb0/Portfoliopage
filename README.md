@@ -14,7 +14,7 @@
    프로젝트 정보를 TypeScript 타입으로 정의하고, 프로젝트 카드와 상세 페이지를 같은 데이터에서 동적으로 렌더링합니다.
 
 3. **실제 배포와 외부 서비스 연동 경험**  
-   GitHub Pages, Cloudflare Workers, Firebase Auth/Firestore를 사용해 정적 배포와 서버리스 프록시, 인증/데이터 저장 흐름을 연결했습니다.
+   GitHub Pages, Cloudflare Workers Static Assets, Firebase Auth/Firestore를 사용해 정적 배포와 인증/데이터 저장 흐름을 연결했습니다.
 
 ## 🚀 주요 프로젝트
 
@@ -44,7 +44,7 @@
 - **React Router v7**: 프로젝트 상세 페이지를 `/project/:id` 구조로 구성했습니다. 프로젝트 데이터만 추가하면 카드와 상세 페이지가 함께 생성되도록 해, 프로젝트가 늘어날 때 라우트와 페이지 파일을 반복 작성하지 않도록 했습니다.
 - **motion/react**: 포트폴리오의 정보 탐색을 방해하지 않는 범위에서 페이지 진입과 헤더 상태 변화에만 제한적으로 사용했습니다. 시각 효과보다 콘텐츠 가독성을 우선했습니다.
 - **Tailwind CSS v4**: 빠른 반응형 조정과 일관된 spacing 관리를 위해 사용했습니다. 다만 프로젝트별 상세 콘텐츠는 데이터 구조로 분리해 스타일과 콘텐츠가 섞이지 않도록 했습니다.
-- **Cloudflare Workers**: NEWTRONOME에서 SoundCloud API 키를 브라우저에 노출하지 않고, Netlify Functions 사용량 관리 한계를 보완하기 위해 서버리스 프록시로 사용했습니다.
+- **Cloudflare Workers**: NEWTRONOME과 Dockit의 Vite 빌드 결과물을 Static Assets로 배포하고, GitHub Actions에서 배포가 이어지도록 구성했습니다.
 
 ## 📁 포트폴리오 구조 설명
 
@@ -97,4 +97,5 @@ GitHub Actions를 사용해 `main` 브랜치로 push하거나 pull request를 �
 - 퍼블리싱 실무 경험을 React 컴포넌트 구조로 옮기며, 반복 UI를 데이터 기반으로 렌더링하는 방식을 정리했습니다.
 - 별도의 Client ID나 비공식 API 요청 없이 공식 SoundCloud Widget을 활용해 플레이리스트 재생과 트랙 정보를 구성했습니다.
 - Widget 재생 이벤트를 Zustand 상태와 연결해 트랙 목록, 플레이리스트 패널, 하단 컨트롤의 상태를 동기화했습니다.
+- NEWTRONOME의 React 애플리케이션 코드를 TypeScript로 전환하고, 주요 페이지 지연 로딩과 선택적 모듈 import로 메인 번들을 줄였습니다.
 - 다음 단계에서는 실제 화면 캡처를 README에 추가하고, 프로젝트별 GitHub 링크와 개선 전/후 포인트를 더 구체화할 예정입니다.
