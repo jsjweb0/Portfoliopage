@@ -3,7 +3,7 @@
 > 웹 퍼블리셔 8년 경력을 바탕으로 React/TypeScript로 전환 중인  
 > 프론트엔드 포트폴리오입니다.
 
-[Demo](https://jsjweb0.github.io/Portfoliopage/) · [Github](https://github.com/jsjweb0)
+[Demo](https://jsjweb0.github.io/Portfoliopage/) · [GitHub](https://github.com/jsjweb0)
 
 ## 🎯 이 포트폴리오가 보여주려는 것
 
@@ -14,16 +14,16 @@
    프로젝트 정보를 TypeScript 타입으로 정의하고, 프로젝트 카드와 상세 페이지를 같은 데이터에서 동적으로 렌더링합니다.
 
 3. **실제 배포와 외부 서비스 연동 경험**  
-   GitHub Pages, Cloudflare Workers Static Assets, Firebase Auth/Firestore를 사용해 정적 배포와 인증/데이터 저장 흐름을 연결했습니다.
+   SoundCloud Widget과 iTunes Search API를 음악 서비스에 연결하고, Firebase Authentication/Firestore로 인증과 사용자별 데이터를 관리했습니다. GitHub Pages와 Cloudflare Workers Static Assets를 통해 프로젝트별 배포 흐름도 구성했습니다.
 
 ## 🚀 주요 프로젝트
 
 ### ⚛️ React 프로젝트
 
-| 프로젝트   | 핵심 구현                                                                  | 기술                                                                                                                                         | 링크                                           |
-| ---------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| Dockit     | 이력서/자기소개서 입력, 실시간 미리보기, 문서별 검증 구조                  | React, TypeScript                                                                                                                            | [보기](https://dockit.jsjweb0.workers.dev/)    |
-| NEWTRONOME | SoundCloud Widget 기반 재생 제어, Firebase 인증, 로그인 사용자별 트랙 저장 | React, TypeScript, Vite, Zustand, Tailwind CSS, Firebase Authentication / Firestore, SoundCloud Widget API, Cloudflare Workers Static Assets | [보기](https://newtronome.jsjweb0.workers.dev) |
+| 프로젝트   | 핵심 구현                                                                                                 | 기술                                                                                                                                                            | 링크                                           |
+| ---------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| Dockit     | 이력서·자기소개서·경력기술서·프로젝트 보고서 작성, 실시간 미리보기, 저장·검증·PDF 출력                   | React, TypeScript, Vite, Tailwind CSS, React Router, Vitest, localStorage, Cloudflare Workers                                                                    | [보기](https://dockit.jsjweb0.workers.dev/)    |
+| NEWTRONOME | SoundCloud Widget 재생 제어, iTunes 음악 검색·미리듣기, Firebase 사용자별 트랙 저장                       | React, TypeScript, Vite, Zustand, Tailwind CSS, Firebase Authentication / Firestore, SoundCloud Widget API, iTunes Search API, Cloudflare Workers Static Assets | [보기](https://newtronome.jsjweb0.workers.dev) |
 
 ### 🧩 실무 퍼블리싱 프로젝트
 
@@ -35,9 +35,10 @@
 
 ## 🛠 기술 스택
 
-**Frontend:** React 18, TypeScript, Vite, Tailwind CSS  
-**라이브러리:** React Router v7, Motion, Lucide React  
-**도구:** Firebase Auth/Firestore, Cloudflare Workers, GitHub Pages, GitHub Actions
+- **포트폴리오:** React 18, TypeScript, Vite, Tailwind CSS v4
+- **라이브러리:** React Router v7, Motion, Lucide React
+- **프로젝트 연동:** Firebase Authentication / Firestore, SoundCloud Widget API, iTunes Search API
+- **배포:** GitHub Pages, Cloudflare Workers Static Assets, GitHub Actions
 
 ## 💡 기술 선택 이유
 
@@ -68,9 +69,10 @@ src/
 │   │   └── ui/
 │   └── project-detail/
 ├── shared/
-│   ├── hooks/
 │   └── lib/
+├── styles/
 └── widgets/
+    └── header/
 ```
 
 ## ▶️ 설치 및 실행
@@ -97,5 +99,7 @@ GitHub Actions를 사용해 `main` 브랜치로 push하거나 pull request를 �
 - 퍼블리싱 실무 경험을 React 컴포넌트 구조로 옮기며, 반복 UI를 데이터 기반으로 렌더링하는 방식을 정리했습니다.
 - 별도의 Client ID나 비공식 API 요청 없이 공식 SoundCloud Widget을 활용해 플레이리스트 재생과 트랙 정보를 구성했습니다.
 - Widget 재생 이벤트를 Zustand 상태와 연결해 트랙 목록, 플레이리스트 패널, 하단 컨트롤의 상태를 동기화했습니다.
+- iTunes Search API 응답을 `unknown`으로 받고 타입 가드로 검증하며, `AbortController`로 연속 검색 요청의 경쟁 상태를 처리했습니다.
+- SoundCloud Widget과 별도 미리듣기 오디오의 실제 재생 이벤트를 연결해 두 소스가 동시에 재생되지 않도록 구성했습니다.
 - NEWTRONOME의 React 애플리케이션 코드를 TypeScript로 전환하고, 주요 페이지 지연 로딩과 선택적 모듈 import로 메인 번들을 줄였습니다.
-- 다음 단계에서는 실제 화면 캡처를 README에 추가하고, 프로젝트별 GitHub 링크와 개선 전/후 포인트를 더 구체화할 예정입니다.
+- 다음 단계에서는 이 README에도 프로젝트 대표 화면과 GitHub 링크를 추가하고, 상세 페이지의 개선 전후 근거를 더 구체화할 예정입니다.
