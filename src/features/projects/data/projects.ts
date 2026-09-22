@@ -392,30 +392,19 @@ export const projects: Project[] = [
         type: 'overview',
         title: 'Overview',
         content:
-          '개인 SoundCloud 플레이리스트를 랜덤으로 탐색하고 재생할 수 있는 React 음악 서비스입니다. 초기에는 Client ID와 별도 프록시를 사용해 트랙 정보와 스트리밍 URL을 가져왔지만, 외부 응답 구조와 키 관리에 대한 의존성이 컸습니다.\n\n이를 공식 SoundCloud Widget 기반 구조로 전환하고 READY, PLAY, PAUSE, PLAY_PROGRESS 이벤트를 React 플레이어 상태와 연결했습니다. 현재 트랙, 재생 여부, 진행 시간, 플레이리스트는 Zustand에서 관리해 메인 화면, 플레이리스트 패널, 하단 컨트롤이 동일한 상태를 공유하도록 구성했습니다.\n\n별도의 검색 화면에서는 iTunes Search API 응답을 unknown으로 받은 뒤 필요한 필드를 런타임에서 검증합니다. 연속 검색 시 AbortController로 이전 요청을 취소하고, 검색 미리듣기와 SoundCloud 플레이어가 동시에 재생되지 않도록 실제 재생 이벤트를 기준으로 상호 정지시켰습니다. 공개 API의 한국 스토어 음악 검색 결과가 반환되지 않아 현재 검색은 미국 스토어를 기준으로 제공합니다.\n\nFirebase Authentication과 Firestore를 연결해 로그인 사용자별 트랙 저장, 프로필, 게시글과 댓글 활동을 관리하고 있으며, 프론트엔드는 Cloudflare Workers Static Assets로 배포했습니다.',
+          'SoundCloud 플레이리스트 재생과 iTunes 음악 검색·미리듣기를 결합한 React 음악 서비스입니다. 공식 SoundCloud Widget의 재생 이벤트를 React와 Zustand 상태에 연결해 현재 곡, 재생 상태, 진행 시간을 여러 화면에서 공유하도록 구현했습니다.\n\n검색 API 응답은 런타임에서 검증하고, 연속 검색 요청을 취소해 최신 결과만 반영했습니다. SoundCloud 재생과 검색 미리듣기가 동시에 실행되지 않도록 두 오디오 소스의 재생 상태도 조정했습니다.',
       },
       {
         type: 'work',
         title: 'Key Work',
         content: [
-          '공식 SoundCloud Widget 기반 플레이리스트 로딩과 재생 제어 구현',
-          'READY, PLAY, PAUSE, PLAY_PROGRESS 이벤트를 React 상태와 연결',
-          '현재 트랙, 재생 여부, 진행 시간, 플레이리스트를 Zustand로 전역 관리',
-          'Widget 트랙 데이터를 검증하고 애플리케이션용 PlayerTrack 타입으로 변환',
-          '플레이리스트 내부 곡 제목 필터링과 그리드·목록 보기 구현',
-          'iTunes Search API 기반 곡 검색과 미리듣기 구현',
-          'AbortController로 이전 검색 요청을 취소하고 최신 요청만 상태 갱신',
-          'API 응답을 unknown으로 처리하고 타입 가드로 유효한 트랙만 선별',
-          'SoundCloud 재생과 검색 미리듣기가 겹치지 않도록 상호 정지 처리',
-          '최근 검색어와 SoundCloud 플레이리스트 업로더 기반 추천 검색어 구현',
-          '최대 100개 검색 결과를 요청하고 20개씩 추가 표시하는 더 보기 구현',
-          'Firebase Auth 이메일 인증과 Firestore 사용자별 트랙 저장 구현',
-          '트랙 저장 목록의 로딩·빈 상태·오류 상태와 실시간 갱신 처리',
-          '프로필 수정, 내가 쓴 글/댓글 모아보기 등 로그인 사용자 활동 화면 구현',
-          '반응형 플레이리스트 패널, 모바일 하단 플레이어, 다크모드 구현',
-          'SoundCloud, iTunes, Firestore 외부 데이터를 런타임에서 검증한 뒤 애플리케이션 타입으로 변환',
-          '주요 페이지 지연 로딩과 Preline Dropdown 선택 import로 메인 번들 크기 축소',
-          'GitHub Actions와 Cloudflare Workers Static Assets 기반 자동 배포',
+          'SoundCloud Widget 기반 플레이리스트 로딩과 재생 제어 구현',
+          'Widget 이벤트와 Zustand를 연결해 플레이어 상태를 여러 화면에서 공유',
+          'iTunes Search API 음악 검색·미리듣기와 검색 결과 검증 구현',
+          'AbortController로 이전 검색 요청을 취소하고 최신 결과만 반영',
+          'SoundCloud와 검색 미리듣기의 동시 재생 방지',
+          'Firebase Auth·Firestore 기반 사용자별 트랙 저장과 활동 화면 구현',
+          '데스크톱 플레이리스트 패널과 모바일 하단 플레이어를 반응형으로 구성',
         ],
       },
       {
@@ -424,39 +413,21 @@ export const projects: Project[] = [
         content: [
           {
             problem:
-              'Client ID·프록시 기반 SoundCloud 연동\n별도 API 요청과 스트리밍 URL 변환에 의존해 외부 응답 구조와 키 관리 부담이 커졌습니다.',
+              'iframe 내부에서 실행되는 SoundCloud 재생 상태를 React 화면과 동기화하기 어려웠습니다.',
             solution:
-              'Client ID와 전용 API 프록시를 제거하고 공식 SoundCloud Widget 기반으로 재구성했습니다. Widget이 제공하는 재생 기능과 트랙 정보 범위 안에서 서비스를 구성해 별도 스트리밍 URL 변환을 없앴습니다.',
+              'READY, PLAY, PAUSE, PLAY_PROGRESS 이벤트를 구독하고 Zustand에 반영해 트랙 목록, 플레이리스트 패널, 하단 컨트롤이 같은 상태를 공유하도록 구성했습니다.',
           },
           {
             problem:
-              'Widget 내부 재생 상태와 React UI 상태 불일치\n재생은 iframe 내부에서 실행되기 때문에 React 컴포넌트가 현재 곡, 재생 여부, 진행 시간을 직접 알 수 없었습니다.',
+              '빠른 검색 과정에서 이전 요청이 늦게 도착하면 최신 결과를 덮어쓸 수 있었습니다.',
             solution:
-              'READY, PLAY, PAUSE, PLAY_PROGRESS 이벤트를 구독하고 필요한 값을 Zustand 상태에 반영했습니다. 메인 트랙 목록, 플레이리스트 패널, 하단 컨트롤이 하나의 재생 상태를 공유하도록 구성했습니다.',
+              'AbortController로 이전 요청을 취소하고 현재 요청만 로딩과 결과 상태를 갱신하도록 처리했습니다.',
           },
           {
             problem:
-              '연속 검색 요청의 응답 순서 문제\n사용자가 빠르게 검색어를 바꾸면 이전 요청이 늦게 완료되어 최신 검색 결과와 로딩 상태를 덮어쓸 수 있었습니다.',
+              'SoundCloud 재생과 검색 미리듣기가 동시에 실행될 수 있었습니다.',
             solution:
-              '새 검색마다 AbortController로 이전 요청을 취소하고, finally에서는 현재 컨트롤러와 일치하는 요청만 로딩 상태를 변경하도록 처리했습니다.',
-          },
-          {
-            problem:
-              'SoundCloud와 검색 미리듣기의 동시 재생\n검색 미리듣기는 별도의 audio 요소를 사용하기 때문에 기존 SoundCloud 플레이어와 동시에 재생될 수 있었습니다.',
-            solution:
-              '미리듣기 시작 시 SoundCloud Widget의 pause를 호출하고, SoundCloud PLAY 이벤트가 발생하면 미리듣기를 정지해 두 오디오 소스의 실제 재생 상태를 동기화했습니다.',
-          },
-          {
-            problem:
-              '숨겨진 Widget의 플레이리스트 지연 로딩\nWidget iframe을 조건부 렌더링하거나 display:none으로 숨기면 READY 이벤트와 전체 트랙 로딩이 정상적으로 진행되지 않았습니다.',
-            solution:
-              'Widget을 화면 밖에 항상 마운트하고 렌더 영역을 확보했습니다. getSounds 결과가 완전하지 않을 때 제한된 횟수만 재시도하고 로딩 상태를 별도로 표시했습니다. 다만 이 방식은 Widget 내부 렌더링 동작에 의존하므로 곡 수나 Widget 구현이 바뀌면 재검증이 필요합니다.',
-          },
-          {
-            problem:
-              '사용자별 트랙 저장 상태 관리\n로그인 사용자마다 저장한 트랙이 달라 버튼 상태와 Likes 목록을 일관되게 갱신해야 했습니다.',
-            solution:
-              'Firestore의 users/{uid}/savedTracks 하위 컬렉션에 트랙을 저장하고 onSnapshot으로 변경 사항을 구독했습니다. 외부 데이터는 타입 가드로 검증하고 로딩, 빈 상태, 오류 상태를 분리했습니다.',
+              '한쪽 오디오가 재생되면 다른 쪽을 정지하도록 연결해 두 오디오 소스의 재생 상태를 조정했습니다.',
           },
         ],
       },
@@ -464,24 +435,19 @@ export const projects: Project[] = [
         type: 'tech',
         title: 'Technical Points',
         content: [
-          'SoundCloud Widget 연동: 별도 Client ID와 비공식 스트리밍 요청 없이 공식 Widget 범위에서 재생 기능 구성',
-          '이벤트 기반 동기화: Widget 재생 이벤트를 구독해 React UI와 오디오 상태를 연결',
-          'Zustand 상태 관리: 플레이어 상태를 단일 store로 관리해 컴포넌트 간 상태 중복 방지',
-          '외부 데이터 검증: SoundCloud Widget, iTunes Search API, Firestore 데이터를 사용하기 전에 필요한 필드와 타입 검증',
-          '비동기 요청 제어: AbortController와 현재 요청 식별로 검색 요청 경쟁 상태 방지',
-          '오디오 소스 조정: Widget PLAY 이벤트와 HTMLAudioElement 상태를 연결해 동시 재생 방지',
-          '검색 결과 노출: offset 없는 API 특성을 고려해 최대 100개를 요청하고 20개씩 단계적으로 렌더링',
-          'Firestore 실시간 구독: 사용자별 저장 트랙을 실시간으로 갱신하고 로딩·빈 상태·오류 상태 처리',
-          '반응형 플레이어 UI: 데스크톱 사이드 패널과 모바일 하단 플레이어를 화면 크기에 맞게 구성',
-          '번들 최적화: 주요 페이지를 지연 로딩하고 Preline 전체 모듈 대신 Dropdown만 선택적으로 로드',
-          'Cloudflare 배포: Workers Static Assets와 GitHub Actions를 이용한 프론트엔드 자동 배포',
+          'SoundCloud Widget 이벤트와 React 상태 동기화',
+          'Zustand 기반 플레이어 상태 관리',
+          '외부 API 응답 런타임 검증과 타입 변환',
+          'AbortController를 활용한 검색 요청 취소',
+          'Firebase Auth·Firestore 사용자 데이터 관리',
+          '데스크톱·모바일 플레이어 UI 반응형 구성',
         ],
       },
       {
         type: 'result',
         title: 'Result & Next Steps',
         content:
-          '공식 SoundCloud Widget의 재생 이벤트를 React 상태와 연결하고, Zustand를 통해 여러 플레이어 UI가 동일한 상태를 공유하도록 구성했습니다. iTunes 검색 응답 검증, 연속 요청 취소, 두 오디오 소스의 상호 정지를 구현했으며, Firebase 인증과 사용자별 트랙 저장, 게시판, 활동 조회를 하나의 서비스 흐름으로 연결했습니다.\n\n기존 Client ID·프록시 방식을 제거하고 React 애플리케이션 코드를 TypeScript로 전환했습니다. 주요 페이지 지연 로딩과 Preline Dropdown 선택 import를 적용해 Vite 빌드 기준 메인 JavaScript 청크를 1,376.66kB에서 약 1,115.62kB로 약 19% 줄였습니다.\n\n앞으로 개선할 것:\n• Widget 지연 로딩 실패를 위한 명시적인 오류 및 재시도 UI 추가\n• Widget 렌더링 높이에 의존하는 전체 트랙 로딩 방식 개선\n• Firebase와 공통 의존성 청크 분리\n• 플레이리스트 로딩과 재생 흐름 E2E 테스트 추가',
+          'SoundCloud Widget의 재생 이벤트를 React와 연결하고, Zustand를 통해 여러 플레이어 UI가 동일한 상태를 공유하도록 구현했습니다. iTunes 검색 응답 검증, 연속 요청 취소, 두 오디오 소스의 동시 재생 방지, Firebase 기반 사용자별 트랙 저장까지 하나의 서비스 흐름으로 구성했습니다.\n\n공식 Widget 방식으로 외부 음악 연동 구조를 단순화했으며, 주요 페이지 지연 로딩과 선택적 모듈 import로 번들 크기도 줄였습니다. 앞으로는 Widget 로딩 실패 UI와 플레이리스트 재생 흐름에 대한 E2E 테스트를 보강할 예정입니다.',
       },
     ],
   },
@@ -531,23 +497,17 @@ export const projects: Project[] = [
         type: 'overview',
         title: 'Overview',
         content:
-          '국문 취업 문서는 종류마다 형식과 필수 입력 항목이 다릅니다. 입력 누락, 작성 중 데이터 손실, 미리보기와 출력 결과의 차이를 줄이기 위해 이력서·자기소개서·경력기술서·프로젝트 보고서의 실시간 미리보기, 저장·복원, 검증, PDF 출력 흐름을 구현했습니다.\n\n초기에는 EditorLayout과 중앙 editor.config가 URL에 따라 Provider, 저장, 검증, 샘플, PDF 기능을 한 번에 요구했습니다. 문서가 세 종류로 늘어나자 Form과 Preview만 만든 새 화면을 먼저 확인하기 어려웠고, Router와 Layout이 문서 종류를 중복 판별했습니다.\n\n중앙 config와 과도한 공통 계층을 제거하고 각 BuilderPage가 Provider, 검증 hook, Header action, Form, Preview를 직접 조립하도록 변경했습니다. 공통 영역에는 4종에서 반복되는 UI, 저장, 출력 흐름만 남겼습니다.',
+          '이력서·자기소개서·경력기술서·프로젝트 보고서를 작성하고, 입력·검증·저장·미리보기·PDF 출력까지 한 흐름으로 확인할 수 있는 React + TypeScript 문서 작성 도구입니다.\n\n문서별 요구사항이 다른 만큼 중앙 설정에 기능을 몰아넣지 않고, 각 BuilderPage가 Provider, Form, Preview, 검증 로직을 직접 조립하는 구조로 정리했습니다.',
       },
       {
         type: 'work',
         title: 'Key Work',
         content: [
-          '이력서, 자기소개서, 경력기술서, 프로젝트 보고서의 타입과 기본값, 샘플 데이터 설계',
-          '중앙 editor.config, EditorLayout, EditorShell을 제거하고 각 BuilderPage가 문서별 편집 흐름을 직접 조립하도록 변경',
-          'EditorHeader, DocumentBuilderLayout, useDocumentEditorCore, createDocumentStorage처럼 4종에서 반복되는 기능만 공통화',
-          '공통 core에는 dirty 상태, 초기화, 60초 자동 저장, PDF 상태를 두고 저장 전 검증과 데이터 정리는 문서별 Provider와 storage에서 처리',
-          '문서별 복잡도에 따라 이력서는 공통 validation hook과 adapter를 사용하고, 나머지 3종은 문서별 validation hook으로 관리',
-          'PDF 검증 후 예시 불러오기에서 이전 오류가 남는 문제를 resetVersion으로 해결하고 문서 교체 회귀 테스트 추가',
-          '프로젝트 보고서를 기본 상태 → Form/Preview → 저장·검증 순으로 단계적으로 연결',
-          'localStorage를 활용해 작성 중인 문서를 저장하고 최근 작성 문서 목록에서 다시 열 수 있도록 구성',
-          '브라우저 인쇄와 print CSS를 활용해 텍스트 선택/검색이 가능한 PDF 저장 흐름 구현',
-          '모바일/태블릿/데스크톱 화면에서 입력과 미리보기 흐름이 무너지지 않도록 반응형 레이아웃 정리',
-          'Vite 빌드 결과물을 Cloudflare Workers Assets로 배포하고 SPA 새로고침 대응 설정 적용',
+          '4종 문서의 타입, 기본값, 샘플 데이터와 반응형 입력·미리보기 화면 설계',
+          '각 BuilderPage에서 문서별 Provider, Form, Preview, 검증 흐름을 직접 조립',
+          'dirty 상태, 초기화, 자동 저장, PDF 상태 등 반복 기능만 공통화',
+          '문서별 복잡도에 따라 검증 hook과 adapter를 분리하고 첫 오류 위치·오류 개수를 관리',
+          'localStorage 저장·복원, 예시 데이터 교체, PDF 출력과 모바일 레이아웃 검증',
         ],
       },
       {
@@ -556,21 +516,15 @@ export const projects: Project[] = [
         content: [
           {
             problem:
-              '새 문서 화면까지 막는 중앙 편집기 계약\nEditorLayout과 editor.config가 문서별 Provider, 저장, 검증, 샘플, PDF 기능을 한 번에 요구했습니다. 이 때문에 Form과 Preview만 만든 상태에서는 새 문서 화면을 확인할 수 없었고, Router에서 처리한 문서 분기를 Layout이 pathname으로 다시 판별했습니다.',
+              '중앙 설정과 공통 Layout이 모든 문서에 같은 기능을 요구해 새 문서를 빠르게 추가하기 어려웠습니다.',
             solution:
-              '중앙 config와 공통 Layout 계층을 제거하고 각 BuilderPage가 문서별 Provider, 검증 hook, Header action, Form, Preview를 직접 조립하도록 변경했습니다. 저장·검증이 없는 문서는 기본 상태와 Form, Preview, Page, Router 등록만으로 화면을 먼저 만들 수 있습니다. 홈 카드와 최근 문서 노출은 각각의 등록 파일에서 별도로 연결합니다.',
+              '각 BuilderPage가 문서별 Provider, Form, Preview, 검증 로직을 직접 조립하도록 변경하고, 여러 문서에서 반복되는 UI와 저장 기능만 공통화했습니다.',
           },
           {
             problem:
-              '문서별 복잡도에 따른 검증 구조 분리\n이력서는 기본 정보, 학력, 경력, 프로젝트처럼 반복 섹션과 검증 필드가 많아 touched field 관리, 전체 검증, 첫 오류 메시지 계산, 에러 개수 계산이 복잡했습니다. 반면 자기소개서와 경력기술서는 검증 범위가 상대적으로 단순해 같은 adapter 구조를 모두 적용하면 코드가 불필요하게 무거워질 수 있었습니다.',
+              '문서마다 입력 구조와 검증 복잡도가 달라 동일한 검증 구조를 적용하기 어려웠습니다.',
             solution:
-              '이력서는 공통 useDocumentValidation 훅과 resumeValidationAdapter로 touched field, 오류 개수, 첫 오류 위치 계산을 분리했습니다. 자기소개서·경력기술서·프로젝트 보고서는 문서별 validation hook에서 규칙과 오류 상태를 관리해 복잡도에 맞게 구조를 나눈습니다.',
-          },
-          {
-            problem:
-              '예시 데이터 교체 후 남는 이전 검증 결과\nPDF 출력 전 전체 검증으로 오류가 표시된 상태에서 예시를 불러오면 문서 값만 바뀌고 이전 오류 개수, 메시지, touched 상태가 그대로 남았습니다.',
-            solution:
-              '초기화와 예시 불러오기에서 resetVersion을 갱신하고 validation hook이 errors와 touched 상태를 함께 초기화하도록 연결했습니다. PDF 검증 후 예시 불러오기 통합 테스트를 4종에 적용해 오류 요약이 0으로 복귀하는 흐름을 확인했습니다.',
+              '복잡한 이력서는 공통 validation hook과 adapter로 관리하고, 나머지 문서는 문서별 validation hook으로 분리했습니다.',
           },
         ],
       },
@@ -578,25 +532,18 @@ export const projects: Project[] = [
         type: 'tech',
         title: 'Technical Points',
         content: [
-          '문서별 페이지 조립: 각 BuilderPage가 Provider, 검증, Header action, Form, Preview를 직접 연결',
-          '공통화 범위 제한: EditorHeader와 DocumentBuilderLayout은 UI를, useDocumentEditorCore는 dirty 상태·초기화·60초 자동 저장·PDF 상태를 담당',
-          '저장 정책 분리: 저장 전 검증과 저장 데이터 정리는 각 문서 Provider와 storage에서 처리',
-          'localStorage 저장 구조: 작성 중 문서를 브라우저에 저장하고 최근 작성 목록에서 복원하도록 구성',
-          '공통 검증 훅: useDocumentValidation에서 touched field 관리, 단일 필드 재검증, 전체 검증, 에러 개수 계산 흐름을 공통화',
-          'Validation 구조: 복잡한 이력서는 adapter로 필드 key 생성과 검증 규칙을 분리하고, 단순한 문서는 문서별 validation hook으로 관리',
-          '검증 상태 초기화: resetVersion으로 문서 데이터 교체와 errors, touched 상태의 초기화 시점을 연결',
-          '문서 출력 전략: 제출용 출력은 print CSS 기반 PDF 저장 흐름에 집중',
-          '반응형 레이아웃: 데스크톱에서는 입력 폼과 미리보기를 함께 보여주고, 좁은 화면에서는 작성 흐름이 유지되도록 배치 조정',
-          '접근성 개선: label/input 연결, button 상태, dialog focus return, table caption/scope 등 기본 접근성 요소 점검',
-          '브라우저 이슈 대응: Safari에서 table rowSpan 높이가 즉시 재계산되지 않는 문제를 확인하고 미리보기 table 재마운트로 레이아웃 깨짐 방지',
-          '배포 설정: Cloudflare Workers Assets와 SPA fallback 설정으로 Vite 정적 앱 배포 흐름 구성',
+          '문서별 페이지 조립: BuilderPage에서 Provider, Form, Preview, Header action을 직접 연결',
+          '선택적 공통화: 반복되는 UI, dirty 상태, 초기화, 자동 저장, PDF 상태만 공통 관리',
+          '검증 구조 분리: 이력서는 adapter 기반으로, 단순한 문서는 문서별 hook으로 관리',
+          '저장·출력 흐름: localStorage 저장·복원과 print CSS 기반 PDF 출력 구현',
+          '반응형·접근성 대응: 입력과 미리보기 배치, label 연결, focus return, 인쇄 레이아웃 점검',
         ],
       },
       {
         type: 'result',
         title: 'Result & Next Steps',
         content:
-          '중앙 editor.config가 모든 문서 기능을 미리 요구하던 구조를 문서별 페이지 조립 방식으로 변경했습니다. 기존 3종의 저장, 60초 자동 저장, 초기화, 예시 불러오기, 검증, PDF 출력, 미저장 경고를 유지하면서 프로젝트 보고서를 단계적으로 추가했습니다. 현재 22개 테스트 파일의 136개 테스트로 저장, 검증, PDF, 문서 교체, 최근 문서 흐름을 확인합니다.\n\n문서별 조립 코드가 일부 반복되지만 현재 4종 규모에서는 범용 factory를 추가하기보다 기능의 위치와 문서별 정책이 코드에 드러나는 구조를 선택했습니다.\n\n앞으로 개선할 것:\n• 브라우저별 A4 페이지 분할 차이 점검\n• 모바일 문서 작성·미리보기·저장 E2E 테스트 추가\n• localStorage 이전 버전 migration 전략 보강\n• 저장 실패와 저장 공간 부족 상황의 사용자 안내 개선',
+          '문서별 페이지 조립 구조로 변경해 새로운 문서를 독립적으로 추가할 수 있도록 개선했습니다. 저장·복원, 검증, 예시 데이터 교체, PDF 출력과 미저장 경고 흐름을 유지했으며, 136개 테스트로 주요 기능을 검증했습니다.\n\n현재는 문서별 조립 코드가 일부 반복되지만, 4종 문서 규모에서는 범용 factory보다 각 문서의 정책과 책임이 드러나는 구조를 우선했습니다. 앞으로는 브라우저별 PDF 출력과 모바일 작성 흐름에 대한 E2E 테스트를 보강할 예정입니다.',
       },
     ],
   },
