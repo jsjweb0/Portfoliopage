@@ -352,7 +352,7 @@ export const projects: Project[] = [
     contribution: 'Frontend 100%',
     stack:
       'React · TypeScript · Vite · Zustand · Tailwind CSS · Firebase Authentication · Firestore · SoundCloud Widget API · iTunes Search API · Cloudflare Workers Static Assets',
-    duration: '2025.08 - 진행중',
+    duration: '최초 제작 2025.08 · 주요 기능 개선 진행 중',
     summary:
       'SoundCloud 플레이리스트 재생과 iTunes 음악 검색·미리듣기를 결합한 React 음악 서비스입니다. 공식 Widget 기반 재생 제어와 Firebase 사용자 기능까지 하나의 서비스 흐름으로 구현했습니다.',
     description:

@@ -244,3 +244,29 @@
     transition-duration: 0.01ms;
   }
 }
+
+.project-indicator {
+  display: none;
+}
+
+@supports (anchor-name: --active-project) {
+  .project-item:hover {
+    anchor-name: --active-project;
+  }
+
+  .project-item:hover,
+  .project-item:has(a:focus-visible) {
+    anchor-name: --active-project;
+  }
+
+  .project-indicator {
+    display: block;
+    position: absolute;
+    position-anchor: --active-project;
+    inset: anchor(inside);
+
+    background: rgb(255 255 255 / 12%);
+    transition: inset 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+  }
+}

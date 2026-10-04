@@ -18,7 +18,7 @@ export function PortfolioPage() {
     <div className="min-h-screen">
       <Header />
 
-      <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-16 md:px-8 md:py-20 break-keep">
+      <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-12 md:px-8 md:py-20 break-keep">
         <section className="mb-16 md:mb-32">
           <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">
             Web Publisher · Frontend Developer
@@ -38,12 +38,14 @@ export function PortfolioPage() {
           id="work"
           className="scroll-mt-24 space-y-px border-b border-white/10"
         >
+          <div className="project-indicator" aria-hidden="true"></div>
+
           {projectsByDescendingId.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </section>
 
-        <section id="about" className="scroll-mt-24 mt-30 md:mt-52">
+        <section id="about" className="scroll-mt-24 mt-24 md:mt-52">
           <div className="mb-16 space-y-10 md:mb-30">
             <p className="mb-4 text-sm tracking-wider text-[#8df5c5]">ABOUT</p>
             <h2 className="text-xl font-bold leading-tight md:text-4xl">
@@ -85,7 +87,7 @@ export function PortfolioPage() {
               {stackGroups.map((group) => (
                 <div key={group.title} className="mb-6">
                   <h4 className="mb-3 text-sm text-white/60">{group.title}</h4>
-                  <ul className="flex flex-wrap gap-3">
+                  <ul className="flex flex-wrap gap-1.5 md:gap-3">
                     {group.stacks.map((stack) => (
                       <li
                         key={stack}
@@ -103,7 +105,7 @@ export function PortfolioPage() {
               <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-white">
                 Contact
               </h3>
-              <div className="grid gap-3 md:grid-cols-3">
+              <div className="grid gap-3 md:grid-cols-4">
                 {contactLinks.map(({ label, href, text, Icon }) => (
                   <a
                     key={label}

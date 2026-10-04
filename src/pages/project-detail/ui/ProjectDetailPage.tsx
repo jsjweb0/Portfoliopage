@@ -70,15 +70,15 @@ export function ProjectDetailPage() {
       <Header variant="detail" meta={project.duration} />
 
       {/* Main Content */}
-      <main ref={mainRef} id="main-content" tabIndex={-1} className="relative z-10 mx-auto max-w-6xl px-6 py-10 md:px-8 md:py-20">
+      <main ref={mainRef} id="main-content" tabIndex={-1} className="relative z-10 mx-auto max-w-6xl px-6 py-4 md:px-8 md:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-20 md:mb-32"
+          className="mb-14 md:mb-32"
         >
           <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-start md:gap-16">
-            <div className="text-[76px] font-bold leading-none tracking-tight md:text-[180px] text-white/80">
+            <div className="text-[38px] font-bold leading-none tracking-tight md:text-[180px] text-white/80">
               {project.id}
             </div>
             <div className="flex-1 md:pt-8">
@@ -94,7 +94,7 @@ export function ProjectDetailPage() {
             </div>
           </div>
 
-          <div className="h-px bg-white/10 mb-12" />
+          <div className="h-px bg-white/10 mb-8 md:mb-12" />
 
           <div className="grid gap-8 md:grid-cols-4 md:gap-12">
             <div>
@@ -162,16 +162,16 @@ export function ProjectDetailPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-20 md:mb-32"
+            className="mb-8 md:mb-32"
           >
-            <div className="flex items-start gap-3 md:gap-8">
+            <div className="flex items-start gap-1.5 md:gap-8">
               <div className="shrink-0 pt-1">
-                <Paintbrush aria-hidden="true" className="h-6 w-6 stroke-[1.5]" />
+                <Paintbrush aria-hidden="true" className="size-4 md:size-6 stroke-[1.5]" />
               </div>
               <div className="flex-1">
                 <h2
                   id="ui-preview-title"
-                  className="mb-4 text-lg md:text-2xl font-bold"
+                  className="mb-4 text-base md:text-2xl font-bold"
                 >
                   UI Preview
                 </h2>
@@ -209,12 +209,12 @@ export function ProjectDetailPage() {
               <Fragment
                 key={section.title}
               >
-                <section className="flex items-start gap-3 md:gap-8">
+                <section className="flex items-start gap-1.5 md:gap-8">
                   <div className="shrink-0 pt-1">
-                    <SectionIcon aria-hidden="true" className="h-6 w-6 stroke-[1.5]" />
+                    <SectionIcon aria-hidden="true" className="size-4 md:size-6 stroke-[1.5]" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="mb-4 text-lg md:text-2xl font-bold">
+                    <h2 className="mb-4 text-base md:text-2xl font-bold">
                       {section.title}
                     </h2>
                     <div className="text-sm md:text-lg leading-relaxed text-white/80 break-keep">
@@ -236,8 +236,8 @@ export function ProjectDetailPage() {
                       ) : Array.isArray(section.content) ? (
                         <ul className="flex flex-col gap-2">
                           {section.content.map((item) => (
-                            <li key={item} className="flex gap-1">
-                              <Dot aria-hidden="true" className="mt-0.5" />{item}
+                            <li key={item} className="flex gap-0 md:gap-1">
+                              <Dot aria-hidden="true" className="mt-0 md:mt-0.5 -ml-1" />{item}
                             </li>
                           ))}
                         </ul>
@@ -260,7 +260,7 @@ export function ProjectDetailPage() {
         </div>
       </main>
       {/* Footer */}
-      <div className="mx-auto max-w-6xl px-6 py-1 md:px-8">
+      <div className="mx-auto max-w-6xl px-6 py-2 md:px-8 max-md:mt-10">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-sm transition-all hover:gap-3 focus-visible:gap-3"

@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, type LucideIcon } from 'lucide-react';
+import { Github, Linkedin, Mail, Paperclip, type LucideIcon } from 'lucide-react';
 
 export interface PortfolioStrength {
   title: string;
@@ -80,5 +80,11 @@ export const contactLinks: ContactLink[] = [
     href: 'https://www.linkedin.com/in/sujin-jeong-619a80391/',
     text: 'linkedin.com/in/sujin-jeong',
     Icon: Linkedin,
+  },
+  {
+    label: 'PDF',
+    href: 'https://drive.google.com/file/d/1Lz8kqj7VzUoTEwicdMV9qYy0uPqB7PSn/view?usp=sharing',
+    text: 'Portpolio PDF Download',
+    Icon: Paperclip,
   },
 ];
