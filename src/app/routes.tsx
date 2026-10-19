@@ -1,9 +1,9 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import { NotFoundPage } from "../pages/not-found/ui/NotFoundPage";
 import { PortfolioPage } from "../pages/portfolio/ui/PortfolioPage";
 import { ProjectDetailPage } from "../pages/project-detail/ui/ProjectDetailPage";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: "/",
     Component: PortfolioPage,
@@ -16,8 +16,4 @@ export const router = createBrowserRouter([
     path: "*",
     Component: NotFoundPage,
   },
-],
-  {
-    basename: "/Portfoliopage",
-  }
-);
+]);
