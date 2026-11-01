@@ -8,7 +8,7 @@ src/features/about/
 src/pages/about/ui/AboutPage.tsx
 src/styles/about.css
 
-data/
+/data/
 scripts/
 
 # OS/editor files
