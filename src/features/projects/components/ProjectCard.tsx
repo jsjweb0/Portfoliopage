@@ -19,7 +19,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       to={`/project/${project.id}`}
       className="project-item relative grid grid-cols-[26px_minmax(0,1fr)] gap-x-3 border-b border-(--line) py-6 md:grid-cols-[64px_minmax(0,1fr)_56px] md:items-center md:gap-x-6 md:py-9"
     >
-      <span className="pt-[3px] text-[13px] text-(--text-muted) tabular-nums md:pt-0 md:text-sm">
+      <span className="project-number pt-[3px] text-[13px] text-(--text-muted) tabular-nums md:pt-0 md:text-sm">
         {project.id}
       </span>
 
@@ -43,10 +43,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </span>
 
         <h3 className="m-0 text-[22px] leading-tight font-bold tracking-[-0.02em] md:text-[30px]">
-          {project.title}
+          <span className="project-title">{project.title}</span>
         </h3>
 
-        <span className="text-[15px] leading-[1.65] text-(--text-summary) md:text-base">
+        <span className="project-summary text-[15px] leading-[1.65] text-(--text-summary) md:text-base">
           {project.listSummary ?? project.summary ?? project.description}
         </span>
       </span>

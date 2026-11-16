@@ -62,15 +62,17 @@ export function Header({ variant = 'home', meta }: HeaderProps) {
       }`}
     >
       {isDetail ? (
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-sm transition-colors hover:text-[#8df5c5] focus-visible:text-[#8df5c5]"
-          >
-            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-            Back to Portfolio
+        <div className="mx-auto flex h-[60px] max-w-[1120px] items-center justify-between gap-6 px-5 text-sm md:h-[68px] md:px-10">
+          <Link to="/" className="inline-flex min-h-11 items-center gap-2">
+            <ArrowLeft aria-hidden="true" className="size-4" />
+            <span className="link-draw pb-0.5">전체 프로젝트</span>
           </Link>
-          {meta && <div className="text-right text-sm">{meta}</div>}
+          <div className="flex items-center gap-4">
+            {meta && (
+              <span className="text-(--text-muted) tabular-nums">{meta}</span>
+            )}
+            <ThemeToggle />
+          </div>
         </div>
       ) : (
         <div className="mx-auto flex h-[60px] max-w-[1120px] items-center justify-between gap-6 px-5 md:h-[68px] md:px-10">

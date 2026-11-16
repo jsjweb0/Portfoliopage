@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ProjectCard } from '../../../features/projects/components/ProjectCard';
 import { projects } from '../../../features/projects/data/projects';
 import { contactLinks, stackGroups } from '../data/portfolioData';
@@ -37,6 +38,12 @@ function ExternalLink({
 }
 
 export function PortfolioPage() {
+  // 상세 페이지에서 돌아올 때 이전 스크롤 위치가 남지 않도록 맨 위에서 시작한다.
+  // html의 scroll-behavior: smooth를 피하려고 'instant'로 바로 이동한다.
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   return (
     <div className="min-h-screen bg-(--bg) text-(--fg) break-keep">
       <Header />
@@ -149,7 +156,7 @@ export function PortfolioPage() {
             {emailLink && (
               <a
                 href={emailLink.href}
-                className="self-start border-b border-(--accent) pt-2 pb-1 text-[21px] font-bold tracking-[-0.02em] md:pt-0 md:text-[26px]"
+                className="self-start pt-2 pb-1 text-[21px] font-bold tracking-[-0.02em] md:pt-0 md:text-[26px]"
               >
                 {emailLink.text}
               </a>
@@ -160,7 +167,7 @@ export function PortfolioPage() {
                   key={label}
                   href={href}
                   label={label}
-                  className="border-b border-(--line) py-3 text-(--text-sub) md:border-0 md:py-0"
+                  className="py-3 text-(--text-sub) md:py-0"
                 />
               ))}
             </span>
