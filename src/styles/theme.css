@@ -245,28 +245,156 @@
   }
 }
 
+/* ------------------------------------------------------------
+ * 메인 페이지 다크/라이트 테마
+ * <html data-theme="dark|light">에 따라 색 변수만 바뀐다.
+ * 상세 페이지는 #wrap에 data-theme="dark"를 두어 다크로 고정한다.
+ * ---------------------------------------------------------- */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --fg: #f2f2f2;
+  --text-body: #b3b3b3;
+  --text-summary: #a3a3a3;
+  --text-sub: #a3a3a3;
+  --text-muted: #8c8c8c;
+  --text-strong: #d4d4d4;
+  --line: #1f1f1f;
+  --circle: #333333;
+  --btn-border: #3a3a3a;
+  --pub-border: #4a4a4a;
+  --pub-text: #d4d4d4;
+  --dot: #5a5a5a;
+  --accent: #8df5c5;
+  --accent-border: rgb(141 245 197 / 45%);
+  --indicator: rgb(255 255 255 / 7%);
+  --indicator-fallback: rgb(255 255 255 / 5%);
+  --header-bg: rgb(10 10 10 / 80%);
+  --toggle-rotate: 45deg;
+
+  --background: var(--bg);
+  --foreground: var(--fg);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #faf9f7;
+  --fg: #1c1c1c;
+  --text-body: #2e2b28;
+  --text-summary: #4a4743;
+  --text-sub: #5e5a55;
+  --text-muted: #6f6b66;
+  --text-strong: #2e2b28;
+  --line: #e4e0da;
+  --circle: #dad5ce;
+  --btn-border: #dad5ce;
+  --pub-border: #cdc7bf;
+  --pub-text: #2e2b28;
+  --dot: #cdc7bf;
+  --accent: #0b7a53;
+  --accent-border: rgb(11 122 83 / 45%);
+  --indicator: rgb(28 28 28 / 4%);
+  --indicator-fallback: rgb(28 28 28 / 3%);
+  --header-bg: rgb(250 249 247 / 85%);
+  --toggle-rotate: -20deg;
+
+  --background: var(--bg);
+  --foreground: var(--fg);
+}
+
+/* ------------------------------------------------------------
+ * 프로젝트 목록 hover: 하이라이트 한 개가 행 사이를 이동 (데스크톱)
+ * ---------------------------------------------------------- */
 .project-indicator {
   display: none;
 }
 
-@supports (anchor-name: --active-project) {
-  .project-item:hover {
-    anchor-name: --active-project;
+@media (min-width: 768px) {
+  @supports (anchor-name: --active-project) {
+    .project-item:hover,
+    .project-item:focus-visible {
+      anchor-name: --active-project;
+    }
+
+    .project-indicator {
+      display: block;
+      position: absolute;
+      position-anchor: --active-project;
+      top: anchor(top);
+      bottom: anchor(bottom);
+      left: calc(anchor(left) - 24px);
+      right: calc(anchor(right) - 24px);
+      border-radius: 8px;
+      background: var(--indicator);
+      transition:
+        top 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        bottom 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      pointer-events: none;
+    }
   }
 
-  .project-item:hover,
-  .project-item:has(a:focus-visible) {
-    anchor-name: --active-project;
+  /* anchor positioning 미지원 브라우저: 행 배경만 옅게 */
+  @supports not (anchor-name: --active-project) {
+    .project-item:hover,
+    .project-item:focus-visible {
+      background: var(--indicator-fallback);
+    }
   }
+}
 
-  .project-indicator {
-    display: block;
-    position: absolute;
-    position-anchor: --active-project;
-    inset: anchor(inside);
+/* 원형 화살표: 테두리·아이콘 색 변경 + 오른쪽 위로 2px */
+.project-arrow,
+.project-arrow svg {
+  transition:
+    border-color 250ms ease,
+    color 250ms ease,
+    transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
-    background: rgb(255 255 255 / 12%);
-    transition: inset 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    pointer-events: none;
-  }
+.project-item:hover .project-arrow,
+.project-item:focus-visible .project-arrow {
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+.project-item:hover .project-arrow svg,
+.project-item:focus-visible .project-arrow svg {
+  transform: translate(2px, -2px);
+}
+
+/* 링크 밑줄이 왼쪽부터 그려짐 */
+.link-draw {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px
+    no-repeat;
+  transition:
+    background-size 250ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 250ms ease;
+}
+
+.link-draw:hover,
+.link-draw:focus-visible,
+a:hover > .link-draw,
+a:focus-visible > .link-draw {
+  background-size: 100% 1px;
+  color: var(--fg);
+}
+
+/* 키보드 포커스 링: 기본 1px 회색은 라이트 배경에서 잘 안 보여 accent로 */
+.project-item:focus-visible,
+.theme-toggle:focus-visible,
+#main-content a:focus-visible,
+header a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* 테마 아이콘 회전 (다크: 해 45°, 라이트: 달 -20°) */
+.theme-toggle svg {
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.theme-toggle:hover svg,
+.theme-toggle:focus-visible svg {
+  transform: rotate(var(--toggle-rotate));
 }

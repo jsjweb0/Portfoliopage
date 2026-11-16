@@ -40,6 +40,10 @@ export interface Project {
   stack: string;
   duration: string;
   summary?: string;
+  /** 메인 목록에 보이는 한 줄 요약 */
+  listSummary?: string;
+  /** 메인 목록 메타 줄의 기여도 (없으면 contribution 사용) */
+  listMeta?: string;
   description: string;
   tags: string[];
   link: string;
@@ -52,6 +56,7 @@ export const projects: Project[] = [
   {
     id: '01',
     title: '고흥관광',
+    listSummary: '100여 개 서브페이지와 3개 언어에 대응한 관광 사이트 전면 개편',
     category: 'Publishing',
     year: '2024',
     role: 'Web Publisher',
@@ -152,6 +157,8 @@ export const projects: Project[] = [
   {
     id: '02',
     title: 'FIS Chat',
+    listSummary:
+      '범용 챗봇의 React 컴포넌트 구조를 분석해 서비스에 맞게 재구성한 반응형 챗봇 UI',
     category: 'Publishing',
     year: '2025',
     role: 'Web Publisher',
@@ -246,6 +253,8 @@ export const projects: Project[] = [
   {
     id: '03',
     title: '농넷',
+    listSummary:
+      '로그인·권한·관심품목에 따라 달라지는 조건부 UI와 품목별 데이터 대시보드',
     category: 'Publishing',
     year: '2025',
     role: 'Web Publisher',
@@ -346,6 +355,9 @@ export const projects: Project[] = [
   {
     id: '04',
     title: 'NEWTRONOME',
+    listSummary:
+      '누디스코·하우스 음악을 SoundCloud 플레이리스트로 소개하고 랜덤 재생하는 큐레이션 서비스',
+    listMeta: '1인 기획·디자인·개발',
     category: 'React',
     year: '2025 ~ 2026',
     role: 'Frontend Developer',
@@ -461,6 +473,9 @@ export const projects: Project[] = [
   {
     id: '05',
     title: 'DocKit',
+    listSummary:
+      '입력과 동시에 A4로 확인하고 PDF로 출력하는 React + TypeScript 문서 편집기',
+    listMeta: '1인 기획·개발',
     category: 'React',
     year: '2026',
     role: 'Frontend Developer',

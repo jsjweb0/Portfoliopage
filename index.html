@@ -35,6 +35,22 @@
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
     <title>정수진 포트폴리오 | Frontend Developer</title>
+    <script>
+      // 첫 화면이 그려지기 전에 테마를 정해 깜빡임을 막는다.
+      // 저장값 → 시스템 설정 → 다크 순서로 결정한다.
+      (function () {
+        var theme = 'dark';
+        try {
+          var saved = localStorage.getItem('theme');
+          if (saved === 'light' || saved === 'dark') {
+            theme = saved;
+          } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            theme = 'light';
+          }
+        } catch (error) {}
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <style>
       html,
       body {

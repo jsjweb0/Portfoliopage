@@ -66,7 +66,7 @@ export function ProjectDetailPage() {
   }
 
   return (
-    <div id="wrap" className="relative min-h-screen bg-black text-white">
+    <div id="wrap" data-theme="dark" className="relative min-h-screen bg-black text-white">
       <Header variant="detail" meta={project.duration} />
 
       {/* Main Content */}
