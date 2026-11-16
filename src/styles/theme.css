@@ -248,7 +248,7 @@
 /* ------------------------------------------------------------
  * 메인 페이지 다크/라이트 테마
  * <html data-theme="dark|light">에 따라 색 변수만 바뀐다.
- * 상세 페이지는 #wrap에 data-theme="dark"를 두어 다크로 고정한다.
+ * 메인과 상세 페이지가 같은 변수를 쓴다.
  * ---------------------------------------------------------- */
 :root,
 [data-theme='dark'] {
@@ -261,6 +261,10 @@
   --text-muted: #8c8c8c;
   --text-strong: #d4d4d4;
   --line: #1f1f1f;
+  --line-strong: #5e5e5a;
+  --line-mid: #3e3e3b;
+  /* 상세 하단 프로젝트 이동 영역 위 선 (모바일) */
+  --nav-line: #5e5e5a;
   --circle: #333333;
   --btn-border: #3a3a3a;
   --pub-border: #4a4a4a;
@@ -287,6 +291,10 @@
   --text-muted: #6f6b66;
   --text-strong: #2e2b28;
   --line: #e4e0da;
+  --line-strong: #b5afa6;
+  /* 라이트: 상세 하단 이동 영역 선은 메인 푸터 선(--line)과 같은 색 */
+  --line-mid: #e4e0da;
+  --nav-line: #e4e0da;
   --circle: #dad5ce;
   --btn-border: #dad5ce;
   --pub-border: #cdc7bf;
@@ -325,7 +333,6 @@
       bottom: anchor(bottom);
       left: calc(anchor(left) - 24px);
       right: calc(anchor(right) - 24px);
-      border-radius: 8px;
       background: var(--indicator);
       transition:
         top 300ms cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -361,6 +368,47 @@
 .project-item:hover .project-arrow svg,
 .project-item:focus-visible .project-arrow svg {
   transform: translate(2px, -2px);
+}
+
+/* 프로젝트 제목: hover·포커스 시 accent 밑줄이 왼쪽부터 그려짐
+ * 터치 기기에서는 탭 후 밑줄이 남지 않도록 hover 가능한 기기에서만 */
+.project-title {
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 2px
+    no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 번호는 accent로, 한 줄 요약은 본문색으로 진해짐 */
+.project-number,
+.project-summary {
+  transition: color 250ms ease;
+}
+
+@media (hover: hover) {
+  .project-item:hover .project-title {
+    background-size: 100% 2px;
+  }
+
+  .project-item:hover .project-number {
+    color: var(--accent);
+  }
+
+  .project-item:hover .project-summary {
+    color: var(--fg);
+  }
+}
+
+.project-item:focus-visible .project-title {
+  background-size: 100% 2px;
+}
+
+.project-item:focus-visible .project-number {
+  color: var(--accent);
+}
+
+.project-item:focus-visible .project-summary {
+  color: var(--fg);
 }
 
 /* 링크 밑줄이 왼쪽부터 그려짐 */
